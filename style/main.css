@@ -1,0 +1,111 @@
+body {
+    padding-top: 70px;
+}
+.item-drop-section {
+    min-height: 90px;
+    border: 1px solid #aaaaaa;
+    margin-bottom: 10px;
+}
+.page-half-modal {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.item-image {
+    width: 60px;
+    height: 60px;
+    margin: 10px;
+    vertical-align: inherit;
+    display: inline-block;
+    cursor: pointer;
+    padding: 0px;
+}
+.item-image img {
+   height: 100%;
+   width: 100%;
+}
+.item-image-small {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+}
+.section-spacer {
+    width: 100%;
+    display: block;
+}
+.section-spacer img {
+   height: 100%;
+   width: 100%;
+}
+.store-section-title {
+    display: block;
+    margin-top: 10px;
+}
+.section-add-button {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.section-remove-button {
+    float: right;
+    margin-top: 5px;
+}
+.section-header {
+    margin-bottom: 10px;
+}
+.section-title {
+    max-width: 300px;
+}
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.image-grayed {
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    filter: grayscale(100%); 
+}
+.item-placeholder {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #aaaaaa;
+    padding: 0px;
+}
+.panel {
+    max-height: 70vh;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+#item-build-tree{
+    overflow-x: auto;
+}
+.ui-menu-item .fa{
+    margin-right: 5px;
+}
+.google-visualization-orgchart-node-medium {
+    width: 90px;
+    height: 90px;
+    padding: 0px;
+}
+.google-visualization-orgchart-linebottom,
+.google-visualization-orgchart-lineleft,
+.google-visualization-orgchart-lineright{
+    border-color: black !important;
+}
+.select-menu-overflow {
+    height: 200px;
+    min-width: 200px;
+}
+.ui-selectmenu-button {
+    min-width: 150px;
+}
+.ui-dialog .ui-dialog-titlebar-close {
+    top: 40%;
+    height: inherit;
+}
