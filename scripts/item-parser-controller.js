@@ -1,8 +1,8 @@
 /**
 * Drag-drop item code
-* @author Bryan Stadick
+* @author
 * @version 0.0.5
-* @copyright © 2015 Bryan Stadick
+* @copyright © 2015
 */
 (function() {
 

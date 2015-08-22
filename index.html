@@ -18,6 +18,7 @@
         <script src="lib/angular.min.js"></script>
         <script src="lib/jquery-ui-1.11.4/jquery-ui.min.js"></script>
         <script src="lib/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>-->
+        <script src="scripts/items.js"></script>
         <script src="scripts/global-data.js"></script>
         <script src="scripts/module.js"></script>
         <script src="scripts/item-view-controller.js"></script>
@@ -63,7 +64,9 @@
                 </div>
                 <div class="page-half-modal col-sm-6">
                     <div class="panel">
-                        <img ng-repeat="item in items.store" ng-class="item.cssClass" ng-src="{{item.image}}" data-item-id="{{item.id}}" store-item-draggable />
+                        <img ng-repeat="item in items.store" class="draggable-item item-image" src="img/item-trans.png" ng-hide={{item.hideFromAll}}
+                            style="width: {{item.image.w}}px; height: {{item.image.h}}px; background: url(img/{{item.image.sprite}}) no-repeat; background-position: -{{item.image.x}}px -{{item.image.y}}px;"
+                            data-item-id="{{item.id}}" store-item-draggable />
                     </div>
                 </div>
             </div>

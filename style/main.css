@@ -11,9 +11,7 @@ body {
     margin-bottom: 10px;
 }
 .item-image {
-    width: 60px;
-    height: 60px;
-    margin: 10px;
+    margin: 10px !important;
     vertical-align: inherit;
     display: inline-block;
     cursor: pointer;
@@ -73,7 +71,7 @@ body {
     width: 100%;
     height: 100%;
     border: 1px solid #aaaaaa;
-    padding: 0px;
+    padding: 0px !important;
 }
 .panel {
     max-height: 70vh;
@@ -89,9 +87,9 @@ body {
     margin-right: 5px;
 }
 .google-visualization-orgchart-node-medium {
-    width: 90px;
-    height: 90px;
-    padding: 0px;
+    width: 80px;
+    height: 80px;
+    padding: 0px !important;
 }
 .google-visualization-orgchart-linebottom,
 .google-visualization-orgchart-lineleft,
@@ -104,6 +102,13 @@ body {
 }
 .ui-selectmenu-button {
     min-width: 150px;
+}
+.ui-dialog  {
+    margin-top: 50px;
+    max-height: 88vh;
+}
+.ui-dialog-content {
+    max-height: 78vh !important;
 }
 .ui-dialog .ui-dialog-titlebar-close {
     top: 40%;

@@ -1,8 +1,8 @@
 /**
 * Drag-drop item code
-* @author Bryan Stadick
+* @author
 * @version 0.0.5
-* @copyright © 2015 Bryan Stadick
+* @copyright © 2015
 */
 (function() {
 
@@ -18,7 +18,7 @@
         /**
         * List of items in the item store repeater.
         */
-        controller.store = itemList;
+        controller.store = items.data;
         
         /**
         * Layout of the build tree.
@@ -85,11 +85,14 @@
                 greedy: true,
                 drop: function(event, ui){
                     $(this).empty();
+                    var id = ui.draggable.attr("data-item-id");
+                    var item  = controller.store[id];
                     var draggable = ui.draggable.clone();
                     draggable.removeClass("image-grayed");
                     draggable.addClass("item-copy");
-                    //draggable.addClass("item-image-small");
-                    draggable.attr("style" , "");
+                    draggable.attr("style", "width:" + item.image.w + "px;" +
+                        "height:" + item.image.h + "px; background: url(img/" + item.image.sprite + ") no-repeat;" +
+                        "background-position: -" + item.image.x + "px -" + item.image.y + "px;");
                     controller.addItemContextMenu($("#workarea"), ".item-copy");
                     $(this).append(draggable);
                 }
@@ -199,7 +202,8 @@
         */
         controller.itemTooltipContent = function(element){
             var id = element.attr("data-item-id");
-            return "Item " + id;
+            var item  = controller.store[id];
+            return item["name"];
         };
         
         /**
@@ -214,6 +218,8 @@
                 var id = $(this).attr("data-item-id");
                 if($("#dialog-" + id).length > 0) return;
                 content.dialog({
+                    position: { my: "center", at: "top+30%", of: window },
+                    resizable: false,
                     open: function(event, ui){
                         $(this).parent().attr("id", "dialog-" + id);
                         var temp = $(".ui-dialog-titlebar-close", $(this).parent());
@@ -242,7 +248,12 @@
         */
         controller.itemModalContent = function(element){
             var id = element.attr("data-item-id");
-            return $("<div title='Item " + id + "'>Item is " + id + "</div>");
+            var item  = controller.store[id];
+            var modalDiv =  $("<div title='" + item["name"] + "'></div>");
+            
+            modalDiv.append(item["description"]);
+            
+            return modalDiv;
         };
         
         // Initialize the controller
@@ -256,7 +267,7 @@
     app.directive('storeItemDraggable', function($timeout){
         function link(scope, element, attrs){
             var el = angular.element(element);
-            if(!itemList[scope.$index].isSectionDivider){
+            //if(!itemList[scope.$index].isSectionDivider){
                 el.draggable({
                     revert: 'invalid',
                     connectToSortable: '.item-drop-section',
@@ -270,7 +281,7 @@
                         $(this).removeClass("image-grayed");
                     }
                 });
-            }
+            //}
             
             if (scope.$last === true) {
                 $timeout(function () {
