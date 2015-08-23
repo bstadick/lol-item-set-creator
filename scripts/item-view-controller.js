@@ -18,12 +18,22 @@
         /**
         * List of items in the item store repeater.
         */
-        controller.store = items.data;
+        controller.items = items;
+        
+        /**
+        * List of the store categories.
+        */
+        controller.storeCategories = itemCategories;
         
         /**
         * Layout of the build tree.
         */
         controller.buildLayout = "linearOne";
+        
+        /**
+        * If Google charts has been loaded;
+        */
+        controller.googleChartsLoaded = false;
         
         /**
         * Initializes the controller.
@@ -57,26 +67,91 @@
             
             // Load google tree view and draw initial view
             if(ChartService.loadGoogleVisualization())
-                google.setOnLoadCallback(controller.drawChart);
-                
-            // TODO - get item list from api and transform accordingly and place into store object
-            // Need to organize it into categories and make sure detail view info is present
+                google.setOnLoadCallback(function(){controller.googleChartsLoaded = true;});
+            
+            var allItems = $.grep(controller.storeCategories, function(e){return e.id.toLowerCase()  == "all";});
+            
+            // Organize items by category
+            $.each(controller.items.data, function(itemKey, itemValue){
+                if(allItems != null && allItems != undefined && allItems.length > 0){
+                    allItems[0].items[allItems[0].items.length] = itemValue;
+                }
+                if(itemValue.tags != null && itemValue.tags != undefined){
+                    $.each(itemValue.tags, function(index, value){
+                        // Find category in store
+                        var result = $.grep(controller.storeCategories, function(e){return e.id.toLowerCase()  == value.toLowerCase();});
+                        if(result != null && result != undefined && result.length > 0){
+                            result[0].items[result[0].items.length] = itemValue;
+                            // Find parent category in store
+                            var parent = $.grep(controller.storeCategories, function(e){return e.id.toLowerCase()  == result[0].parentId.toLowerCase();});
+                            if(parent != null && parent != undefined && parent.length > 0){
+                                // Check if item is already in the parent category item list
+                                var parentItem = $.grep(parent[0].items, function(e){return e.id == itemValue.id;});
+                                if(parentItem == null || parentItem == undefined || parentItem.length <= 0){
+                                    parent[0].items[parent[0].items.length] = itemValue;
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+        };
+        
+        /**
+        * Creates a Google orgchart tree array for the build of the given item id.
+        * @param {string} itemId - The id of the item to create the build path for.
+        * @return {Array} The Google orgchart tree array.
+        */
+        controller.createItemBuildTree = function(itemId){
+            var item = controller.items.data[itemId.toString()];
+            var tree = controller.createItemBuildTreeRecurse(item, null, 0);
+            return tree.items;
+        }
+        
+        /**
+        * Creates a tree hierarchy from the provided item.
+        * @param {Object} item - The root item to create the tree for.
+        * @param {Object} tree - The tree object that is being created. Initial call should be null.
+        * @param {int} parentId - The id of the parent node in the tree.
+        * @returns {Object} The tree object that is being created
+        */
+        controller.createItemBuildTreeRecurse = function(item, tree, parentId){
+            // Root entry
+            if(tree == null){
+                tree = { id: 1, items: [] };
+                parentId = tree.id;
+                var entry = [{v:tree.id.toString(), f:"<div class='item-placeholder' data-item-id='" + item.id + "'></div>"}, '', ''];
+                tree.items[tree.items.length] = entry;
+            }
+            // Sub-entries
+            if(item.from != null && item.from != undefined){
+                $.each(item.from, function(index, value){
+                    tree.id = tree.id + 1;
+                    var entry = [{v:tree.id.toString(), f:"<div class='item-placeholder' data-item-id='" + value +  "'></div>"}, parentId.toString(), ''];
+                    tree.items[tree.items.length] = entry;
+                    tree = controller.createItemBuildTreeRecurse(controller.items.data[value], tree, tree.id);
+                });
+            }
+            return tree;
         };
         
         /**
         * Draws a tree heirarchy.
+        * @param {Array} layout - The Google orgchart layout array to draw.
+        * @param {Jquery} selector - The Jquery selector of where to draw the chart.
         */
-        controller.drawChart = function() {
+        controller.drawChart = function(layout, selector) {
+            if(!controller.googleChartsLoaded) return;
+            
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Name');
             data.addColumn('string', 'Manager');
             data.addColumn('string', 'ToolTip');
             
-            var layout = buildLayouts[controller.buildLayout].tree;
             if(layout == null || layout == undefined) return;
             data.addRows(layout);
 
-            var chart = new google.visualization.OrgChart($('#item-build-tree')[0]);
+            var chart = new google.visualization.OrgChart(selector[0]);
             chart.draw(data, {allowHtml:true, allowCollapse:false, nodeClass:"item-build-tree-node", selectedNodeClass:"item-build-tree-node" });
             
             // Make placeholders droppable
@@ -86,7 +161,7 @@
                 drop: function(event, ui){
                     $(this).empty();
                     var id = ui.draggable.attr("data-item-id");
-                    var item  = controller.store[id];
+                    var item  = controller.items.data[id];
                     var draggable = ui.draggable.clone();
                     draggable.removeClass("image-grayed");
                     draggable.addClass("item-copy");
@@ -181,7 +256,10 @@
         controller.addHoverToolTip = function(element, tipContent){
             element.uitooltip({
                 items: '*',
-                content: tipContent(element)
+                content: tipContent(element),
+                open: function(event, ui){
+                    setTimeout(function(){ $(ui.tooltip).hide("fade"); }, 3000);
+                }
             });
             return element;
         };
@@ -202,7 +280,8 @@
         */
         controller.itemTooltipContent = function(element){
             var id = element.attr("data-item-id");
-            var item  = controller.store[id];
+            var item  = controller.items.data[id];
+            if(item == null || item == undefined) return "";
             return item["name"];
         };
         
@@ -248,9 +327,19 @@
         */
         controller.itemModalContent = function(element){
             var id = element.attr("data-item-id");
-            var item  = controller.store[id];
+            var item  = controller.items.data[id];
             var modalDiv =  $("<div title='" + item["name"] + "'></div>");
             
+            // TODO - add builds-into info
+            modalDiv.append($("<div class='item-modal-builds-into'></div>"));
+            // Build path
+            // TODO - add items pictures to build tree
+            var buildPath = $("<div class='item-modal-build-path'></div>");
+            var layout = controller.createItemBuildTree(id);
+            controller.drawChart(layout, buildPath);
+            modalDiv.append(buildPath);
+            // Item description
+            // TODO - add item costs
             modalDiv.append(item["description"]);
             
             return modalDiv;

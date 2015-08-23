@@ -235,3 +235,218 @@ var buildLayouts = {
         [{v:'3E', f:'<div class="item-placeholder"></div>'}, '2B', '']
     ]}
 };
+
+/**
+* The list of store categories.
+* @global
+*/
+var itemCategories = [
+    {
+        id: "ALL",
+        parentId: "",
+        panel: 1,
+        displayName: "All Items",
+        isPrimary: true,
+        items: []
+    },
+    {
+        id: "START",
+        parentId: "",
+        panel: 2,
+        displayName: "Starter Items",
+        isPrimary: true,
+        items: []
+    },
+    {
+        id: "JUNGLE",
+        parentId: "START",
+        panel: 3,
+        displayName: "Jungling",
+        isPrimary: false,
+        items: []
+    },
+    {
+        id: "LANE",
+        parentId: "START",
+        panel: 4,
+        displayName: "Laning",
+        isPrimary: false,
+        items: []
+    },
+    {
+        id: "TOOLS",
+        parentId: "",
+        panel: 5,
+        displayName: "Tools",
+        isPrimary: true,
+        items: []
+    },
+    {
+        id: "CONSUMABLE",
+        parentId: "TOOLS",
+        panel: 6,
+        displayName: "Consumable",
+        isPrimary: false,
+        items: []
+    },
+    {
+        id: "GOLDPER",
+        parentId: "TOOLS",
+        panel: 7,
+        displayName: "Gold Income",
+        isPrimary: false,
+        items: []
+    },
+    {
+        id: "VISION",
+        parentId: "TOOLS",
+        panel: 8,
+        displayName: "Vision & Trinkets",
+        isPrimary: false,
+        items: []
+    },
+    {
+        id: "DEFENSE",
+        parentId: "",
+        panel: 9,
+        displayName: "Defense",
+        isPrimary: true,
+        items: []
+    },
+    {
+        id: "ARMOR",
+        parentId: "DEFENSE",
+        panel: 10,
+        displayName: "Armor",
+        isPrimary: false,
+        items: []
+    },
+    {
+        id: "HEALTH",
+        parentId: "DEFENSE",
+        panel: 11,
+        displayName: "Health",
+        isPrimary: false,
+        items: []
+    },
+    {
+        id: "HEALTHREGEN",
+        parentId: "DEFENSE",
+        panel: 12,
+        displayName: "Health Regen",
+        isPrimary: false,
+        items: []
+    },
+    {
+        id: "SPELLBLOCK",
+        parentId: "DEFENSE",
+        panel: 13,
+        displayName: "Magic Resist",
+        isPrimary: false,
+        items: []
+    },
+    {
+        id: "ATTACK",
+        parentId: "",
+        panel: 14,
+        displayName: "Attack",
+        isPrimary: true,
+        items: []
+    },
+    {
+        id: "ATTACKSPEED",
+        parentId: "ATTACK",
+        panel: 15,
+        displayName: "Attack Speed",
+        isPrimary: false,
+        items: []
+    },
+    {
+        id: "CRITICALSTRIKE",
+        parentId: "ATTACK",
+        panel: 16,
+        displayName: "Critical Strike",
+        isPrimary: false,
+        items: []
+    },
+    {
+        id: "DAMAGE",
+        parentId: "ATTACK",
+        panel: 17,
+        displayName: "Damage",
+        isPrimary: false,
+        items: []
+    },
+    {
+        id: "LIFESTEAL",
+        parentId: "ATTACK",
+        panel: 18,
+        displayName: "Life Steal",
+        isPrimary: false,
+        items: []
+    },
+    {
+        id: "MAGIC",
+        parentId: "",
+        panel: 19,
+        displayName: "Magic",
+        isPrimary: true,
+        items: []
+    },
+    {
+        id: "COOLDOWNREDUCTION",
+        parentId: "MAGIC",
+        panel: 20,
+        displayName: "Cooldown Reduction",
+        isPrimary: false,
+        items: []
+    },
+    {
+        id: "MANA",
+        parentId: "MAGIC",
+        panel: 21,
+        displayName: "Mana",
+        isPrimary: false,
+        items: []
+    },
+    {
+        id: "MANAREGEN",
+        parentId: "MAGIC",
+        panel: 22,
+        displayName: "Mana Regen",
+        isPrimary: false,
+        items: []
+    },
+    {
+        id: "SPELLDAMAGE",
+        parentId: "MAGIC",
+        panel: 23,
+        displayName: "Ability Power",
+        isPrimary: false,
+        items: []
+    },
+    {
+        id: "MOVEMENT",
+        parentId: "",
+        panel: 24,
+        displayName: "Movement",
+        isPrimary: true,
+        items: []
+    },
+    {
+        id: "BOOTS",
+        parentId: "MOVEMENT",
+        panel: 25,
+        displayName: "Boots",
+        isPrimary: false,
+        items: []
+    },
+    {
+        id: "NONBOOTSMOVEMENT",
+        parentId: "MOVEMENT",
+        panel: 26,
+        displayName: "Other Movement Items",
+        isPrimary: false,
+        items: []
+    }
+];

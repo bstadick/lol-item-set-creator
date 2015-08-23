@@ -26,17 +26,15 @@ body {
     height: 50px;
     margin: 5px;
 }
-.section-spacer {
-    width: 100%;
-    display: block;
-}
-.section-spacer img {
-   height: 100%;
-   width: 100%;
-}
 .store-section-title {
-    display: block;
-    margin-top: 10px;
+    font-weight: bold; 
+}
+.store-tabs{
+    max-height: 70vh;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 .section-add-button {
     margin-top: 5px;
@@ -106,6 +104,7 @@ body {
 .ui-dialog  {
     margin-top: 50px;
     max-height: 88vh;
+    min-width: 600px;
 }
 .ui-dialog-content {
     max-height: 78vh !important;

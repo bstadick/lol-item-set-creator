@@ -11,6 +11,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <script src="lib/jquery.ui-contextmenu.js"></script>
+        <link rel="stylesheet" href="style/bootstrap.vertical-tabs.min.css">
         <!--<link rel="stylesheet" href="lib/jquery-ui-1.11.4/jquery-ui.css">
         <link rel="stylesheet" href="lib/bootstrap-3.3.5-dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="lib/font-awesome-4.4.0/css/font-awesome.min.css">
@@ -41,9 +42,9 @@
             <div class="row noselect" ng-controller="ItemViewController as items">
                 <div id="workarea" class="page-half-modal col-sm-6">
                     <section ng-init="panel.tab = 1" ng-controller="PanelController as panel">
-                        <ul class="nav nav-pills">
-                            <li ng-class="{ active:panel.isSelected(1)}"> <a href ng-click="panel.selectTab(1)">Item Set</a> </li>
-                            <li ng-class="{ active:panel.isSelected(2)}"> <a href ng-click="panel.selectTab(2)">Item Build</a> </li>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" ng-class="{ active:panel.isSelected(1)}"> <a href role="tab" ng-click="panel.selectTab(1)">Item Set</a> </li>
+                            <li role="presentation" ng-class="{ active:panel.isSelected(2)}"> <a href role="tab" ng-click="panel.selectTab(2)">Item Build</a> </li>
                         </ul>
                         <div class="panel" ng-show="panel.isSelected(1)">
                             <div id="item-workarea">
@@ -63,11 +64,22 @@
                     </section>
                 </div>
                 <div class="page-half-modal col-sm-6">
-                    <div class="panel">
-                        <img ng-repeat="item in items.store" class="draggable-item item-image" src="img/item-trans.png" ng-hide={{item.hideFromAll}}
-                            style="width: {{item.image.w}}px; height: {{item.image.h}}px; background: url(img/{{item.image.sprite}}) no-repeat; background-position: -{{item.image.x}}px -{{item.image.y}}px;"
-                            data-item-id="{{item.id}}" store-item-draggable />
-                    </div>
+                    <section ng-init="panel.tab = 1" ng-controller="PanelController as panel">
+                        <div class="col-sm-4 store-tabs">
+                            <ul ng-repeat="category in items.storeCategories | orderBy:'panel'" class="nav nav-tabs tabs-left">
+                                <li role="presentation" ng-class="{'store-section-title':category.isPrimary, 'active':panel.isSelected(category.panel)}">
+                                    <a href role="tab" ng-click="panel.selectTab(category.panel)">{{category.displayName}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-8">
+                            <div ng-repeat="category in items.storeCategories | orderBy:'panel'" class="panel" ng-show="panel.isSelected({{category.panel}})">
+                                <img ng-repeat="item in category.items | orderBy:'gold.total'" class="draggable-item item-image" src="img/item-trans.png" ng-hide={{item.hideFromAll}}
+                                    style="width: {{item.image.w}}px; height: {{item.image.h}}px; background: url(img/{{item.image.sprite}}) no-repeat; background-position: -{{item.image.x}}px -{{item.image.y}}px;"
+                                data-item-id="{{item.id}}" store-item-draggable />
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </div>
         </div>
