@@ -45,10 +45,11 @@
                         <ul class="nav nav-tabs" role="tablist">
                             <li role="presentation" ng-class="{ active:panel.isSelected(1)}"> <a href role="tab" ng-click="panel.selectTab(1)">Item Set</a> </li>
                             <li role="presentation" ng-class="{ active:panel.isSelected(2)}"> <a href role="tab" ng-click="panel.selectTab(2)">Item Build</a> </li>
+                            <li role="presentation" ng-class="{ active:panel.isSelected(3)}"> <a href role="tab" ng-click="panel.selectTab(3)">Gold Game</a> </li>
                         </ul>
                         <div class="panel" ng-show="panel.isSelected(1)">
                             <div id="item-workarea">
-                            
+
                             </div>
                             <button class="section-add-button btn btn-lg btn-primary" ng-click="items.addSection()">Add Section</button>
                         </div>
@@ -57,10 +58,14 @@
                                 <fieldset>
                                     <label for="layout">Layout</label>
                                     <select name="layout" id="layout">
-                                        
+
                                     </select>
                             <div id="item-build-tree"></div>
                         </div>
+                       <div class="panel" ng-show="panel.isSelected(3)">
+                         <div id="item-random"></div>
+                         
+                       </div>
                     </section>
                 </div>
                 <div class="page-half-modal col-sm-6">

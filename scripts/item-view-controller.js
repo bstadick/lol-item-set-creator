@@ -2,13 +2,13 @@
 * Drag-drop item code
 * @author
 * @version 0.0.5
-* @copyright © 2015
+* @copyright ï¿½ 2015
 */
 (function() {
 
     // The AngularJS module.
     var app = angular.module('builds');
-    
+
     /**
     * The item controller for managing items on the page.
     */
@@ -19,22 +19,22 @@
         * List of items in the item store repeater.
         */
         controller.items = items;
-        
+
         /**
         * List of the store categories.
         */
         controller.storeCategories = itemCategories;
-        
+
         /**
         * Layout of the build tree.
         */
         controller.buildLayout = "linearOne";
-        
+
         /**
         * If Google charts has been loaded;
         */
         controller.googleChartsLoaded = false;
-        
+
         /**
         * Initializes the controller.
         */
@@ -42,20 +42,22 @@
             // Rename jquery ui widgets to avoid name collisions with bootstrap
             $.widget.bridge('uibutton', $.ui.button);
             $.widget.bridge('uitooltip', $.ui.tooltip);
-        
+
             // Add the initial item drop section
             controller.addSection();
-            
+            // Add the initial gold mini-game section
+            controller.addRandomItem();
+
             // Populate buildLayout dropdown selector
             $.each( buildLayouts, function(key, value){
                 var option;
                 if(key == "linearOne")
                     option = $("<option value='" + key + "' selected='selected'>" + value.name + "</option>");
-                else
+              else
                     option = $("<option value='" + key + "'>" + value.name + "</option>");
                 $("#layout").append(option);
             });
-            
+
             // Set as select menu
             $("#layout").selectmenu({
                 change: function(event, data){
@@ -64,13 +66,13 @@
                         controller.drawChart();
                 }
             }).selectmenu( "menuWidget" ).addClass( "select-menu-overflow " );
-            
+
             // Load google tree view and draw initial view
             if(ChartService.loadGoogleVisualization())
                 google.setOnLoadCallback(function(){controller.googleChartsLoaded = true;});
-            
+
             var allItems = $.grep(controller.storeCategories, function(e){return e.id.toLowerCase()  == "all";});
-            
+
             // Organize items by category
             $.each(controller.items.data, function(itemKey, itemValue){
                 if(allItems != null && allItems != undefined && allItems.length > 0){
@@ -96,7 +98,7 @@
                 }
             });
         };
-        
+
         /**
         * Creates a Google orgchart tree array for the build of the given item id.
         * @param {string} itemId - The id of the item to create the build path for.
@@ -107,7 +109,7 @@
             var tree = controller.createItemBuildTreeRecurse(item, null, 0);
             return tree.items;
         }
-        
+
         /**
         * Creates a tree hierarchy from the provided item.
         * @param {Object} item - The root item to create the tree for.
@@ -134,7 +136,7 @@
             }
             return tree;
         };
-        
+
         /**
         * Draws a tree heirarchy.
         * @param {Array} layout - The Google orgchart layout array to draw.
@@ -142,18 +144,18 @@
         */
         controller.drawChart = function(layout, selector) {
             if(!controller.googleChartsLoaded) return;
-            
+
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Name');
             data.addColumn('string', 'Manager');
             data.addColumn('string', 'ToolTip');
-            
+
             if(layout == null || layout == undefined) return;
             data.addRows(layout);
 
             var chart = new google.visualization.OrgChart(selector[0]);
             chart.draw(data, {allowHtml:true, allowCollapse:false, nodeClass:"item-build-tree-node", selectedNodeClass:"item-build-tree-node" });
-            
+
             // Make placeholders droppable
             $(".item-placeholder").droppable({
                 accept: ".draggable-item",
@@ -173,7 +175,7 @@
                 }
             });
         };
-        
+
         /**
         * Handler for when all the items have been added to the item store repeater.
         */
@@ -184,6 +186,28 @@
             });
         });
 
+
+        /**
+        * Adds a new random item for gold mini-game
+        */
+        controller.addRandomItem = function(){
+          // Used to randomize the array of item ids
+          function shuffle(o){ //v1.0
+            for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+            return o;
+          };
+            var workArea = $("#item-random");
+            var keyArray = $.map(controller.items.data, function(value,key) {return key});
+            shuffle(keyArray);
+            // TODO loop through random items
+            var randomItemId = keyArray[0];
+            var item  = controller.items.data[randomItemId];
+            var randomSprite = "<img src='img/item-trans.png' style=\"width:" + item.image.w + "px;" +
+                "height:" + item.image.h + "px; background: url(img/" + item.image.sprite + ") no-repeat;" +
+                "background-position: -" + item.image.x + "px -" + item.image.y + "px\";>";
+            var itemArea = $("<div class='item-section'>" +randomSprite+"</div>");
+            workArea.append(itemArea);
+        };
         /**
         * Adds a new item section to the item workarea.
         */
@@ -191,15 +215,15 @@
             var workArea = $("#item-workarea");
             var section = $("<div class='item-section'></div>");
             var dropSection = $("<div class='item-drop-section'></div>");
-            
+
             // Add section header
             var sectionTitleForm = $("<div class='row section-header'>" +
-                "<div class='col-sm-10'><form class='section-header-form' action='#'>" + 
-                    "<input class='section-title form-control' type='text' placeholder='Section Title'>" + 
-                "</form></div>" + 
-                "<div class='section-remove col-sm-2'></div>" + 
+                "<div class='col-sm-10'><form class='section-header-form' action='#'>" +
+                    "<input class='section-title form-control' type='text' placeholder='Section Title'>" +
+                "</form></div>" +
+                "<div class='section-remove col-sm-2'></div>" +
                 "</div>");
-            
+
             // Add remove section button
             var removeButton = $("<button class='section-remove-button btn btn-xs btn-default' title='Remove Section'>-</button>");
             removeButton.click(function(){
@@ -207,9 +231,9 @@
             });
             removeButton.uitooltip();
             $(".section-remove", sectionTitleForm).append(removeButton);
-            
+
             section.append(sectionTitleForm);
-            
+
             // Add sortable section
             dropSection = dropSection.sortable({
                 connectWith: ".item-drop-section",
@@ -222,9 +246,9 @@
                 }
             });
             section.append(dropSection);
-            
+
             workArea.append(section);
-            
+
             var workParent = workArea.parent();
             workParent.scrollTop(workParent[0].scrollHeight);
         };
@@ -245,8 +269,8 @@
                 ]
             });
         };
-        
-        
+
+
         /**
         * Adds a tooltip on hover to the element.
         * @param {JQuery} element - The Jquery object to add the tooltip to.
@@ -284,7 +308,7 @@
             if(item == null || item == undefined) return "";
             return item["name"];
         };
-        
+
         /**
         * Adds a click modal to the element.
         * @param {JQuery} element - The Jquery object to add the modal click to.
@@ -310,7 +334,7 @@
                 });
             });
         };
-        
+
         /**
         * This callback creates the content for the click modal.
         * @callback modalContentCallback
@@ -329,7 +353,7 @@
             var id = element.attr("data-item-id");
             var item  = controller.items.data[id];
             var modalDiv =  $("<div title='" + item["name"] + "'></div>");
-            
+
             // TODO - add builds-into info
             modalDiv.append($("<div class='item-modal-builds-into'></div>"));
             // Build path
@@ -341,15 +365,15 @@
             // Item description
             // TODO - add item costs
             modalDiv.append(item["description"]);
-            
+
             return modalDiv;
         };
-        
+
         // Initialize the controller
         controller.init();
-    
+
     } ]);
-    
+
     /**
     * The item directive for handling actions taken after each item is added to the store.
     */
@@ -371,7 +395,7 @@
                     }
                 });
             //}
-            
+
             if (scope.$last === true) {
                 $timeout(function () {
                     scope.$emit('ngRepeatFinished');
@@ -383,13 +407,13 @@
             link: link
         };
     });
-    
+
     /**
     * Controls the panels.
     */
     app.controller('PanelController', function(){
         this.tab = 1;
-        
+
         this.selectTab = function(setTab){
             return this.tab = setTab;
         };
@@ -397,5 +421,5 @@
             return this.tab === checkTab;
         };
     });
-    
+
 })();
