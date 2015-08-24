@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Name>RitoApiChallenge</Name>
+    <ProjectGuid>d762c189-111b-4c08-8ca0-66780f556385</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>RitoApiChallenge</RootNamespace>
+    <ProjectTypeGuids>{A0786B88-2ADB-4C21-ABE8-AA2D79766269}</ProjectTypeGuids>
+    <AssemblyName>RitoApiChallenge</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <IncludeDebugInformation>true</IncludeDebugInformation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <IncludeDebugInformation>false</IncludeDebugInformation>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="img\" />
+    <Folder Include="lib\" />
+    <Folder Include="templates\" />
+    <Folder Include="style\" />
+    <Folder Include="scripts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="img\item-trans.png" />
+    <Content Include="img\item0.png" />
+    <Content Include="img\item1.png" />
+    <Content Include="img\item2.png" />
+    <Content Include="img\item3.png" />
+    <Content Include="img\section_divider.png" />
+    <Content Include="index.html" />
+    <Content Include="lib\angular.min.js" />
+    <Content Include="lib\jquery-1.11.3.min.js" />
+    <Content Include="lib\jquery-2.1.4.js" />
+    <Content Include="lib\jquery.ui-contextmenu.js" />
+    <Content Include="lib\jquery.ui.position.js" />
+    <Content Include="LICENSE" />
+    <Content Include="README.md" />
+    <Content Include="scripts\champions.min.json" />
+    <Content Include="scripts\global-data.js" />
+    <Content Include="scripts\item-panel-controllers.js" />
+    <Content Include="scripts\item-store-controller.js" />
+    <Content Include="scripts\items.js" />
+    <Content Include="scripts\items.json" />
+    <Content Include="scripts\items.min.json" />
+    <Content Include="scripts\module-services.js" />
+    <Content Include="style\bootstrap.vertical-tabs.min.css" />
+    <Content Include="style\main.css" />
+    <Content Include="templates\itemImage.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="deploy.php" />
+  </ItemGroup>
+</Project>

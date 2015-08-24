@@ -78,9 +78,6 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
 }
-#item-build-tree{
-    overflow-x: auto;
-}
 .ui-menu-item .fa{
     margin-right: 5px;
 }

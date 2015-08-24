@@ -240,7 +240,7 @@ var buildLayouts = {
 * The list of store categories.
 * @global
 */
-var itemCategories = [
+var itemCategoriesGlobal = [
     {
         id: "ALL",
         parentId: "",
