@@ -12,25 +12,8 @@
     /**
     * The item controller for managing items on the page.
     */
-    app.controller('ItemViewController', ['$scope', '$http', '$log', 'ChartService', function($scope, $http, $log, ChartService){
+    app.controller('ItemViewController', ['$scope', '$http', '$log', 'ChartService', 'ItemService', function($scope, $http, $log, ChartService, ItemService){
         var controller = this;
-
-        /**
-        * List of items in the item store repeater.
-        */
-        controller.items = items;
-        
-        /**
-        * List of the store categories.
-        */
-        controller.storeCategories = itemCategories;
-        
-        controller.searchSource = [];
-        
-        /**
-        * If Google charts has been loaded;
-        */
-        controller.googleChartsLoaded = false;
         
         /**
         * Initializes the controller.
@@ -43,72 +26,17 @@
             // Add the initial item drop section
             controller.addSection();
             
-            // Populate buildLayout dropdown selector
-            $.each( buildLayouts, function(key, value){
-                var option;
-                if(key == "linearOne")
-                    option = $("<option value='" + key + "' selected='selected'>" + value.name + "</option>");
-                else
-                    option = $("<option value='" + key + "'>" + value.name + "</option>");
-                $("#layout").append(option);
-            });
-            
             // Load google tree view and draw initial view
             if(ChartService.loadGoogleVisualization())
-                google.setOnLoadCallback(function(){controller.googleChartsLoaded = true;});
+                google.setOnLoadCallback(function(){});
             
-            var allItems = $.grep(controller.storeCategories, function(e){return e.id.toLowerCase()  == "all";});
-            
-            var sourceList = [];
-            var count = 8;//Object.keys(controller.items.data).length;
             // Organize items by category
-            $.each(controller.items.data, function(itemKey, itemValue){
-                // Add to the all items category
-                if(allItems != null && allItems != undefined && allItems.length > 0){
-                    allItems[0].items.push(itemValue);
-                }
-                
-                // Add to the search bar source
-                sourceList.push({
-                    label: itemValue.name,//controller.itemImage(itemValue, "search-item-image")[0].outerHTML,
-                    value: itemKey
-                });
-                
-                // Add colloquialisms to the search bar source
-                if(itemValue.colloq != null && itemValue.colloq != undefined && itemValue.colloq.trim() != ""){
-                    var colloqs = itemValue.colloq.split(";");
-                    $.each(colloqs, function(index, colloqValue){
-                        sourceList.push({
-                            label: colloqValue,
-                            value: itemKey
-                        });
-                    });
-                }
-                
-                // Map and add to the item's listed subcategories
-                if(itemValue.tags != null && itemValue.tags != undefined){
-                    $.each(itemValue.tags, function(index, value){
-                        // Find category in store
-                        var result = $.grep(controller.storeCategories, function(e){return e.id.toLowerCase()  == value.toLowerCase();});
-                        if(result != null && result != undefined && result.length > 0){
-                            result[0].items.push(itemValue);
-                            // Find parent category in store
-                            var parent = $.grep(controller.storeCategories, function(e){return e.id.toLowerCase()  == result[0].parentId.toLowerCase();});
-                            if(parent != null && parent != undefined && parent.length > 0){
-                                // Check if item is already in the parent category item list
-                                var parentItem = $.grep(parent[0].items, function(e){return e.id == itemValue.id;});
-                                if(parentItem == null || parentItem == undefined || parentItem.length <= 0){
-                                    parent[0].items.push(itemValue);
-                                }
-                            }
-                        }
-                    });
-                }
-            });
+            ItemService.populateItemLists();
+            
             
             // Setup the search completion
             var autoComplete = $("#storeSearch").autocomplete({
-                source: sourceList,
+                source: ItemService.getItemSearchKeys(),
                 minLength: 2,
                 select: function(event, ui){
                     return false;
@@ -117,9 +45,8 @@
             
             // Render the items in the search completion
             autoComplete._renderItem = function( ul, item ) {
-                var it = controller.items.data[item.value];
                 var div = $( "div", ul );
-                return div.append( controller.itemImage(it, "search-item-image") );
+                return div.append( ItemService.getItemImageById(item.value, "search-item-image") );
             };
             
             // Render the menu of the search completion
@@ -138,8 +65,6 @@
                 var width = $("#storeSearch").outerWidth();
                 this.menu.element.outerWidth(width);
             };
-            
-            //console.log(autoComplete._renderItem);
         };
         
         /**
@@ -150,10 +75,18 @@
         });       
         
         /**
+        * Gets the item category list.
+        * @returns {Array} The list of item shop categories with items.
+        */
+        controller.getItemCategories = function(){
+            return ItemService.getCategories();
+        };
+        
+        /**
         * Adds a new item section to the item workarea.
         */
         controller.addSection = function(){
-            var workArea = $("#item-workarea");
+            var workArea = $("#item-set-div");
             var section = $("<div class='item-section'></div>");
             var dropSection = $("<div class='item-drop-section'></div>");
             
@@ -178,7 +111,7 @@
             // Add sortable section
             dropSection = dropSection.sortable({
                 connectWith: ".item-drop-section",
-                containment: "#item-workarea",
+                containment: "#item-set-div",
                 update: function(event, ui){
                     //controller.addHoverToolTip(ui.item, controller.itemTooltipContent);
                     if(!ui.item.hasClass("item-copy"))
@@ -195,65 +128,12 @@
         };
         
         /**
-        * Creates a Google orgchart tree array for the build of the given item id.
-        * @param {string} itemId - The id of the item to create the build path for.
-        * @return {Array} The Google orgchart tree array.
-        */
-        controller.createItemBuildTree = function(itemId, isPlaceholder){
-            var item = controller.items.data[itemId.toString()];
-            var tree = controller.createItemBuildTreeRecurse(item, null, 0, isPlaceholder);
-            return tree.items;
-        }
-        
-        /**
-        * Creates a tree hierarchy from the provided item.
-        * @param {Object} item - The root item to create the tree for.
-        * @param {Object} tree - The tree object that is being created. Initial call should be null.
-        * @param {int} parentId - The id of the parent node in the tree.
-        * @param {boolean} isPlaceholder - If the tree is made of placholder divs.
-        * @returns {Object} The tree object that is being created
-        */
-        controller.createItemBuildTreeRecurse = function(item, tree, parentId, isPlaceholder){
-            // Root entry
-            if(tree == null){
-                tree = { id: 1, items: [] };
-                parentId = tree.id;
-                var entry;
-                if(isPlaceholder)
-                    entry = [{v:tree.id.toString(), f:"<div class='item-placeholder' data-item-id='" + item.id + "'></div>"}, '', ''];
-                else{
-                    var itemImg = controller.itemImage(item, "");
-                    entry = [{v:tree.id.toString(), f:itemImg[0].outerHTML}, '', ''];
-                }
-                tree.items.push(entry);
-            }
-            
-            // Sub-entries
-            if(item.from != null && item.from != undefined){
-                $.each(item.from, function(index, value){
-                    tree.id = tree.id + 1;
-                    var childItem = controller.items.data[value];
-                    var entry;
-                    if(isPlaceholder)
-                        entry = [{v:tree.id.toString(), f:"<div class='item-placeholder' data-item-id='" + childItem.id +  "'></div>"}, parentId.toString(), ''];
-                    else{
-                        var itemImg = controller.itemImage(childItem, "item-modal-image");
-                        entry = [{v:tree.id.toString(), f:itemImg[0].outerHTML}, parentId.toString(), ''];
-                    }
-                    tree.items.push(entry);
-                    tree = controller.createItemBuildTreeRecurse(childItem, tree, tree.id, isPlaceholder);
-                });
-            }
-            return tree;
-        };
-        
-        /**
         * Draws a tree heirarchy.
         * @param {Array} layout - The Google orgchart layout array to draw.
         * @param {Jquery} selector - The Jquery selector of where to draw the chart.
         */
         controller.drawChart = function(layout, selector) {
-            if(!controller.googleChartsLoaded) return;
+            if(!ChartService.isLoaded()) return;
             
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Name');
@@ -273,7 +153,7 @@
                 drop: function(event, ui){
                     $(this).empty();
                     var id = ui.draggable.attr("data-item-id");
-                    var item  = controller.items.data[id];
+                    var item  = ItemService.getItem(id);
                     var draggable = ui.draggable.clone();
                     draggable.removeClass("image-grayed");
                     draggable.addClass("item-copy");
@@ -350,7 +230,7 @@
         */
         controller.itemTooltipContent = function(element){
             var id = element.attr("data-item-id");
-            var item  = controller.items.data[id];
+            var item  = ItemService.getItem(id);
             if(item == null || item == undefined) return "";
             return item["name"];
         };
@@ -397,14 +277,13 @@
         */
         controller.itemModalContent = function(element){
             var id = element.attr("data-item-id");
-            var item  = controller.items.data[id];
+            var item  = ItemService.getItem(id);
             var modalDiv =  $("<div title='" + item["name"].replace("'", "&#39;") + " Cost: " + item.gold.total + " (" + item.gold.base + ")'></div>");
             
             var buildsIntoDiv = $("<div class='item-modal-builds-into'></div>");
             if(item.into != null && item.into != undefined){
-                $.each(item.into, function(index, value){
-                    var intoItem = controller.items.data[value];
-                    buildsIntoDiv.append(controller.itemImage(intoItem, "item-modal-builds-into-image"));
+                $.each(item.into, function(index, itemId){
+                    buildsIntoDiv.append(ItemService.getItemImageById(itemId, "item-modal-builds-into-image"));
                 });
             }
             modalDiv.append(buildsIntoDiv);
@@ -412,7 +291,7 @@
             
             // Build path
             var buildPath = $("<div class='item-modal-build-path'></div>");
-            var layout = controller.createItemBuildTree(id, false);
+            var layout = ItemService.getItemBuildTree(id, false);
             controller.drawChart(layout, buildPath);
             modalDiv.append(buildPath);
             
@@ -420,18 +299,6 @@
             modalDiv.append(item["description"]);
             
             return modalDiv;
-        };
-        
-        /**
-        * Creates an item image.
-        * @param {Object} item - The item to create the image for.
-        * @param {string} cssClasses - The css classes to add to the image.
-        * @returns {Jquery} The image element for the provided item.
-        */
-        controller.itemImage = function(item, cssClasses){
-            return $("<img class='item-image " + cssClasses + "' src='img/item-trans.png'" +
-                "style='width:" + item.image.w + "px; height:" + item.image.h + "px; background: url(img/" + item.image.sprite + ") no-repeat;" + 
-                " background-position: -" + item.image.x + "px -" + item.image.y + "px;'" + " data-item-id='" + item.id + "'></div>");
         };
         
         // Initialize the controller

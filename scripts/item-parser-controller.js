@@ -40,7 +40,7 @@
         };
         
         controller.parseItemBuild = function(){
-            var itemCollection = $("#item-build-tree .item-image");
+            var itemCollection = $("#item-build-div .item-image");
             var count = itemCollection.length;
             var ids = [];
             itemCollection.each(function(index){
@@ -49,6 +49,7 @@
             // TODO - do something with the build tree data
         };
         
+        // Initialize the controller
         controller.init();
         
     } ]);
