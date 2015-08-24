@@ -329,31 +329,41 @@
             return o;
           };
             var workArea = $("#item-random");
-            var itemArea = $("<div class='item-section'></div>");
             var keyArray = $.map(controller.items.data, function(value,key) {return key});
             shuffle(keyArray);
-            // TODO loop through random items
-            //function generateRandomitem(){
-              var randomItemId = keyArray[Math.floor(Math.random()*keyArray.length)];
-              var item  = controller.items.data[randomItemId];
-              var randomSprite = controller.itemImage(item, "draggable-item item-image ng-scope ui-draggable ui-draggable-handle");
-              itemArea = $("<div class='item-section'>" +randomSprite[0].outerHTML+"</div>");
-              //return itemArea
-            //}
+            // TODO fix the default value
+            var randomItemId = keyArray[Math.floor(Math.random()*keyArray.length)];
+            var item  = controller.items.data[randomItemId];
+            var randomSprite = controller.itemImage(item, "draggable-item item-image ng-scope ui-draggable ui-draggable-handle");
+            var itemArea = $("<div class='item-section' id='random-sprite'>" +randomSprite[0].outerHTML+"</div>");
 
+           // TODO remove muramana or other transforming items
             function generateRandomitem(){
-              var randomItemId = keyArray[Math.floor(Math.random()*keyArray.length)];
-              var item  = controller.items.data[randomItemId];
+              var  randomItemId = keyArray[Math.floor(Math.random()*keyArray.length)];
+              var  item  = controller.items.data[randomItemId];
+                while (item.depth < 1 || item.depth === undefined){
+                  randomItemId = keyArray[Math.floor(Math.random()*keyArray.length)];
+                  item  = controller.items.data[randomItemId];
+                  console.log("Item too small:" + item.name + item.depth);
+              }
+              // get the sub-item and calculate gold difference
+              var childId = item.from[Math.floor(Math.random()*item.from.length)];
+              var childItem = controller.items.data[childId];
+              var itemCost = item.gold.total;
+              var childCost = childItem.gold.total;
+              console.log("Parent Cost: " + itemCost + "\nChild Cost: " + childCost + "\nDifference: " + (itemCost - childCost));
               var randomSprite = controller.itemImage(item, "draggable-item item-image ng-scope ui-draggable ui-draggable-handle");
-              itemArea = $("<div class='item-section'>" +randomSprite[0].outerHTML+"</div>");
-              return itemArea
+              var childSprite = controller.itemImage(childItem, "draggable-item item-image ng-scope ui-draggable ui-draggable-handle");
+              itemArea = $("<div class='item-section' id='random-sprite'>" +childSprite[0].outerHTML + randomSprite[0].outerHTML+"</div>");
+              return itemArea;
             }
+            var buttonArea = $('#button-random');
             var randomButton = $("<button class='section-remove-button btn btn-xs btn-default' title='Random Item'>?</button>");
             randomButton.click(function(){
-                $(this).parent().innerHTML = generateRandomitem();
+                $('#random-sprite').replaceWith(generateRandomitem()[0]);
             });
             randomButton.uitooltip();
-            itemArea.append(randomButton);
+            workArea.append(randomButton);
             workArea.append(itemArea);
 
         };
