@@ -53,17 +53,14 @@
                             <button class="section-add-button btn btn-lg btn-primary" ng-click="items.addSection()">Add Section</button>
                         </div>
                         <div class="panel" ng-show="panel.isSelected(2)">
-                            <form action="#">
-                                <fieldset>
-                                    <label for="layout">Layout</label>
-                                    <select name="layout" id="layout">
-                                        
-                                    </select>
-                            <div id="item-build-tree"></div>
+                        
                         </div>
                     </section>
                 </div>
                 <div class="page-half-modal col-sm-6">
+                    <form action="#">
+                        <input id="storeSearch" class="form-control" type="text" placeholder="Search">
+                    </form>
                     <section ng-init="panel.tab = 1" ng-controller="PanelController as panel">
                         <div class="col-sm-4 store-tabs">
                             <ul ng-repeat="category in items.storeCategories | orderBy:'panel'" class="nav nav-tabs tabs-left">
