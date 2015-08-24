@@ -101,6 +101,13 @@ body {
 .ui-selectmenu-button {
     min-width: 150px;
 }
+.item-search-autocomplete {
+    min-height: 80px;
+    max-height: 50vh;
+    height: inherit !important;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
 .ui-dialog  {
     margin-top: 50px;
     max-height: 88vh;

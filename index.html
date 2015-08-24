@@ -61,14 +61,18 @@
 
                                     </select>
                             <div id="item-build-tree"></div>
+
                         </div>
                        <div class="panel" ng-show="panel.isSelected(3)">
                          <div id="item-random"></div>
-                         
+
                        </div>
                     </section>
                 </div>
                 <div class="page-half-modal col-sm-6">
+                    <form action="#">
+                        <input id="storeSearch" class="form-control" type="text" placeholder="Search">
+                    </form>
                     <section ng-init="panel.tab = 1" ng-controller="PanelController as panel">
                         <div class="col-sm-4 store-tabs">
                             <ul ng-repeat="category in items.storeCategories | orderBy:'panel'" class="nav nav-tabs tabs-left">

@@ -30,6 +30,9 @@
         */
         controller.buildLayout = "linearOne";
 
+
+        controller.searchSource = [];
+
         /**
         * If Google charts has been loaded;
         */
@@ -67,36 +70,95 @@
                 }
             }).selectmenu( "menuWidget" ).addClass( "select-menu-overflow " );
 
+
             // Load google tree view and draw initial view
             if(ChartService.loadGoogleVisualization())
                 google.setOnLoadCallback(function(){controller.googleChartsLoaded = true;});
 
             var allItems = $.grep(controller.storeCategories, function(e){return e.id.toLowerCase()  == "all";});
 
+
+            var sourceList = [];
+            var count = 8;//Object.keys(controller.items.data).length;
             // Organize items by category
             $.each(controller.items.data, function(itemKey, itemValue){
+                // Add to the all items category
                 if(allItems != null && allItems != undefined && allItems.length > 0){
-                    allItems[0].items[allItems[0].items.length] = itemValue;
+                    allItems[0].items.push(itemValue);
                 }
+
+                // Add to the search bar source
+                sourceList.push({
+                    label: itemValue.name,//controller.itemImage(itemValue, "search-item-image")[0].outerHTML,
+                    value: itemKey
+                });
+
+                // Add colloquialisms to the search bar source
+                if(itemValue.colloq != null && itemValue.colloq != undefined && itemValue.colloq.trim() != ""){
+                    var colloqs = itemValue.colloq.split(";");
+                    $.each(colloqs, function(index, colloqValue){
+                        sourceList.push({
+                            label: colloqValue,
+                            value: itemKey
+                        });
+                    });
+                }
+
+                // Map and add to the item's listed subcategories
                 if(itemValue.tags != null && itemValue.tags != undefined){
                     $.each(itemValue.tags, function(index, value){
                         // Find category in store
                         var result = $.grep(controller.storeCategories, function(e){return e.id.toLowerCase()  == value.toLowerCase();});
                         if(result != null && result != undefined && result.length > 0){
-                            result[0].items[result[0].items.length] = itemValue;
+                            result[0].items.push(itemValue);
                             // Find parent category in store
                             var parent = $.grep(controller.storeCategories, function(e){return e.id.toLowerCase()  == result[0].parentId.toLowerCase();});
                             if(parent != null && parent != undefined && parent.length > 0){
                                 // Check if item is already in the parent category item list
                                 var parentItem = $.grep(parent[0].items, function(e){return e.id == itemValue.id;});
                                 if(parentItem == null || parentItem == undefined || parentItem.length <= 0){
-                                    parent[0].items[parent[0].items.length] = itemValue;
+                                    parent[0].items.push(itemValue);
                                 }
                             }
                         }
                     });
                 }
             });
+
+            // Setup the search completion
+            var autoComplete = $("#storeSearch").autocomplete({
+                source: sourceList,
+                minLength: 2,
+                select: function(event, ui){
+                    return false;
+                }
+            }).autocomplete("instance");
+
+            // Render the items in the search completion
+            autoComplete._renderItem = function( ul, item ) {
+                var it = controller.items.data[item.value];
+                var div = $( "div", ul );
+                return div.append( controller.itemImage(it, "search-item-image") );
+            };
+
+            // Render the menu of the search completion
+            autoComplete._renderMenu = function( ul, items ) {
+                var that = this;
+                ul.append($("<li class='item-search-autocomplete'><div>"));
+                $.each( items, function( index, item ) {
+                    if($("[data-item-id='" + item.value + "']", ul).length <= 0)
+                        that._renderItemData( ul, item );
+                });
+                controller.itemImageAddHoverModal($(".search-item-image"));
+            };
+
+            // Resize the menu of the search completion
+            autoComplete._resizeMenu = function(){
+                var width = $("#storeSearch").outerWidth();
+                this.menu.element.outerWidth(width);
+            };
+
+            //console.log(autoComplete._renderItem);
         };
 
         /**
@@ -182,7 +244,7 @@
                     var itemImg = controller.itemImage(item, "");
                     entry = [{v:tree.id.toString(), f:itemImg[0].outerHTML}, '', ''];
                 }
-                tree.items[tree.items.length] = entry;
+                tree.items.push(entry);
             }
 
             // Sub-entries
@@ -197,7 +259,7 @@
                         var itemImg = controller.itemImage(childItem, "item-modal-image");
                         entry = [{v:tree.id.toString(), f:itemImg[0].outerHTML}, parentId.toString(), ''];
                     }
-                    tree.items[tree.items.length] = entry;
+                    tree.items.push(entry);
                     tree = controller.createItemBuildTreeRecurse(childItem, tree, tree.id, isPlaceholder);
                 });
             }
