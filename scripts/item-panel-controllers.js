@@ -162,11 +162,13 @@
             }
             var workArea = $("#item-goldgame-div");
             var goldButtons = $("#gold-button-div");
+            var score = $("#score-div");
+            var scoreCounter = "<button class=\"btn btn-primary\" type=\"button\">Score <span class=\"badge\" id=\"score-counter\">0</span></button>"
+            // create random array of all item ids
             var keyArray = $.map(ItemService.getItems(), function(value,key) {return key});
             shuffle(keyArray);
-            // TODO fix the default value
             var randomItemId = keyArray[Math.floor(Math.random()*keyArray.length)];
-            var randomSprite = ItemService.getItemImageById(randomItemId, "draggable-item");
+            //var randomSprite = ItemService.getItemImageById(randomItemId, "draggable-item");
             var itemArea = generateRandomitem();
 
             // TODO remove muramana or other transforming items
@@ -188,11 +190,11 @@
                 var childSprite = ItemService.getItemImageById(childId, "draggable-item");
                 itemArea = $("<div class='item-section' id='random-sprite'>" + childSprite[0].outerHTML + randomSprite[0].outerHTML+"</div>");
 
-
                 var goldArray = [];
                 var targetGold = itemCost - childCost;
                 goldArray.push(targetGold);
                 goldButtons.empty();
+                // generate some random gold amounts
                 for (var i=0; i<2; i++){
                   var goldValue = getRandomInt(childCost,(itemCost - childCost));
                   // random value was the actual purchase amount
@@ -200,13 +202,12 @@
                     goldArray.push(goldValue);
                   }
                   else{
-                    continue;
+                    i--;
                   }
-
                 }
                 // shuffle order of choices
                 shuffle(goldArray);
-                // create gold buttons
+                // create buttons for gold amounts
                 for (var i=0; i<goldArray.length; i++){
                     if (goldArray[i] == targetGold){
                       goldButtons.append("<button type=\"button\" class=\"btn-gold\" id=\"target-gold\">"+ goldArray[i] +"</button>");
@@ -217,9 +218,18 @@
                 }
                 return itemArea;
             };
-
-            goldButtons.click(function(){
-                console.log($(this));
+            // TODO buttons become non-function after first click
+            $(".btn-gold").click(function(){
+                // check if the correct amount was selected
+                if ($(this)[0].id == "target-gold"){
+                  var updateScore = Number($("#score-counter")[0].innerHTML) + 100;
+                }
+                else{
+                  var updateScore = Number($("#score-counter")[0].innerHTML) - 50;
+                }
+                // create new items
+                $("#score-counter")[0].innerHTML = updateScore;
+                $('#random-sprite').replaceWith(generateRandomitem()[0]);
             });
 
             var buttonArea = $('#button-random');
@@ -229,8 +239,8 @@
                 $('#random-sprite').replaceWith(generateRandomitem()[0]);
             });
             //randomButton.uitooltip();
+            score.append(scoreCounter);
             workArea.append(randomButton);
-            //workArea.append(goldButtons);
             workArea.append(itemArea);
         };
 
