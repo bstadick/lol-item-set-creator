@@ -216,21 +216,25 @@
                       goldButtons.append("<button type=\"button\" class=\"btn-gold\">"+ goldArray[i] +"</button>");
                     }
                 }
+                var randomSprite = ItemService.getItemImageById(randomItemId, "draggable-item item-image ng-scope ui-draggable ui-draggable-handle");
+                var childSprite = ItemService.getItemImageById(childId, "draggable-item item-image ng-scope ui-draggable ui-draggable-handle");
+                itemArea = $("<div class='item-section' id='random-sprite'>" +childSprite[0].outerHTML + randomSprite[0].outerHTML+"</div>");
+
+                $(".btn-gold").click(function(){
+                    // check if the correct amount was selected
+                    if ($(this)[0].id == "target-gold"){
+                      var updateScore = Number($("#score-counter")[0].innerHTML) + 100;
+                    }
+                    else{
+                      var updateScore = Number($("#score-counter")[0].innerHTML) - 50;
+                    }
+                    // create new items
+                    $("#score-counter")[0].innerHTML = updateScore;
+                    $('#random-sprite').replaceWith(generateRandomitem()[0]);
+                });
                 return itemArea;
             };
-            // TODO buttons become non-function after first click
-            $(".btn-gold").click(function(){
-                // check if the correct amount was selected
-                if ($(this)[0].id == "target-gold"){
-                  var updateScore = Number($("#score-counter")[0].innerHTML) + 100;
-                }
-                else{
-                  var updateScore = Number($("#score-counter")[0].innerHTML) - 50;
-                }
-                // create new items
-                $("#score-counter")[0].innerHTML = updateScore;
-                $('#random-sprite').replaceWith(generateRandomitem()[0]);
-            });
+
 
             var buttonArea = $('#button-random');
             var randomButton = $("<button class=\"btn btn-xs btn-default fa fa-random fa-2x\" title=\"Random Item\"></button>");
