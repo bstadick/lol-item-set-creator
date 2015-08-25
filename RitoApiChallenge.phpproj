@@ -35,6 +35,7 @@
     <Content Include="lib\jquery-2.1.4.js" />
     <Content Include="lib\jquery.ui-contextmenu.js" />
     <Content Include="lib\jquery.ui.position.js" />
+    <Content Include="lib\jquery.ui.touch-punch.min.js" />
     <Content Include="LICENSE" />
     <Content Include="README.md" />
     <Content Include="scripts\champions.min.json" />
@@ -47,7 +48,7 @@
     <Content Include="scripts\module-services.js" />
     <Content Include="style\bootstrap.vertical-tabs.min.css" />
     <Content Include="style\main.css" />
-    <Content Include="templates\itemImage.html" />
+    <Content Include="templates\store.html" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="deploy.php" />

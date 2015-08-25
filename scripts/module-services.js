@@ -248,7 +248,7 @@
             * @param {string} itemLabel - The label searched on by the auto-complete (key).
             * @param {string} itemValue - The value to pass to the call
             */
-            addItemSearchKey(itemLabel, itemValue){
+            addItemSearchKey: function(itemLabel, itemValue){
                 itemSearchKeys.push({
                    label: itemLabel,
                    value: itemValue
@@ -372,7 +372,6 @@
                 });
             }
             modalDiv.append(buildsIntoDiv);
-            service.addTooltipAndClickModal($(".item-modal-builds-into-image"));
             
             // Build path
             var buildPath = $("<div class='item-modal-build-path'></div>");
@@ -412,8 +411,8 @@
                 var thisService = this;
                 selector.each(function(index){
                     thisService.addHoverToolTip($(this));
-                    thisService.addClickModal($(this));
                 });
+                thisService.addClickModal(selector);
             },
             
             /**
@@ -437,7 +436,8 @@
             * @param {JQuery} element - The Jquery object to add the modal click to.
             * @returns {JQuery} The Jquery object added to.
             */
-            addClickModal: function(element){
+            addClickModal: function (element) {
+                var thisService = this;
                 element.click(function(){
                     var content = itemModalContent($(this));
                     var id = $(this).attr("data-item-id");
@@ -449,6 +449,8 @@
                             $(this).parent().attr("id", "dialog-" + id);
                             var temp = $(".ui-dialog-titlebar-close", $(this).parent());
                             $(".ui-dialog-titlebar-close", $(this).parent()).addClass("btn btn-default").append("<i class='fa fa-times'></i>");
+                            thisService.addTooltipAndClickModal($(".item-modal-builds-into-image"));
+                            thisService.addTooltipAndClickModal($(".item-modal-image"));
                         },
                         close: function(event, ui){
                             $(this).parent().detach();
@@ -516,8 +518,6 @@
                         }
                     });
                 }
-                
-                thisService.addTooltipAndClickModal($(".item-modal-image"));
             }
         };
         
