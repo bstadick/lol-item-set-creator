@@ -195,14 +195,13 @@
                 goldArray.push(targetGold);
                 goldButtons.empty();
                 // generate some random gold amounts
-                for (var i=0; i<2; i++){
+                var i =0;
+                while (i<2){
                   var goldValue = getRandomInt(childCost,(itemCost - childCost));
                   // random value was the actual purchase amount
                   if (goldValue != targetGold && goldArray.indexOf(goldValue) == -1){
                     goldArray.push(goldValue);
-                  }
-                  else{
-                    i--;
+                    i++;
                   }
                 }
                 // shuffle order of choices
