@@ -23,8 +23,8 @@
             // Organize items by category
             ItemService.populateItemLists();
 
-            SoundEffectService.addSoundBite("click", ["audio/click.ogg", "audio/click.mp3"]);
-            SoundEffectService.addSoundBite("whistle", ["audio/whistle.ogg", "audio/whistle.mp3"]);
+            SoundEffectService.addSoundBite("click", ["audio/click.ogg", "audio/click.mp3"], 0.25);
+            SoundEffectService.addSoundBite("whistle", ["audio/whistle.ogg", "audio/whistle.mp3"], 0.25);
         }
         
         // Initialize the module
@@ -569,13 +569,22 @@
         }
 
         return {
-            addSoundBite: function (id, soundFiles) {
+            addSoundBite: function (id, soundFiles, volume) {
                 soundBites[id] = createSoundBite(soundFiles);
+                this.setVolume(id, volume);
             },
             playSoundBite: function (id) {
                 var bite = soundBites[id];
                 if (bite == null || bite == undefined) return;
                 bite.playClip();
+            },
+            setVolume: function (id, volume) {
+                if (volume == null || volume == undefined) return;
+                if (volume < 0) volume = 0;
+                if (volume > 1) volume = 1;
+                var bite = soundBites[id];
+                if (bite == null || bite == undefined) return;
+                bite.prop("volume", volume);
             }
         };
     }]);
