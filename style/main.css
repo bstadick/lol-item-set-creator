@@ -27,7 +27,7 @@ body {
     margin: 5px;
 }
 .store-section-title {
-    font-weight: bold; 
+    font-weight: bold;
 }
 .store-tabs{
     max-height: 70vh;
@@ -63,7 +63,7 @@ body {
     -moz-filter: grayscale(100%);
     -o-filter: grayscale(100%);
     -ms-filter: grayscale(100%);
-    filter: grayscale(100%); 
+    filter: grayscale(100%);
 }
 .item-placeholder {
     width: 100%;
@@ -116,4 +116,7 @@ body {
 .ui-dialog .ui-dialog-titlebar-close {
     top: 40%;
     height: inherit;
+}
+.btn-gold{
+  margin: 3px;
 }
