@@ -12,21 +12,23 @@
     /**
     * Controls the panels.
     */
-    app.controller('PanelController', function(){
+    app.controller('PanelController', ['SoundEffectService', function (SoundEffectService) {
         this.tab = 1;
         
-        this.selectTab = function(setTab){
+        this.selectTab = function (setTab, playSound) {
+            if(playSound == true)
+                SoundEffectService.playSoundBite("click");
             return this.tab = setTab;
         };
         this.isSelected = function(checkTab){
             return this.tab === checkTab;
         };
-    });
+    }]);
     
     /**
     * The item controller for managing item sets.
     */
-    app.controller('ItemSetController', ['$scope', '$http', '$log', 'ChartService', 'ItemService', 'ItemInteractivityService', function($scope, $http, $log, ChartService, ItemService, ItemInteractivityService){
+    app.controller('ItemSetController', ['$scope', '$http', '$log', 'ChartService', 'ItemService', 'ItemInteractivityService', 'SoundEffectService', function ($scope, $http, $log, ChartService, ItemService, ItemInteractivityService, SoundEffectService) {
         var controller = this;
         
         /**
@@ -40,7 +42,10 @@
         /**
         * Adds a new item section to the item workarea.
         */
-        controller.addSection = function(){
+        controller.addSection = function (playSound) {
+            if(playSound == true)
+                SoundEffectService.playSoundBite("click");
+
             var workArea = $("#item-set-div");
             var section = $("<div class='item-section'></div>");
             var dropSection = $("<div class='item-drop-section'></div>");
@@ -82,6 +87,11 @@
             workParent.scrollTop(workParent[0].scrollHeight);
         };
 
+        controller.renderItemSet = function (itemSet) {
+            var workarea = $("#item-set-div");
+            workarea.empty();
+
+        };
         
         controller.parseItemSet = function(){
             var sets = [];

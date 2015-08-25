@@ -9,7 +9,7 @@
     // The AngularJS module.
     var app = angular.module('builds', []);
     
-    app.controller('ModuleInit', ['$scope', 'ChartService', 'ItemService', 'ItemInteractivityService', function($scope, ChartService, ItemService, ItemInteractivityService){
+    app.controller('ModuleInit', ['$scope', 'ChartService', 'ItemService', 'ItemInteractivityService', 'SoundEffectService', function ($scope, ChartService, ItemService, ItemInteractivityService, SoundEffectService) {
        
         function init(){
             // Rename jquery ui widgets to avoid name collisions with bootstrap
@@ -22,6 +22,9 @@
             
             // Organize items by category
             ItemService.populateItemLists();
+
+            SoundEffectService.addSoundBite("click", ["audio/click.ogg", "audio/click.mp3"]);
+            SoundEffectService.addSoundBite("whistle", ["audio/whistle.ogg", "audio/whistle.mp3"]);
         }
         
         // Initialize the module
@@ -292,7 +295,7 @@
     /**
     * The item interactivity service for item elements placed in the DOM.
     */
-    app.factory('ItemInteractivityService', ['ItemService', 'ChartService', function(ItemService, ChartService) {
+    app.factory('ItemInteractivityService', ['ItemService', 'ChartService', 'SoundEffectService', function (ItemService, ChartService, SoundEffectService) {
         
         /**
         * Creates a Google orgchart tree array for the build of the given item id.
@@ -438,15 +441,19 @@
             */
             addClickModal: function (element) {
                 var thisService = this;
-                element.click(function(){
+                element.click(function () {
+                    SoundEffectService.playSoundBite("click");
                     var content = itemModalContent($(this));
                     var id = $(this).attr("data-item-id");
-                    if($("#dialog-" + id).length > 0) return;
+                    if ($("#dialog-" + id).length > 0) {
+                        var d = $("#dialog-" + id).dialog("moveToTop");
+                        return;
+                    }
+                    content.attr("id", "dialog-" + id);
                     content.dialog({
                         position: { my: "center", at: "top+30%", of: window },
                         resizable: false,
                         open: function(event, ui){
-                            $(this).parent().attr("id", "dialog-" + id);
                             var temp = $(".ui-dialog-titlebar-close", $(this).parent());
                             $(".ui-dialog-titlebar-close", $(this).parent()).addClass("btn btn-default").append("<i class='fa fa-times'></i>");
                             thisService.addTooltipAndClickModal($(".item-modal-builds-into-image"));
@@ -524,4 +531,53 @@
         return service;
     }]);
     
+    /**
+    * The sound effect service.
+    */
+    app.factory('SoundEffectService', [function () {
+
+        var soundBites = {};
+
+        // Define list of audio file extensions and their associated audio types. Add to it if your specified audio file isn't on this list
+        var html5_audiotypes = { 
+            "mp3": "audio/mpeg",
+            "mp4": "audio/mp4",
+            "ogg": "audio/ogg",
+            "wav": "audio/wav"
+        };
+
+        function createSoundBite(soundFiles) {
+            var html5audio = $("<audio>");
+            // Check support for HTML5 audio
+            if (html5audio[0].canPlayType) { 
+                $.each(soundFiles, function (index, file) {
+                    var sourcel = $("<source>");
+                    sourcel.attr('src', file);
+                    if (file.match(/\.(\w+)$/i))
+                        sourcel.attr('type', html5_audiotypes[RegExp.$1]);
+                    html5audio.append(sourcel);
+                });
+                html5audio.trigger("load");
+                html5audio.playClip = function () {
+                    html5audio.trigger("pause");
+                    html5audio.prop("currentTime", 0);
+                    html5audio.trigger("play");
+                };
+                return html5audio;
+            }
+            return undefined;
+        }
+
+        return {
+            addSoundBite: function (id, soundFiles) {
+                soundBites[id] = createSoundBite(soundFiles);
+            },
+            playSoundBite: function (id) {
+                var bite = soundBites[id];
+                if (bite == null || bite == undefined) return;
+                bite.playClip();
+            }
+        };
+    }]);
+
 })();
