@@ -2,19 +2,19 @@
 * Drag-drop item code
 * @author
 * @version 0.0.5
-* @copyright © 2015
+* @copyright ï¿½ 2015
 */
 (function() {
 
     // The AngularJS module.
     var app = angular.module('builds');
-    
+
     /**
     * Controls the panels.
     */
     app.controller('PanelController', function(){
         this.tab = 1;
-        
+
         this.selectTab = function(setTab){
             return this.tab = setTab;
         };
@@ -22,13 +22,13 @@
             return this.tab === checkTab;
         };
     });
-    
+
     /**
     * The item controller for managing item sets.
     */
     app.controller('ItemSetController', ['$scope', '$http', '$log', 'ChartService', 'ItemService', 'ItemInteractivityService', function($scope, $http, $log, ChartService, ItemService, ItemInteractivityService){
         var controller = this;
-        
+
         /**
         * Initializes the controller.
         */
@@ -36,7 +36,7 @@
             // Add the initial item drop section
             controller.addSection();
         };
-        
+
         /**
         * Adds a new item section to the item workarea.
         */
@@ -44,15 +44,15 @@
             var workArea = $("#item-set-div");
             var section = $("<div class='item-section'></div>");
             var dropSection = $("<div class='item-drop-section'></div>");
-            
+
             // Add section header
             var sectionTitleForm = $("<div class='row section-header'>" +
-                "<div class='col-sm-10'><form class='section-header-form' action='#'>" + 
-                    "<input class='section-title form-control' type='text' placeholder='Section Title'>" + 
-                "</form></div>" + 
-                "<div class='section-remove col-sm-2'></div>" + 
+                "<div class='col-sm-10'><form class='section-header-form' action='#'>" +
+                    "<input class='section-title form-control' type='text' placeholder='Section Title'>" +
+                "</form></div>" +
+                "<div class='section-remove col-sm-2'></div>" +
                 "</div>");
-            
+
             // Add remove section button
             var removeButton = $("<button class='section-remove-button btn btn-xs btn-default' title='Remove Section'>-</button>");
             removeButton.click(function(){
@@ -60,9 +60,9 @@
             });
             removeButton.uitooltip();
             $(".section-remove", sectionTitleForm).append(removeButton);
-            
+
             section.append(sectionTitleForm);
-            
+
             // Add sortable section
             dropSection = dropSection.sortable({
                 connectWith: ".item-drop-section",
@@ -75,14 +75,14 @@
                 }
             });
             section.append(dropSection);
-            
+
             workArea.append(section);
-            
+
             var workParent = workArea.parent();
             workParent.scrollTop(workParent[0].scrollHeight);
         };
 
-        
+
         controller.parseItemSet = function(){
             var sets = [];
             $(".item-drop-section").each(function(indexSect){
@@ -93,31 +93,31 @@
                     ids[index] = $(this).attr("data-item-id");
                 });
                 sets[indexSect] = ids;
-                
+
                 var sectionForm = $("form", $(this).parent());
                 var sectionTitle = $(".section-title", sectionForm).val();
                 // TODO - do something with the set data
             });
         };
-        
+
         // Initialize the controller
         controller.init();
-        
+
     } ]);
-    
+
     /**
     * The item controller for managing item build trees.
     */
     app.controller('ItemBuildTreeController', ['$scope', '$http', '$log', 'ChartService', 'ItemService', 'ItemInteractivityService', function($scope, $http, $log, ChartService, ItemService, ItemInteractivityService){
         var controller = this;
-        
+
         /**
         * Initializes the controller.
         */
         controller.init = function(){
-            
+
         };
-        
+
         controller.parseItemBuild = function(){
             var itemCollection = $("#item-build-div .item-image");
             var count = itemCollection.length;
@@ -127,18 +127,18 @@
             });
             // TODO - do something with the build tree data
         };
-        
+
         // Initialize the controller
         controller.init();
-        
+
     } ]);
-    
+
     /**
     * The item controller for managing the gold game.
     */
     app.controller('GoldGameController', ['$scope', '$http', '$log', 'ChartService', 'ItemService', 'ItemInteractivityService', function($scope, $http, $log, ChartService, ItemService, ItemInteractivityService){
         var controller = this;
-        
+
         /**
         * Initializes the controller.
         */
@@ -146,7 +146,7 @@
             // Add the initial gold mini-game section
             controller.addRandomItem();
         };
-        
+
         /**
         * Adds a new random item for gold mini-game
         */
@@ -156,14 +156,18 @@
                 for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
                 return o;
             };
+
+            function getRandomInt(min, max) {
+                return 5 * Math.round(Math.floor(Math.random() * (max - min + 1))/5) + min;
+            }
             var workArea = $("#item-goldgame-div");
+            var goldButtons = $("#gold-button-div");
             var keyArray = $.map(ItemService.getItems(), function(value,key) {return key});
             shuffle(keyArray);
             // TODO fix the default value
             var randomItemId = keyArray[Math.floor(Math.random()*keyArray.length)];
-            var item  = ItemService.getItem(randomItemId);
             var randomSprite = ItemService.getItemImageById(randomItemId, "draggable-item");
-            var itemArea = $("<div class='item-section' id='random-sprite'>" + randomSprite[0].outerHTML + "</div>");
+            var itemArea = generateRandomitem();
 
             // TODO remove muramana or other transforming items
             function generateRandomitem(){
@@ -182,24 +186,58 @@
                 console.log("Parent Cost: " + itemCost + "\nChild Cost: " + childCost + "\nDifference: " + (itemCost - childCost));
                 var randomSprite = ItemService.getItemImageById(randomItemId, "draggable-item");
                 var childSprite = ItemService.getItemImageById(childId, "draggable-item");
-                itemArea = $("<div class='item-section' id='random-sprite'>" +childSprite[0].outerHTML + randomSprite[0].outerHTML+"</div>");
+                itemArea = $("<div class='item-section' id='random-sprite'>" + childSprite[0].outerHTML + randomSprite[0].outerHTML+"</div>");
+
+
+                var goldArray = [];
+                var targetGold = itemCost - childCost;
+                goldArray.push(targetGold);
+                goldButtons.empty();
+                for (var i=0; i<2; i++){
+                  var goldValue = getRandomInt(childCost,(itemCost - childCost));
+                  // random value was the actual purchase amount
+                  if (goldValue != targetGold && goldArray.indexOf(goldValue) == -1){
+                    goldArray.push(goldValue);
+                  }
+                  else{
+                    continue;
+                  }
+
+                }
+                // shuffle order of choices
+                shuffle(goldArray);
+                // create gold buttons
+                for (var i=0; i<goldArray.length; i++){
+                    if (goldArray[i] == targetGold){
+                      goldButtons.append("<button type=\"button\" class=\"btn-gold\" id=\"target-gold\">"+ goldArray[i] +"</button>");
+                    }
+                    else{
+                      goldButtons.append("<button type=\"button\" class=\"btn-gold\">"+ goldArray[i] +"</button>");
+                    }
+                }
                 return itemArea;
             };
 
+            goldButtons.click(function(){
+                console.log($(this));
+            });
+
             var buttonArea = $('#button-random');
-            var randomButton = $("<button class='section-remove-button btn btn-xs btn-default' title='Random Item'>?</button>");
+            var randomButton = $("<button class=\"btn btn-xs btn-default fa fa-random fa-2x\" title=\"Random Item\"></button>");
+            //var randomButton = $("<button class='section-remove-button btn btn-xs btn-default' title='Random Item'>?</button>");
             randomButton.click(function(){
                 $('#random-sprite').replaceWith(generateRandomitem()[0]);
             });
-            randomButton.uitooltip();
+            //randomButton.uitooltip();
             workArea.append(randomButton);
+            //workArea.append(goldButtons);
             workArea.append(itemArea);
         };
-    
-        
+
+
         // Initialize the controller
         controller.init();
-        
+
     } ]);
 
 })();
