@@ -266,10 +266,19 @@
         
         controller.exportSet = function () {
             var set = controller.parseItemSet();
+            if (set == undefined) {
+                NotificationService.displayMsg(4, "Error: Failed to export build set. Make sure that each section has a title and at least one item.", true);
+                return;
+            }
+            var setStr = JSON.stringify(set);
+            // TODO - upload json string to server and download json file
         };
 
         controller.importSet = function () {
-
+            // TODO - upload file to server and download the json string
+            var setStr;
+            var set = JSON.parse(setStr);
+            controller.renderItemSet(set);
         };
 
         // Initialize the controller

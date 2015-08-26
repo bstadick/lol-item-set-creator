@@ -53,13 +53,25 @@
                 if (level == 4)
                     errorClass = "bg-danger";
 
-                var error = $("<div>").append("<p class='" + errorClass + "'>" + message + "</p>")
-                var button = $("<button class='btn btn-default'>Dismiss</button>").click(function () {
-                    $("#errorDiv").empty()
+                var errorDiv = $("<div>");
+                var errorP = $("<p class='" + errorClass + "'>" + message + "</p>")
+                var timeout;
+                var button = $("<button class='btn btn-default error-dismiss'>Dismiss</button>").click(function () {
+                    $("#errorDiv").slideUp("slow", function () {
+                        $("#errorDiv").empty();
+                        if (timeout != null && timeout != undefined)
+                            clearTimeout(timeout);
+                    });
                 });
-                $("#errorDiv").append(error);
+                errorP.append(button);
+                errorDiv.append(errorP);
+                $("#errorDiv").append(errorDiv).slideDown("slow");
                 if(autoDismiss)
-                    setTimeout(function () { $("#errorDiv").empty() }, 5000);
+                    timeout = setTimeout(function () {
+                        $("#errorDiv").slideUp("slow", function () {
+                            $("#errorDiv").empty();
+                        });
+                    }, 5000);
             }
         };
 

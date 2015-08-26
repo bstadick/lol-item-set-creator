@@ -12,6 +12,11 @@ body {
 #errorDiv p {
     padding: 15px;
 }
+.error-dismiss {
+    float: right;
+    position: relative;
+    top: -7px;
+}
 
 /*Page modals*/
 .page-half-modal {
