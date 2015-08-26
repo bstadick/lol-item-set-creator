@@ -2,7 +2,7 @@
 * Drag-drop item code
 * @author
 * @version 0.0.5
-* @copyright © 2015
+* @copyright 2015
 */
 (function() {
 

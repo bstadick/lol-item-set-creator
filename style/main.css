@@ -76,7 +76,7 @@ body {
 
 /*Store sections*/
 .store-section-title {
-    font-weight: bold; 
+    font-weight: bold;
 }
 .store-tabs{
     max-height: 60vh;
@@ -133,4 +133,33 @@ body {
 .google-visualization-orgchart-lineleft,
 .google-visualization-orgchart-lineright{
     border-color: black !important;
+}
+.select-menu-overflow {
+    height: 200px;
+    min-width: 200px;
+}
+.ui-selectmenu-button {
+    min-width: 150px;
+}
+.item-search-autocomplete {
+    min-height: 80px;
+    max-height: 50vh;
+    height: inherit !important;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.ui-dialog  {
+    margin-top: 50px;
+    max-height: 88vh;
+    min-width: 600px;
+}
+.ui-dialog-content {
+    max-height: 78vh !important;
+}
+.ui-dialog .ui-dialog-titlebar-close {
+    top: 40%;
+    height: inherit;
+}
+.btn-gold{
+  margin: 3px;
 }

@@ -52,6 +52,7 @@
     <Content Include="scripts\items.json" />
     <Content Include="scripts\items.min.json" />
     <Content Include="scripts\module-services.js" />
+    <Content Include="scripts\summoner-spells.js" />
     <Content Include="style\bootstrap.vertical-tabs.min.css" />
     <Content Include="style\main.css" />
     <Content Include="templates\store.html" />
