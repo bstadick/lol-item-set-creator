@@ -25,9 +25,10 @@
         <script src="scripts/module-services.js"></script>
         <script src="scripts/item-store-controller.js"></script>
         <script src="scripts/item-panel-controllers.js"></script>
+        <script src="scripts/champion-controller.js"></script>
         <link rel="stylesheet" href="style/main.css">
     </head>
-    <body ng-controller="ModuleInit">
+    <body ng-controller="ModuleInit as module">
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -38,20 +39,38 @@
             </div>
         </nav>
         <div class="container">
+            <div class="row">
+                <div id="errorDiv" class="col-sm-12">
+
+                </div>
+            </div>
             <div class="row noselect">
                 <div id="workarea" class="page-half-modal col-sm-6">
                     <section ng-init="panel.tab = 1" ng-controller="PanelController as panel">
                         <ul class="nav nav-tabs" role="tablist">
-                            <li role="presentation" ng-class="{ active:panel.isSelected(1)}"> <a href role="tab" ng-click="panel.selectTab(1)">Item Set</a> </li>
-                            <li role="presentation" ng-class="{ active:panel.isSelected(2)}"> <a href role="tab" ng-click="panel.selectTab(2)">Item Build</a> </li>
-                            <li role="presentation" ng-class="{ active:panel.isSelected(3)}"> <a href role="tab" ng-click="panel.selectTab(3)">Gold Game</a> </li>
+                            <li role="presentation" ng-class="{ active:panel.isSelected(1)}"> <a href role="tab" ng-click="panel.selectTab(1, true)">Item Set</a> </li>
+                            <li role="presentation" ng-class="{ active:panel.isSelected(2)}"> <a href role="tab" ng-click="panel.selectTab(2, true)">Item Build</a> </li>
+                            <li role="presentation" ng-class="{ active:panel.isSelected(3)}"> <a href role="tab" ng-click="panel.selectTab(3, true)">Gold Game</a> </li>
                         </ul>
                         <div class="panel" ng-show="panel.isSelected(1)" ng-controller="ItemSetController as itemSet">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <form class="section-header-form" action="#">
+                                        <input class="set-title form-control" type="text" placeholder="Set Title">
+                                    </form>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button class="section-impexp-button btn btn-lg btn-primary btn-sm" ng-click="itemSet.importSet()">Import</button>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button class="section-impexp-button btn btn-lg btn-primary btn-sm" ng-click="itemSet.exportSet()">Export</button>
+                                </div>
+                            </div>
                             <div id="item-set-div">
 
                             </div>
-                            <button class="section-add-button btn btn-lg btn-primary" ng-click="itemSet.addSection()">Add Section</button>
-                        </div>
+                            <button class="section-add-button btn btn-lg btn-primary" ng-click="itemSet.addSection(true)">Add Section</button>
+                            </div>
                         <div class="panel" ng-show="panel.isSelected(2)" ng-controller="ItemBuildTreeController as itemBuildTree">
                             <div id="item-build-div">
 
@@ -70,24 +89,34 @@
                        </div>
                     </section>
                 </div>
-                <div class="page-half-modal col-sm-6" ng-controller="ItemStoreController as store">
-                    <form action="#">
-                        <input id="storeSearch" class="form-control" type="text" placeholder="Search">
-                    </form>
+                <div class="page-half-modal col-sm-6">
                     <section ng-init="panel.tab = 1" ng-controller="PanelController as panel">
-                        <div class="col-sm-4 store-tabs">
-                            <ul ng-repeat="category in store.getItemCategories() | orderBy:'panel'" class="nav nav-tabs tabs-left">
-                                <li role="presentation" ng-class="{'store-section-title':category.isPrimary, 'active':panel.isSelected(category.panel)}">
-                                    <a href role="tab" ng-click="panel.selectTab(category.panel)">{{category.displayName}}</a>
-                                </li>
-                            </ul>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" ng-class="{ active:panel.isSelected(1)}"> <a href role="tab" ng-click="panel.selectTab(1, true)">Store</a> </li>
+                            <li role="presentation" ng-class="{ active:panel.isSelected(2)}"> <a href role="tab" ng-click="panel.selectTab(2, true)">Champions</a> </li>
+                        </ul>
+                        <div class="panel" ng-show="panel.isSelected(1)" ng-controller="ItemStoreController as store">
+                            <form action="#">
+                                <input id="storeSearch" class="form-control" type="text" placeholder="Search">
+                            </form>
+                            <section ng-init="panel.tab = 1" ng-controller="PanelController as storePanel">
+                                <div class="col-sm-4 store-tabs">
+                                    <ul ng-repeat="category in store.getItemCategories() | orderBy:'panel'" class="nav nav-tabs tabs-left">
+                                        <li role="presentation" ng-class="{'store-section-title':category.isPrimary, 'active':storePanel.isSelected(category.panel)}">
+                                            <a href role="tab" ng-click="storePanel.selectTab(category.panel, true)">{{category.displayName}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div ng-repeat="category in store.getItemCategories() | orderBy:'panel'" class="store-panel" ng-show="storePanel.isSelected({{category.panel}})">
+                                        <img ng-repeat="item in category.items | orderBy:'gold.total'" class="draggable-item item-image" src="img/item-trans.png" ng-hide={{item.hideFromAll}}
+                                             style="width: {{item.image.w}}px; height: {{item.image.h}}px; background: url(img/{{item.image.sprite}}) no-repeat; background-position: -{{item.image.x}}px -{{item.image.y}}px;"
+                                             data-item-id="{{item.id}}" store-item-draggable />
+                                    </div>
+                                </div>
+                            </section>
                         </div>
-                        <div class="col-sm-8">
-                            <div ng-repeat="category in store.getItemCategories() | orderBy:'panel'" class="panel" ng-show="panel.isSelected({{category.panel}})">
-                                <img ng-repeat="item in category.items | orderBy:'gold.total'" class="draggable-item item-image" src="img/item-trans.png" ng-hide={{item.hideFromAll}}
-                                    style="width: {{item.image.w}}px; height: {{item.image.h}}px; background: url(img/{{item.image.sprite}}) no-repeat; background-position: -{{item.image.x}}px -{{item.image.y}}px;"
-                                data-item-id="{{item.id}}" store-item-draggable />
-                            </div>
+                        <div class="panel" ng-show="panel.isSelected(2)" ng-controller="ChampionController as champions">
                         </div>
                     </section>
                 </div>
