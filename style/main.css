@@ -9,6 +9,9 @@ body {
     -ms-user-select: none;
     user-select: none;
 }
+#errorDiv p {
+    padding: 15px;
+}
 
 /*Page modals*/
 .page-half-modal {
@@ -93,6 +96,10 @@ body {
     min-height: 90px;
     border: 1px solid #aaaaaa;
     margin-bottom: 10px;
+}
+.set-title {
+    max-width: 300px;
+    margin-bottom: 15px;
 }
 .section-add-button {
     margin-top: 5px;

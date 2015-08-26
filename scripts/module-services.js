@@ -10,25 +10,59 @@
     var app = angular.module('builds', []);
     
     app.controller('ModuleInit', ['$scope', 'ChartService', 'ItemService', 'ItemInteractivityService', 'SoundEffectService', function ($scope, ChartService, ItemService, ItemInteractivityService, SoundEffectService) {
-       
-        function init(){
+        var controller = this;
+
+        controller.init = function () {
             // Rename jquery ui widgets to avoid name collisions with bootstrap
             $.widget.bridge('uibutton', $.ui.button);
             $.widget.bridge('uitooltip', $.ui.tooltip);
-            
+
             // Load google tree view and draw initial view
-            if(ChartService.loadGoogleVisualization())
-                google.setOnLoadCallback(function(){});
-            
+            if (ChartService.loadGoogleVisualization())
+                google.setOnLoadCallback(function () { });
+
             // Organize items by category
             ItemService.populateItemLists();
 
             SoundEffectService.addSoundBite("click", ["audio/click.ogg", "audio/click.mp3"], 0.25);
             SoundEffectService.addSoundBite("whistle", ["audio/whistle.ogg", "audio/whistle.mp3"], 0.25);
-        }
+        };
         
         // Initialize the module
-        init();
+        controller.init();
+    }]);
+
+    /**
+    * Service for displaying notifications to the user.
+    */
+    app.factory('NotificationService', [function(){
+
+        return {
+            displayMsg: function (level, message, autoDismiss) {
+                if (autoDismiss != true)
+                    autoDismiss = false;
+                var errorClass = "bg-primary";
+                if (level == 0)
+                    errorClass = "bg-primary";
+                if (level == 1)
+                    errorClass = "bg-success";
+                if (level == 2)
+                    errorClass = "bg-info";
+                if (level == 3)
+                    errorClass = "bg-warning";
+                if (level == 4)
+                    errorClass = "bg-danger";
+
+                var error = $("<div>").append("<p class='" + errorClass + "'>" + message + "</p>")
+                var button = $("<button class='btn btn-default'>Dismiss</button>").click(function () {
+                    $("#errorDiv").empty()
+                });
+                $("#errorDiv").append(error);
+                if(autoDismiss)
+                    setTimeout(function () { $("#errorDiv").empty() }, 5000);
+            }
+        };
+
     }]);
 
     /**

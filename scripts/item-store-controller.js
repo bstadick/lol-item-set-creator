@@ -56,7 +56,7 @@
         * Handler for when all the items have been added to the item store repeater.
         */
         $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
-            ItemInteractivityService.addTooltipAndClickModal($(".item-image"));
+            ItemInteractivityService.addTooltipAndClickModal($(".store-panel > .item-image"));
         });
         
         /**

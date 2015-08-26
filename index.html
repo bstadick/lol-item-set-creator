@@ -28,7 +28,7 @@
         <script src="scripts/champion-controller.js"></script>
         <link rel="stylesheet" href="style/main.css">
     </head>
-    <body ng-controller="ModuleInit">
+    <body ng-controller="ModuleInit as module">
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -39,6 +39,11 @@
             </div>
         </nav>
         <div class="container">
+            <div class="row">
+                <div id="errorDiv" class="col-sm-12">
+
+                </div>
+            </div>
             <div class="row noselect">
                 <div id="workarea" class="page-half-modal col-sm-6">
                     <section ng-init="panel.tab = 1" ng-controller="PanelController as panel">
@@ -48,11 +53,24 @@
                             <li role="presentation" ng-class="{ active:panel.isSelected(3)}"> <a href role="tab" ng-click="panel.selectTab(3, true)">Gold Game</a> </li>
                         </ul>
                         <div class="panel" ng-show="panel.isSelected(1)" ng-controller="ItemSetController as itemSet">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <form class="section-header-form" action="#">
+                                        <input class="set-title form-control" type="text" placeholder="Set Title">
+                                    </form>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button class="section-impexp-button btn btn-lg btn-primary btn-sm" ng-click="itemSet.importSet()">Import</button>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button class="section-impexp-button btn btn-lg btn-primary btn-sm" ng-click="itemSet.exportSet()">Export</button>
+                                </div>
+                            </div>
                             <div id="item-set-div">
-                            
+
                             </div>
                             <button class="section-add-button btn btn-lg btn-primary" ng-click="itemSet.addSection(true)">Add Section</button>
-                        </div>
+                            </div>
                         <div class="panel" ng-show="panel.isSelected(2)" ng-controller="ItemBuildTreeController as itemBuildTree">
                             <div id="item-build-div">
                             
