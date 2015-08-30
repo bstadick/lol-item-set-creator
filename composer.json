@@ -1,0 +1,13 @@
+{
+    "name": "epoch365/rito-api-challenge",
+    "description": "Riot API Challenge 2.0 entry.",
+    "require": {
+        "paquettg/leaguewrap": "^0.6.2"
+    },
+    "authors": [
+        {
+            "name": "bstadick",
+            "email": "stadi012@umn.edu"
+        }
+    ]
+}

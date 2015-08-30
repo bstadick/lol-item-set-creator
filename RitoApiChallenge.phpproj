@@ -8,6 +8,13 @@
     <RootNamespace>RitoApiChallenge</RootNamespace>
     <ProjectTypeGuids>{A0786B88-2ADB-4C21-ABE8-AA2D79766269}</ProjectTypeGuids>
     <AssemblyName>RitoApiChallenge</AssemblyName>
+    <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+    <Server>PHPDev</Server>
+    <PublishEvent>None</PublishEvent>
+    <PHPDevAutoPort>True</PHPDevAutoPort>
+    <PHPDevPort>17609</PHPDevPort>
+    <PHPDevHostName>localhost</PHPDevHostName>
+    <IISProjectUrl>http://localhost:17609/</IISProjectUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <IncludeDebugInformation>true</IncludeDebugInformation>
@@ -19,6 +26,7 @@
     <Folder Include="img\" />
     <Folder Include="lib\" />
     <Folder Include="audio\" />
+    <Folder Include="src\" />
     <Folder Include="templates\" />
     <Folder Include="style\" />
     <Folder Include="scripts\" />
@@ -59,5 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="deploy.php" />
+    <Compile Include="src\ChromePhp.php" />
+    <Compile Include="src\index.php" />
   </ItemGroup>
 </Project>
