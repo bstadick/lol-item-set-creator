@@ -2,7 +2,7 @@
 * Drag-drop item code
 * @author
 * @version 0.0.5
-* @copyright © 2015
+* @copyright 2015
 */
 (function() {
 
@@ -56,7 +56,7 @@
         * Handler for when all the items have been added to the item store repeater.
         */
         $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
-            ItemInteractivityService.addTooltipAndClickModal($(".item-image"));
+            ItemInteractivityService.addTooltipAndClickModal($(".store-panel > .item-image"));
         });
         
         /**
