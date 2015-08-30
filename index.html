@@ -13,6 +13,7 @@
         <script src="lib/jquery.ui-contextmenu.js"></script>
         <link rel="stylesheet" href="style/bootstrap.vertical-tabs.min.css">
         <script src="lib/jquery.ui.touch-punch.min.js"></script>
+        <link rel="stylesheet" href="style/jquery.fileupload.css">
         <!--<link rel="stylesheet" href="lib/jquery-ui-1.11.4/jquery-ui.css">
         <link rel="stylesheet" href="lib/bootstrap-3.3.5-dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="lib/font-awesome-4.4.0/css/font-awesome.min.css">
@@ -59,11 +60,18 @@
                                         <input class="set-title form-control" type="text" placeholder="Set Title">
                                     </form>
                                 </div>
-                                <div class="col-sm-2">
-                                    <button class="section-impexp-button btn btn-lg btn-primary btn-sm" ng-click="itemSet.importSet()">Import</button>
-                                </div>
-                                <div class="col-sm-2">
-                                    <button class="section-impexp-button btn btn-lg btn-primary btn-sm" ng-click="itemSet.exportSet()">Export</button>
+                                <div class="col-sm-4">
+                                    <form id="importExportForm" role="form" method="post">
+                                        <input class="form-control input-lg margin-sm-after" type="hidden" name="action" id="action" />
+                                        <input class="form-control input-lg margin-sm-after" type="hidden" name="pageName" id="pageName" />
+                                        <input class="form-control input-lg margin-sm-after" type="hidden" name="data" id="data" />
+                                        <span class="section-impexp-button btn btn-primary btn-sm fileinput-button">
+                                            <i class="fa fa-upload"></i>
+                                            <span>Import</span>
+                                            <input id="importButton" type="file" name="file">
+                                        </span>
+                                        <button class="section-impexp-button btn btn-primary btn-sm" ng-click="itemSet.exportSet()"><i class="fa fa-download"></i> Export</button>
+                                    </form>
                                 </div>
                             </div>
                             <div id="item-set-div">
