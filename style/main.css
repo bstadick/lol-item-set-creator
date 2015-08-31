@@ -12,6 +12,11 @@ body {
 #errorDiv p {
     padding: 15px;
 }
+.error-dismiss {
+    float: right;
+    position: relative;
+    top: -7px;
+}
 
 /*Page modals*/
 .page-half-modal {
@@ -26,19 +31,19 @@ body {
     overflow-x: hidden;
 }
 
-/*Item images*/
-.item-image {
+/*Item & Champion images*/
+.item-image, .champ-image {
     margin: 10px !important;
     vertical-align: inherit;
     display: inline-block;
     cursor: pointer;
     padding: 0px;
 }
-.item-image img {
+.item-image img, .champ-image img {
    height: 100%;
    width: 100%;
 }
-.item-image-small {
+.item-image-small, .champ-image-small {
     width: 50px;
     height: 50px;
     margin: 5px;
@@ -50,7 +55,7 @@ body {
     -ms-filter: grayscale(100%);
     filter: grayscale(100%); 
 }
-.item-placeholder {
+.item-placeholder, .champ-placeholder {
     width: 100%;
     height: 100%;
     border: 1px solid #aaaaaa;
@@ -74,7 +79,7 @@ body {
     margin-right: 5px;
 }
 
-/*Store sections*/
+/*Store & Champion sections*/
 .store-section-title {
     font-weight: bold;
 }
@@ -85,7 +90,7 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
 }
-.store-panel {
+.store-panel, .champ-panel, .build-panel {
     max-height: 60vh;
     margin-top: 1vh;
     margin-bottom: 1vh;
@@ -115,7 +120,7 @@ body {
 .section-title {
     max-width: 300px;
 }
-.item-search-autocomplete {
+.item-search-autocomplete, .champ-search-autocomplete  {
     min-height: 80px;
     max-height: 50vh;
     height: inherit !important;
@@ -141,13 +146,8 @@ body {
 .ui-selectmenu-button {
     min-width: 150px;
 }
-.item-search-autocomplete {
-    min-height: 80px;
-    max-height: 50vh;
-    height: inherit !important;
-    overflow-x: hidden;
-    overflow-y: auto;
-}
+
+/*Modal dialogs*/
 .ui-dialog  {
     margin-top: 50px;
     max-height: 88vh;
@@ -160,6 +160,7 @@ body {
     top: 40%;
     height: inherit;
 }
+
 .btn-gold{
   margin: 3px;
 }

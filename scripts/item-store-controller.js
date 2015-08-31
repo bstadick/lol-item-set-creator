@@ -12,7 +12,8 @@
     /**
     * The item controller for managing items on the page.
     */
-    app.controller('ItemStoreController', ['$scope', '$http', '$log', 'ChartService', 'ItemService', 'ItemInteractivityService', function($scope, $http, $log, ChartService, ItemService, ItemInteractivityService){
+    app.controller('ItemStoreController', ['$scope', '$http', '$log', 'ChartService', 'ItemService', 'ItemInteractivityService',
+        function ($scope, $http, $log, ChartService, ItemService, ItemInteractivityService) {
         var controller = this;        
         
         /**
@@ -29,18 +30,18 @@
             }).autocomplete("instance");
 
             // Renders the items in the search completion
-            autoComplete._renderItem = function( ul, item ) {
-                var div = $( "div", ul );
-                return div.append( ItemService.getItemImageById(item.value, "search-item-image") );
+            autoComplete._renderItem = function( ul, id ) {
+                var div = $("div", ul);
+                return div.append(ItemService.getItemImageById(id, "search-item-image"));
             };
 
             // Renders the menu of the search completion
             autoComplete._renderMenu = function( ul, items ) {
                 var that = this;
                 ul.append($("<li class='item-search-autocomplete'><div>"));
-                $.each( items, function( index, item ) {
-                    if($("[data-item-id='" + item.value + "']", ul).length <= 0)
-                        that._renderItemData( ul, item );
+                $.each(items, function (index, item) {
+                    if ($("[data-item-id='" + item.value + "']", ul).length <= 0)
+                        that._renderItemData(ul, item.value);
                 });
                 ItemInteractivityService.addTooltipAndClickModal($(".search-item-image"));
             };
@@ -55,7 +56,7 @@
         /**
         * Handler for when all the items have been added to the item store repeater.
         */
-        $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+        $scope.$on('ngItemRepeatFinished', function (ngRepeatFinishedEvent) {
             ItemInteractivityService.addTooltipAndClickModal($(".store-panel > .item-image"));
         });
         
@@ -94,7 +95,7 @@
             
             if (scope.$last === true) {
                 $timeout(function () {
-                    scope.$emit('ngRepeatFinished');
+                    scope.$emit('ngItemRepeatFinished');
                 });
             }
         }

@@ -63,6 +63,8 @@
         controller.init = function () {
             // Add the initial item drop section
             controller.addSection();
+
+            $("#importButton").change(controller.importSet);
         };
 
         controller.createItemSet = function (title, type, map, mode, priority, sortrank, blocks) {
@@ -176,6 +178,8 @@
             try {
                 var workArea = $("#item-set-div");
                 workArea.empty();
+
+                $("input.set-title").val(itemSet.title);
             
                 $.each(itemSet.blocks, function (index, block) {
                     var section = controller.createSection();
@@ -190,10 +194,13 @@
 
                     workArea.append(section);
                 });
+                NotificationService.displayMsg(1, "Success: Item set successfully imported.", true);
+                return true;
             }
             catch (ex) {
                 NotificationService.displayMsg(4, "Error: Failed to decode item set. Contents may be illformed.", true);
             }
+            return false;
         };
 
         controller.createSection = function () {
@@ -226,6 +233,7 @@
                     if (!ui.item.hasClass("item-copy"))
                         ui.item.addClass("item-copy");
                     ItemInteractivityService.addItemContextMenu($("#workarea"), ".item-copy");
+                    ItemInteractivityService.addTooltipAndClickModal($("#workarea .item-copy"));
                 }
             });
 
@@ -266,38 +274,37 @@
         
         controller.exportSet = function () {
             var set = controller.parseItemSet();
+            if (set == undefined) {
+                NotificationService.displayMsg(4, "Error: Failed to export build set. Make sure that each section has a title and at least one item.", true);
+                return;
+            }
+            var setStr = JSON.stringify(set);
+            var setTitle = $("input.set-title").val();
+
+            $("#action").val("export");
+            $("#pageName").val(setTitle);
+            $("#data").val(setStr);
+            $("#importExportForm").attr("action", "src/index.php");
+            $("#importExportForm").submit();
         };
 
-        controller.importSet = function () {
-
-        };
-
-        // Initialize the controller
-        controller.init();
-
-    } ]);
-
-    /**
-    * The item controller for managing item build trees.
-    */
-    app.controller('ItemBuildTreeController', ['$scope', '$http', '$log', 'ChartService', 'ItemService', 'ItemInteractivityService', function($scope, $http, $log, ChartService, ItemService, ItemInteractivityService){
-        var controller = this;
-
-        /**
-        * Initializes the controller.
-        */
-        controller.init = function(){
-
-        };
-
-        controller.parseItemBuild = function(){
-            var itemCollection = $("#item-build-div .item-image");
-            var count = itemCollection.length;
-            var ids = [];
-            itemCollection.each(function(index){
-                ids[index] = $(this).attr("data-item-id");
-            });
-            // TODO - do something with the build tree data
+        controller.importSet = function (e) {
+            try {
+                var file = e.target.files[0];
+                if (!file || file.name.length <= 4 || file.name.substring(file.name.length - 4) != "json") {
+                    return;
+                }
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var contents = e.target.result;
+                    var set = JSON.parse(contents);
+                    controller.renderItemSet(set);
+                };
+                reader.readAsText(file);
+            }
+            catch (ex) {
+                NotificationService.displayMsg(4, "Error: Failed to decode item set. Contents may be illformed.", true);
+            }
         };
 
         // Initialize the controller
@@ -308,7 +315,8 @@
     /**
     * The item controller for managing the gold game.
     */
-    app.controller('GoldGameController', ['$scope', '$http', '$log', 'ChartService', 'ItemService', 'ItemInteractivityService', function($scope, $http, $log, ChartService, ItemService, ItemInteractivityService){
+    app.controller('GoldGameController', ['$scope', '$http', '$log', 'ChartService', 'ItemService', 'ItemInteractivityService',
+        function ($scope, $http, $log, ChartService, ItemService, ItemInteractivityService) {
         var controller = this;
 
         /**

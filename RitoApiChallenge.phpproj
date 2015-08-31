@@ -8,6 +8,13 @@
     <RootNamespace>RitoApiChallenge</RootNamespace>
     <ProjectTypeGuids>{A0786B88-2ADB-4C21-ABE8-AA2D79766269}</ProjectTypeGuids>
     <AssemblyName>RitoApiChallenge</AssemblyName>
+    <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+    <Server>PHPDev</Server>
+    <PublishEvent>None</PublishEvent>
+    <PHPDevAutoPort>True</PHPDevAutoPort>
+    <PHPDevPort>17609</PHPDevPort>
+    <PHPDevHostName>localhost</PHPDevHostName>
+    <IISProjectUrl>http://localhost:17609/</IISProjectUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <IncludeDebugInformation>true</IncludeDebugInformation>
@@ -19,11 +26,19 @@
     <Folder Include="img\" />
     <Folder Include="lib\" />
     <Folder Include="audio\" />
+    <Folder Include="src\" />
     <Folder Include="templates\" />
     <Folder Include="style\" />
     <Folder Include="scripts\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="composer.json" />
+    <Content Include="img\champ-trans.png" />
+    <Content Include="img\champion0.png" />
+    <Content Include="img\champion1.png" />
+    <Content Include="img\champion2.png" />
+    <Content Include="img\champion3.png" />
+    <Content Include="img\champion4.png" />
     <Content Include="audio\click.mp3" />
     <Content Include="audio\click.ogg" />
     <Content Include="audio\whistle.mp3" />
@@ -44,6 +59,7 @@
     <Content Include="LICENSE" />
     <Content Include="README.md" />
     <Content Include="scripts\champion-controller.js" />
+    <Content Include="scripts\champions.min.js" />
     <Content Include="scripts\champions.min.json" />
     <Content Include="scripts\global-data.js" />
     <Content Include="scripts\item-panel-controllers.js" />
@@ -59,5 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="deploy.php" />
+    <Compile Include="src\ChromePhp.php" />
+    <Compile Include="src\index.php" />
   </ItemGroup>
 </Project>

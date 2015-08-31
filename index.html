@@ -13,6 +13,7 @@
         <script src="lib/jquery.ui-contextmenu.js"></script>
         <link rel="stylesheet" href="style/bootstrap.vertical-tabs.min.css">
         <script src="lib/jquery.ui.touch-punch.min.js"></script>
+        <link rel="stylesheet" href="style/jquery.fileupload.css">
         <!--<link rel="stylesheet" href="lib/jquery-ui-1.11.4/jquery-ui.css">
         <link rel="stylesheet" href="lib/bootstrap-3.3.5-dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="lib/font-awesome-4.4.0/css/font-awesome.min.css">
@@ -21,6 +22,7 @@
         <script src="lib/jquery-ui-1.11.4/jquery-ui.min.js"></script>
         <script src="lib/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>-->
         <script src="scripts/items.js"></script>
+        <script src="scripts/champions.min.js"></script>
         <script src="scripts/global-data.js"></script>
         <script src="scripts/module-services.js"></script>
         <script src="scripts/item-store-controller.js"></script>
@@ -40,7 +42,7 @@
         </nav>
         <div class="container">
             <div class="row">
-                <div id="errorDiv" class="col-sm-12">
+                <div id="errorDiv" class="col-sm-12" style="display: none;">
 
                 </div>
             </div>
@@ -49,8 +51,7 @@
                     <section ng-init="panel.tab = 1" ng-controller="PanelController as panel">
                         <ul class="nav nav-tabs" role="tablist">
                             <li role="presentation" ng-class="{ active:panel.isSelected(1)}"> <a href role="tab" ng-click="panel.selectTab(1, true)">Item Set</a> </li>
-                            <li role="presentation" ng-class="{ active:panel.isSelected(2)}"> <a href role="tab" ng-click="panel.selectTab(2, true)">Item Build</a> </li>
-                            <li role="presentation" ng-class="{ active:panel.isSelected(3)}"> <a href role="tab" ng-click="panel.selectTab(3, true)">Gold Game</a> </li>
+                            <li role="presentation" ng-class="{ active:panel.isSelected(2)}"> <a href role="tab" ng-click="panel.selectTab(2, true)">Gold Game</a> </li>
                         </ul>
                         <div class="panel" ng-show="panel.isSelected(1)" ng-controller="ItemSetController as itemSet">
                             <div class="row">
@@ -59,24 +60,26 @@
                                         <input class="set-title form-control" type="text" placeholder="Set Title">
                                     </form>
                                 </div>
-                                <div class="col-sm-2">
-                                    <button class="section-impexp-button btn btn-lg btn-primary btn-sm" ng-click="itemSet.importSet()">Import</button>
-                                </div>
-                                <div class="col-sm-2">
-                                    <button class="section-impexp-button btn btn-lg btn-primary btn-sm" ng-click="itemSet.exportSet()">Export</button>
+                                <div class="col-sm-4">
+                                    <form id="importExportForm" role="form" method="post">
+                                        <input class="form-control input-lg margin-sm-after" type="hidden" name="action" id="action" />
+                                        <input class="form-control input-lg margin-sm-after" type="hidden" name="pageName" id="pageName" />
+                                        <input class="form-control input-lg margin-sm-after" type="hidden" name="data" id="data" />
+                                        <span class="section-impexp-button btn btn-primary btn-sm fileinput-button">
+                                            <i class="fa fa-upload"></i>
+                                            <span>Import</span>
+                                            <input id="importButton" type="file" name="file">
+                                        </span>
+                                        <button class="section-impexp-button btn btn-primary btn-sm" ng-click="itemSet.exportSet()"><i class="fa fa-download"></i> Export</button>
+                                    </form>
                                 </div>
                             </div>
                             <div id="item-set-div">
 
                             </div>
                             <button class="section-add-button btn btn-lg btn-primary" ng-click="itemSet.addSection(true)">Add Section</button>
-                            </div>
-                        <div class="panel" ng-show="panel.isSelected(2)" ng-controller="ItemBuildTreeController as itemBuildTree">
-                            <div id="item-build-div">
-
-                            </div>
                         </div>
-                        <div class="panel" ng-show="panel.isSelected(3)" ng-controller="GoldGameController as goldGame">
+                        <div class="panel" ng-show="panel.isSelected(2)" ng-controller="GoldGameController as goldGame">
                             <div id="item-goldgame-div">
 
                             </div>
@@ -94,6 +97,7 @@
                         <ul class="nav nav-tabs" role="tablist">
                             <li role="presentation" ng-class="{ active:panel.isSelected(1)}"> <a href role="tab" ng-click="panel.selectTab(1, true)">Store</a> </li>
                             <li role="presentation" ng-class="{ active:panel.isSelected(2)}"> <a href role="tab" ng-click="panel.selectTab(2, true)">Champions</a> </li>
+                            <li id="buildTab" role="presentation" ng-class="{ active:panel.isSelected(3)}"> <a href id="buildTabLink" role="tab" ng-click="panel.selectTab(3, true)">Builds - None</a> </li>
                         </ul>
                         <div class="panel" ng-show="panel.isSelected(1)" ng-controller="ItemStoreController as store">
                             <form action="#">
@@ -117,6 +121,22 @@
                             </section>
                         </div>
                         <div class="panel" ng-show="panel.isSelected(2)" ng-controller="ChampionController as champions">
+                            <form action="#">
+                                <input id="champSearch" class="form-control" type="text" placeholder="Search">
+                            </form>
+                            <div id="searchChamps" class="champ-panel" style="display: none;">
+
+                            </div>
+                            <div id="allChamps" class="champ-panel">
+                                <img ng-repeat="champ in champions.getChampions() | orderBy:'name'" class="champ-image" src="img/champ-trans.png"
+                                     style="width: {{champ.image.w}}px; height: {{champ.image.h}}px; background: url(img/{{champ.image.sprite}}) no-repeat; background-position: -{{champ.image.x}}px -{{champ.image.y}}px;"
+                                     data-champ-id="{{champ.id}}" store-champion-draggable />
+                            </div>
+                        </div>
+                        <div class="panel" ng-show="panel.isSelected(3)">
+                            <div class="build-panel">
+
+                            </div>
                         </div>
                     </section>
                 </div>
