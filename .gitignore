@@ -174,3 +174,4 @@ pip-log.txt
 *.bak
 *.orig
 
+src/ApiKey.php

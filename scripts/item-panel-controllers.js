@@ -233,6 +233,7 @@
                     if (!ui.item.hasClass("item-copy"))
                         ui.item.addClass("item-copy");
                     ItemInteractivityService.addItemContextMenu($("#workarea"), ".item-copy");
+                    ItemInteractivityService.addTooltipAndClickModal($("#workarea .item-copy"));
                 }
             });
 
@@ -290,7 +291,7 @@
         controller.importSet = function (e) {
             try {
                 var file = e.target.files[0];
-                if (!file) {
+                if (!file || file.name.length <= 4 || file.name.substring(file.name.length - 4) != "json") {
                     return;
                 }
                 var reader = new FileReader();
@@ -312,37 +313,10 @@
     } ]);
 
     /**
-    * The item controller for managing item build trees.
-    */
-    app.controller('ItemBuildTreeController', ['$scope', '$http', '$log', 'ChartService', 'ItemService', 'ItemInteractivityService', function($scope, $http, $log, ChartService, ItemService, ItemInteractivityService){
-        var controller = this;
-
-        /**
-        * Initializes the controller.
-        */
-        controller.init = function(){
-
-        };
-
-        controller.parseItemBuild = function(){
-            var itemCollection = $("#item-build-div .item-image");
-            var count = itemCollection.length;
-            var ids = [];
-            itemCollection.each(function(index){
-                ids[index] = $(this).attr("data-item-id");
-            });
-            // TODO - do something with the build tree data
-        };
-
-        // Initialize the controller
-        controller.init();
-
-    } ]);
-
-    /**
     * The item controller for managing the gold game.
     */
-    app.controller('GoldGameController', ['$scope', '$http', '$log', 'ChartService', 'ItemService', 'ItemInteractivityService', function($scope, $http, $log, ChartService, ItemService, ItemInteractivityService){
+    app.controller('GoldGameController', ['$scope', '$http', '$log', 'ChartService', 'ItemService', 'ItemInteractivityService',
+        function ($scope, $http, $log, ChartService, ItemService, ItemInteractivityService) {
         var controller = this;
 
         /**
