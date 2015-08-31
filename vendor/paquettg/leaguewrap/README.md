@@ -21,18 +21,18 @@ You can find many examples of how to use the wrapper and any of its parts (which
 ```php
 use LeagueWrap\Api;
 
-$api      = new Api($myKey);           // Load up the API
-$summoner = $api->summoner();          // Load up the summoner request object.
-$bakasan  = $summoner->info('bakasan') // Get the information about this user.
+$api      = new Api($myKey);            // Load up the API
+$summoner = $api->summoner();           // Load up the summoner request object.
+$bakasan  = $summoner->info('bakasan'); // Get the information about this user.
 
-$bakasan = $summoner->info(74602)      // same thing as above, just to show that an id will work
+$bakasan = $summoner->info(74602);      // same thing as above, just to show that an id will work
 
-echo $bakasan->summonerLevel;          // 30
-echo $bakasan->id;                     // 74602
-echo $bakasan->name;                   // "bakasan"
-echo $bakasan->profileIconId;          // 24
-echo $bakasan->revisionDate;           // 1387391523000
-echo $bakasan->revisionDateStr;        // "12/18/2013 06:32 PM UTC"
+echo $bakasan->summonerLevel;           // 30
+echo $bakasan->id;                      // 74602
+echo $bakasan->name;                    // "bakasan"
+echo $bakasan->profileIconId;           // 24
+echo $bakasan->revisionDate;            // 1387391523000
+echo $bakasan->revisionDateStr;         // "12/18/2013 06:32 PM UTC"
 ```
 
 The above gets the basic information about the user 'bakasan'. The above example illustrates the general idea of how things work. You load up the API with your given key, this API object can be used as many times as possible and is encouraged to only have one instance of it. From the API you can select which API to query (in this case the summoner API). Finally, you use a method, dependant of the API you query, to perform a request on that API.
@@ -452,6 +452,8 @@ $game = $bakasan->recentGame(0);
 Match
 ----
 
+##### **NOTE:** The MatchHistory API endpoint has been deprecated by Riot and will be removed on **September 22nd, 2015**. Please use the Matchlist endpoint instead! 
+
 The Match API can be used to get a more detailed match history then the game API provides. This does only include ranked games though. You can either pass in the summoner id or a summoner object `LeagueWrap\Dto\Summoner`.
 
 ```php
@@ -461,7 +463,21 @@ $matches = $matchHistory->history(74602);
 $match = $matches[0];
 ```
 
-For even more details on a specific match, the match API can be used to get detailed statistics for every summoner as well as an optional timeline of events. As argument, you need to pass a match id that you can get from `LeagueWrap\Dto\Match->matchId` or `LeagueWrap\Dto\Game->gameId`.
+The Matchlist API gives you a condensed list of all played ranked matches since the match api went live. It will return a `LeagueWrap\Dto\MatchList` and you can pass in the summoner id or a summoner object `LeagueWrap\Dto\Summoner`.
+
+```php
+$matchlistapi = $api->matchlist();
+$matchlist = $matchlist->matchlist(30447079);
+$numberOfplayedGames = $matchlist->totalGames;
+$roleInGame = $matchlist->match(0)->role;
+```
+You can add filter parameters for queue, season, played champions, start and end index as well as time, respectivly.
+```php
+$matchlistapi = $api->matchlist();
+$matchlist = $matchlist->matchlist(30447079, "RANKED_SOLO_5x5", "SEASON2015", [1,2,3], 5, 7, 12346586, 35483434);
+```
+
+For even more details on a specific match, the match API can be used to get detailed statistics for every summoner as well as an optional timeline of events. As argument, you need to pass a match id that you can get from `LeagueWrap\Dto\Match->matchId`, `LeagueWrap\Dto\MatchReference->matchId` or `LeagueWrap\Dto\Game->gameId`.
 
 ```php
 $matchapi = $api->match();

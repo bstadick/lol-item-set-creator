@@ -1,9 +1,10 @@
 <?php
+
+
 namespace LeagueWrap\Api;
 
-use LeagueWrap\Dto\MatchHistory as MatchHistoryDto;
 
-class Matchhistory extends AbstractApi {
+class Matchlist extends AbstractApi {
 
     /**
      * Valid version for this api call.
@@ -40,32 +41,34 @@ class Matchhistory extends AbstractApi {
     protected $defaultRemember = 1800;
 
     /**
-     * Get the match history by summoner identity.
-     * @deprecated This endpoint will be removed on September 22nd, 2015.
+     * Get the match list by summoner identity.
      * @param $identity int|Summoner
      * @param array|string|null $rankedQueues List of ranked queue types to use for fetching games.
+     * @param array|string|null $seasons List of seasons to use for fetching games.
      * @param array|string|null $championIds Comma-separated list of champion IDs to use for fetching games.
      * @param int|null $beginIndex The begin index to use for fetching games.
      * @param int|null $endIndex The end index to use for fetching games.
+     * @param int|null $beginTime The begin time for fetching games in milliseconds
+     * @param int|null $endTime The end time for fetching games in milliseconds
      * @return \LeagueWrap\Dto\MatchHistory
      * @throws \LeagueWrap\Exception\CacheNotFoundException
      * @throws \LeagueWrap\Exception\InvalidIdentityException
      * @throws \LeagueWrap\Exception\RegionException
      */
-    public function history($identity, $rankedQueues = null, $championIds = null, $beginIndex = null, $endIndex = null)
+    public function matchlist($identity, $rankedQueues = null, $seasons = null, $championIds = null, $beginIndex = null, $endIndex = null, $beginTime = null, $endTime = null)
     {
-        $matchId = $this->extractId($identity);
+        $summonerId = $this->extractId($identity);
 
-        $requestParamas = $this->parseParams($rankedQueues, $championIds, $beginIndex, $endIndex);
-        $array          = $this->request('matchhistory/'.$matchId, $requestParamas);
-        $matchhistory   = $this->attachStaticDataToDto(new MatchHistoryDto($array));
+        $requestParamas = $this->parseParams($rankedQueues, $seasons, $championIds, $beginIndex, $endIndex, $beginTime, $endTime);
+        $array          = $this->request('matchlist/by-summoner/'.$summonerId, $requestParamas);
+        $matchList   = $this->attachStaticDataToDto(new \LeagueWrap\Dto\MatchList($array));
 
-        $this->attachResponse($identity, $matchhistory, 'matchhistory');
+        $this->attachResponse($identity, $matchList, 'matchlist');
 
-        return $matchhistory;
+        return $matchList;
     }
 
-    protected function parseParams($rankedQueues = null, $championIds = null, $beginIndex = null, $endIndex = null)
+    protected function parseParams($rankedQueues = null, $seasons = null, $championIds = null, $beginIndex = null, $endIndex = null, $beginTime = null, $endTime = null)
     {
         $params = [];
 
@@ -78,6 +81,17 @@ class Matchhistory extends AbstractApi {
             else
             {
                 $params['rankedQueues'] = $rankedQueues;
+            }
+        }
+        if(isset($seasons))
+        {
+            if(is_array($seasons))
+            {
+                $params['seasons'] = implode(',', $seasons);
+            }
+            else
+            {
+                $params['seasons'] = $seasons;
             }
         }
 
@@ -101,8 +115,16 @@ class Matchhistory extends AbstractApi {
         {
             $params['endIndex'] = $endIndex;
         }
+        if(isset($beginTime))
+        {
+            $params['beginTime'] = $beginTime;
+        }
+        if(isset($endTime))
+        {
+            $params['endTime'] = $endTime;
+        }
 
         return $params;
     }
 
-} 
+}

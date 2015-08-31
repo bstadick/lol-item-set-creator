@@ -119,17 +119,17 @@
     },
     {
         "name": "paquettg/leaguewrap",
-        "version": "0.6.2",
-        "version_normalized": "0.6.2.0",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
             "url": "https://github.com/paquettg/leaguewrap.git",
-            "reference": "7dbcb8471b98dd71d1e665a6cbd1dbf2629c802d"
+            "reference": "9defaad4cc90ed23e09cbef44ec8e8c2c60d1d64"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/paquettg/leaguewrap/zipball/7dbcb8471b98dd71d1e665a6cbd1dbf2629c802d",
-            "reference": "7dbcb8471b98dd71d1e665a6cbd1dbf2629c802d",
+            "url": "https://api.github.com/repos/paquettg/leaguewrap/zipball/9defaad4cc90ed23e09cbef44ec8e8c2c60d1d64",
+            "reference": "9defaad4cc90ed23e09cbef44ec8e8c2c60d1d64",
             "shasum": ""
         },
         "require": {
@@ -141,9 +141,9 @@
             "phpunit/phpunit": "3.7.*",
             "satooshi/php-coveralls": "0.6.*"
         },
-        "time": "2015-03-26 18:03:59",
+        "time": "2015-08-06 19:45:39",
         "type": "library",
-        "installation-source": "dist",
+        "installation-source": "source",
         "autoload": {
             "psr-0": {
                 "LeagueWrap": "src/"

@@ -4,7 +4,7 @@ namespace LeagueWrap\Dto;
 use LeagueWrap\Api\Staticdata;
 use LeagueWrap\StaticOptimizer;
 
-Abstract class AbstractDto {
+Abstract class AbstractDto implements \JsonSerializable {
 	
 	protected $info;
 
@@ -191,4 +191,14 @@ Abstract class AbstractDto {
 
 		return $return;
 	}
+	
+	/**
+	 * Returns the properties of the object to be serialized to JSON.
+	 *
+	 * @return object
+	*/
+	public function JsonSerialize()
+    {
+        return $this->info;
+    }
 }

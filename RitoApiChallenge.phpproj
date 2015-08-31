@@ -32,6 +32,13 @@
     <Folder Include="scripts\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="composer.json" />
+    <Content Include="img\champ-trans.png" />
+    <Content Include="img\champion0.png" />
+    <Content Include="img\champion1.png" />
+    <Content Include="img\champion2.png" />
+    <Content Include="img\champion3.png" />
+    <Content Include="img\champion4.png" />
     <Content Include="audio\click.mp3" />
     <Content Include="audio\click.ogg" />
     <Content Include="audio\whistle.mp3" />
@@ -52,6 +59,7 @@
     <Content Include="LICENSE" />
     <Content Include="README.md" />
     <Content Include="scripts\champion-controller.js" />
+    <Content Include="scripts\champions.min.js" />
     <Content Include="scripts\champions.min.json" />
     <Content Include="scripts\global-data.js" />
     <Content Include="scripts\item-panel-controllers.js" />
