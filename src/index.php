@@ -3,10 +3,12 @@ error_reporting(E_ALL);
 
 // debug/console library
 include 'ChromePhp.php';
-include 'ApiKey.php';
+include_once 'ApiKey.php';
+include_once 'Database.php';
+include_once 'MatchModel.php';
 use LeagueWrap\Api;
 
-require __DIR__.'\..\vendor\autoload.php';
+require '..\vendor\autoload.php';
 
 try{
     // parameters
@@ -35,23 +37,115 @@ try{
 		    break;
         case "getChampBuilds":
             header('Content-Type: application/json');
+            $numberToReturn = 40;
+
+            $champId = $_POST["id"];
+
+            $summoners = array(492066);
+
             $api = setupApi($myKey);
             $matchlistapi = $api->matchlist();
             $matchapi = $api->match();
 
-            $matchlist = $matchlistapi->matchlist(492066, "RANKED_SOLO_5x5", "SEASON2015");
-            $matchId = $matchlist->matches[0]->matchId;
-            $match = $matchapi->match($matchId, true);
-            $timeline = $match->timeline;
-            if($timeline == null) throw new Exception("Match timeline not present.");
-            $matchInfo = array("timeline" => $timeline, "participants" => $match->participantIdentities);
+            $matchHistory = new MatchHistoryModel();
+            $matchListFromHist = $matchHistory->getMatchByChampionId($champId);
+            $matches = array();
+            
+            if($matchListFromHist != null && count($matchListFromHist) > 0){
+                $fetchTime = new DateTime($matchListFromHist[0]->getFetchTime());
+                $currentTime = new DateTime(date('Y-m-d H:i:s'));
+                $diff = $currentTime->getTimestamp() - $fetchTime->getTimestamp();
 
-            $matchJson = json_encode($matchInfo);
-            echo $matchJson;
+                // Refresh with newer matches if old enough
+                if($diff > 3600){
+                    
+                    $matchCount = 0;
+                    foreach($summoners as &$summoner){
+                        $matchlist = $matchlistapi->matchlist($summoner, "RANKED_SOLO_5x5", "SEASON2015", $champId, null, null, $fetchTime->getTimestamp()*1000, time()*1000);
+                        foreach($matchlist->matches as &$match){
+                            if($count > 10){
+                                sleep(1);
+                                $count = 0;
+                            }
+                            $count++;
+
+                            $matchDetails = $matchapi->match($match->matchId, true);
+                            addToDatabase($matchDetails, $matchHistory);
+
+                            // Add to list of matches to return
+                            array_push($matches, $matchDetails);
+                            $matchCount++;
+                            if($matchCount > $numberToReturn) break;
+                        }
+                        if($matchCount > $numberToReturn) break;
+                    }
+                }
+
+                // Fill in rest of needed matches with cached matches
+                $neededMatches = $numberToReturn - count($matches);
+                if(count($matchListFromHist) < $neededMatches) $neededMatches = count($matchListFromHist);
+                for($x = 0; $x < $neededMatches; $x++){
+                    array_push($matches, json_decode($matchListFromHist[$x]->getMatchData()));
+                }
+            }
+            else{
+                // no matches cached so get all new
+                $matchCount = 0;
+                foreach($summoners as &$summoner){
+                    $matchlist = $matchlistapi->matchlist($summoner, "RANKED_SOLO_5x5", "SEASON2015", $champId);
+                    $count = 0;
+                    foreach($matchlist->matches as &$match){
+                        if($count > 10){
+                            sleep(1);
+                            $count = 0;
+                        }
+                        $count++;
+
+                        $matchDetails = $matchapi->match($match->matchId, true);
+                        addToDatabase($matchDetails, $matchHistory);
+
+                        // Add to list of matches to return
+                        array_push($matches, $matchDetails);
+                        $matchCount++;
+                        if($matchCount > $numberToReturn) break;
+                    }
+                    if($matchCount > $numberToReturn) break;
+                }
+            }
+
+            echo json_encode($matches);
+            break;
+        case "shareBuild":
+            if(empty($_POST['data'])) die("No data specified.");
+            $shareSet = new ItemSetShare();
+            $url = $shareSet->addItemSet($_POST['data']);
+            echo json_encode($url);
+            break;
+        case "getBuild":
+            if(empty($_POST['setId'])) die("No set specified.");
+            $shareSet = new ItemSetShare();
+            $set = $shareSet->getItemSet($_POST['setId']);
+            echo json_encode($set);
             break;
     }
 } catch(Exception $e){
     ChromePhp::log($e);
+}
+
+function addToDatabase($matchDetails, $matchHistory){
+    // Parse match details into the database
+    $summonerIds = array();
+    $champIds = array();
+    for($x = 1; $x <= 10; $x++){
+        $participant = $matchDetails->participant($x);
+        $identity = $matchDetails->identity($x);
+        $player = $identity->player;
+        array_push($champIds, $participant->championId);
+        array_push($summonerIds, $player['summonerId']);
+    }
+
+    $matchModel = new Match($matchDetails->matchId, $summonerIds, $champIds, json_encode($matchDetails), date('Y-m-d H:i:s'));
+    $matchHistory->addMatch($matchModel);
 }
 
 //Function to check if the request is an AJAX request
