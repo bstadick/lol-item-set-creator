@@ -12,8 +12,8 @@
     /**
     * The item controller for managing champions.
     */
-    app.controller('ChampionController', ['$scope', '$http', '$log', 'ChampionService', 'ChampionInteractivityService', 'SoundEffectService',
-        function ($scope, $http, $log, ChampionService, ChampionInteractivityService, SoundEffectService) {
+    app.controller('ChampionController', ['$scope', '$http', '$log', 'ChampionService', 'ChampionInteractivityService', 'ItemService', 'ItemInteractivityService', 'SoundEffectService', 'ItemSetService',
+        function ($scope, $http, $log, ChampionService, ChampionInteractivityService, ItemService, ItemInteractivityService, SoundEffectService, ItemSetService) {
         var controller = this;
 
         /**
@@ -89,10 +89,54 @@
             controller.addClickHandler($(".champ-panel > .champ-image"));
             ChampionInteractivityService.addHoverToolTip($(".champ-panel > .champ-image"));
         });
+        
+        controller.buildClickHandled = false;
+
+        $scope.$on('ngBuildRepeatFinished', function (ngRepeatFinishedEvent) {
+            ItemInteractivityService.addTooltipAndClickModal($(".build-overview .item-image"));
+            $(".build-overview .champ-image").click(function (event) {
+                if (controller.buildClickHandled) return;
+                var matchId = $(this).attr("data-match-id");
+                event.stopPropagation();
+                // get the timeline
+                var match;
+                var timeline;
+                $.each(controller.matchStats, function (i, m) {
+                    if (m.matchId == matchId) {
+                        match = m;
+                        timeline = controller.matchTimelines[i];
+                        return false;
+                    }
+                });
+                if (timeline == null || match == null || timeline == undefined || match == undefined) return;
+                // parse build timeline into a build
+                var itemBlocks = [];
+                var items = [];
+                var preTimestamp = -1;
+                $.each(timeline, function (i, event) {
+                    items.push(ItemSetService.createItem(event.itemId, 1));
+                    if (event.timestamp - preTimestamp > 2.5 * 60 * 1000) {
+                        var blockTitle = "Purchase " + (itemBlocks.length + 1).toString();
+                        itemBlocks.push(ItemSetService.createItemBlock(blockTitle, false, -1, -1, "", "", items));
+                        items = [];
+                        preTimestamp = event.timestamp;
+                    }
+                });
+                var setTitle = match.summonerName + " " + match.champion.name;
+                var set = ItemSetService.createItemSet(setTitle, "custom", "any", "any", false, 0, itemBlocks);
+                ItemSetService.renderItemSet(set);
+                controller.buildClickHandled = true;
+                setTimeout(function () { controller.buildClickHandled = false; }, 1000);
+
+            });
+        });
 
         controller.getChampions = function () {
             return ChampionService.getChampions();
         };
+        
+        controller.matchTimelines = [];
+        controller.matchStats = [];
 
         controller.getBuilds = function (id) {
             var request = $.ajax({
@@ -101,10 +145,49 @@
                 data: { "action": "getChampBuilds", "id": id },
                 dataType: "json",
                 success: function (data) {
-                    console.log(data);
+                    if (data == null || data == undefined) return;
+
+                    controller.matchTimelines = [];
+                    controller.matchStats = [];
+
+                    $.each(data, function (i, match) {
+                        // Parse timeline data for match
+                        matchItemTimeline = [];
+                        var participant = null;
+                        $.each(match.participants, function (i, p) {
+                            if (p.championId == id){
+                                participant = p;
+                                return false;
+                            }
+                        });
+                        $.each(match.timeline.frames, function (i, frame) {
+                            if (frame.events == null || frame.events == undefined) return true;
+                            $.each(frame.events, function (i, event) {
+                                if (event.participantId != participant.participantId) return true;
+                                if (event.eventType !== "ITEM_PURCHASED") return true;
+                                event.timestamp = event.timestamp + i*60*1000;
+                                matchItemTimeline.push(event);
+                            });
+                        });
+                        controller.matchTimelines.push(matchItemTimeline);
+
+                        // Create user display
+                        participant.stats["summonerName"] = match.participantIdentities[participant.participantId].player.summonerName;
+                        participant.stats["champion"] = ChampionService.getChampion(id);
+                        participant.stats["matchDuration"] = Math.floor(match.matchDuration / 60).toString() + ":" + (match.matchDuration % 60).toString();
+                        participant.stats["matchId"] = match.matchId;
+
+                        participant.stats["matchItems"] = [];
+                        for (var i = 0; i < 7; i++) {
+                            participant.stats["matchItems"].push(ItemService.getItem(participant.stats["item" + i.toString()]));
+                        }
+
+                        controller.matchStats.push(participant.stats);
+                        $scope.$apply();
+                    });
                 },
                 error: function () {
-                    console.log("Error");
+
                 }
             });
         };
@@ -124,6 +207,25 @@
             if (scope.$last === true) {
                 $timeout(function () {
                     scope.$emit('ngChampionRepeatFinished');
+                });
+            }
+        }
+        return {
+            restrict: 'A',
+            link: link
+        };
+    });
+
+    /**
+    * The champion directive for handling actions taken after each champion is added to the store.
+    */
+    app.directive('buildChampionDraggable', function ($timeout) {
+        function link(scope, element, attrs) {
+            var el = angular.element(element);
+
+            if (scope.$last === true) {
+                $timeout(function () {
+                    scope.$emit('ngBuildRepeatFinished');
                 });
             }
         }

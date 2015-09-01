@@ -61,6 +61,13 @@ body {
     border: 1px solid #aaaaaa;
     padding: 0px !important;
 }
+.item-image-scaled{
+    -webkit-transform: scale(0.5); /* Saf3.1+, Chrome */
+     -moz-transform: scale(0.5); /* FF3.5+ */
+      -ms-transform: scale(0.5); /* IE9 */
+       -o-transform: scale(0.5); /* Opera 10.5+ */
+          transform: scale(0.5);
+}
 
 /*Item menus*/
 .ui-dialog  {
@@ -126,6 +133,10 @@ body {
     height: inherit !important;
     overflow-x: hidden;
     overflow-y: auto;
+}
+
+.build-overview{
+    
 }
 
 /*Build tree*/

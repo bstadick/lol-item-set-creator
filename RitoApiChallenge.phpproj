@@ -77,5 +77,6 @@
     <Compile Include="deploy.php" />
     <Compile Include="src\ChromePhp.php" />
     <Compile Include="src\index.php" />
+    <Compile Include="src\MatchModel.php" />
   </ItemGroup>
 </Project>

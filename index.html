@@ -92,7 +92,7 @@
                        </div>
                     </section>
                 </div>
-                <div class="page-half-modal col-sm-6">
+                <div class="page-half-modal col-sm-6" ng-controller="ChampionController as champions">
                     <section ng-init="panel.tab = 1" ng-controller="PanelController as panel">
                         <ul class="nav nav-tabs" role="tablist">
                             <li role="presentation" ng-class="{ active:panel.isSelected(1)}"> <a href role="tab" ng-click="panel.selectTab(1, true)">Store</a> </li>
@@ -120,7 +120,7 @@
                                 </div>
                             </section>
                         </div>
-                        <div class="panel" ng-show="panel.isSelected(2)" ng-controller="ChampionController as champions">
+                        <div class="panel" ng-show="panel.isSelected(2)">
                             <form action="#">
                                 <input id="champSearch" class="form-control" type="text" placeholder="Search">
                             </form>
@@ -135,7 +135,34 @@
                         </div>
                         <div class="panel" ng-show="panel.isSelected(3)">
                             <div class="build-panel">
-
+                                <div div class="row build-overview" ng-repeat="match in champions.matchStats">
+                                    <div class="col-sm-2">
+                                        <img class="champ-image" src="img/champ-trans.png"
+                                             style="width: {{match.champion.image.w}}px; height: {{match.champion.image.h}}px; background: url(img/{{match.champion.image.sprite}}) no-repeat; background-position: -{{match.champion.image.x}}px -{{match.champion.image.y}}px;"
+                                             data-champ-id="{{match.champion.id}}" data-match-id="{{match.matchId}}" />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <p>{{match.summonerName}}</p>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <p ng-show="{{match.winner}}">Won</p>
+                                        <p ng-hide="{{match.winner}}">Lost</p>
+                                        <p>{{match.matchDuration}}</p>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <p>{{match.kills}}:{{match.deaths}}:{{match.assists}}</p>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <p>{{match.goldEarned}}g</p>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div ng-repeat="matchItem in match.matchItems">
+                                            <img class="item-image" src="img/champ-trans.png"
+                                                 style="width: {{matchItem.image.w}}px; height: {{matchItem.image.h}}px; background: url(img/{{matchItem.image.sprite}}) no-repeat; background-position: -{{matchItem.image.x}}px -{{matchItem.image.y}}px;"
+                                                 data-item-id="{{matchItem.id}}" build-champion-draggable />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </section>
