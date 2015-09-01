@@ -2214,41 +2214,6 @@ var itemsGlobal = {
          ],
          "depth": 3
       },
-      "1076": {
-         "tags": [
-            "Health",
-            "ManaRegen",
-            "SpellDamage"
-         ],
-         "id": 1076,
-         "sanitizedDescription": "+60 Health +15 Ability Power +3 Mana Regen per 5 seconds Passive: Restores 4 Mana upon killing a unit. Limited to 2 Doran's items on Showdown",
-         "effect": {"Effect1Amount": "4"},
-         "plaintext": "Good starting item for casters",
-         "stats": {
-            "FlatHPPoolMod": 60,
-            "FlatMagicDamageMod": 15,
-            "FlatMPRegenMod": 0.6
-         },
-         "description": "<stats>+60 Health<br>+15 Ability Power<br>+3 Mana Regen per 5 seconds<\/stats><br><br><passive>Passive:<\/passive> Restores 4 Mana upon killing a unit.<br><br><groupLimit>Limited to 2 Doran's items on Showdown<\/groupLimit><br><br>",
-         "name": "Doran's Ring (Showdown)",
-         "image": {
-            "w": 48,
-            "full": "1076.png",
-            "sprite": "item0.png",
-            "group": "item",
-            "h": 48,
-            "y": 96,
-            "x": 432
-         },
-         "colloq": "dring",
-         "gold": {
-            "total": 400,
-            "purchasable": true,
-            "sell": 160,
-            "base": 400
-         },
-         "group": "DoransShowdown"
-      },
       "3748": {
          "tags": [
             "Active",
