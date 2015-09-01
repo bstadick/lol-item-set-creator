@@ -6505,31 +6505,6 @@ var itemsGlobal = {
          ],
          "depth": 2
       },
-      "2054": {
-         "inStore": false,
-         "id": 2054,
-         "sanitizedDescription": "All the flavor of regular Poro-Snax, without the calories! Keeps your Poro happy AND healthy. Click to Consume: Gives your Poros a delicious healthy treat.",
-         "consumed": true,
-         "stats": {},
-         "description": "All the flavor of regular Poro-Snax, without the calories! Keeps your Poro happy AND healthy.<br><br><consumable>Click to Consume:<\/consumable> Gives your Poros a delicious healthy treat.",
-         "name": "Diet Poro-Snax",
-         "image": {
-            "w": 48,
-            "full": "2054.png",
-            "sprite": "item0.png",
-            "group": "item",
-            "h": 48,
-            "y": 192,
-            "x": 192
-         },
-         "gold": {
-            "total": 0,
-            "purchasable": false,
-            "sell": 0,
-            "base": 0
-         },
-         "group": "RelicBase"
-      },
       "3047": {
          "tags": [
             "Armor",
