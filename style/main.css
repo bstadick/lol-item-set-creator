@@ -29,6 +29,10 @@ body {
     margin-bottom: 1vh;
     overflow-y: auto;
     overflow-x: hidden;
+    /* border: dotted; */
+    background-color: rgba(255, 255, 255, 0);
+   border: 2px dotted #FFF;
+   padding: 19px;
 }
 
 /*Item & Champion images*/
@@ -173,4 +177,7 @@ html {
 }
 body{
   background-color: rgba(255, 255, 255, 0);
+}
+a{
+  color: #FFFFFF;
 }
