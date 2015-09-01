@@ -29,7 +29,7 @@ class ItemSetShare{
         $query->prepare("INSERT INTO set_share VALUES (?, ?);");
         
         $data = NULL;
-        $uuid = uniqid("", true);
+        $uuid = uniqid("", false);
 
         $query->bind_param("sb", $uuid, $data);
 

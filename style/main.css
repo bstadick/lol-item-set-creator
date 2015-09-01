@@ -1,5 +1,16 @@
-body {
+html {
+  background: url(../img/bg-5-full.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+body{
     padding-top: 70px;
+    background-color: rgba(255, 255, 255, 0);
+}
+a{
+    color: #FFFFFF;
 }
 .noselect {
     -webkit-touch-callout: none;
@@ -179,16 +190,4 @@ body {
 .btn-gold{
   margin: 3px;
 }
-html {
-  background: url(../img/bg-5-full.jpg) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-body{
-  background-color: rgba(255, 255, 255, 0);
-}
-a{
-  color: #FFFFFF;
-}
+

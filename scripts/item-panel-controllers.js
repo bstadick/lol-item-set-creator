@@ -171,7 +171,7 @@
                 data: { "action": "shareBuild", "data": setStr },
                 dataType: "json",
                 success: function (data) {
-                    NotificationService.displayMsg(0, "Use this url to share your build: droplet.bstadick.com/?set=" + data, false);
+                    NotificationService.displayMsg(0, "Use this url to share your build: itembuilds.bstadick.com/?set=" + data, false);
                 },
                 error: function () {
 
