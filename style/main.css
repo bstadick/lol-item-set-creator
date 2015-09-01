@@ -29,6 +29,10 @@ body {
     margin-bottom: 1vh;
     overflow-y: auto;
     overflow-x: hidden;
+    /* border: dotted; */
+    background-color: rgba(255, 255, 255, 0);
+   border: 2px dotted #FFF;
+   padding: 10px;
 }
 
 /*Item & Champion images*/
@@ -53,7 +57,7 @@ body {
     -moz-filter: grayscale(100%);
     -o-filter: grayscale(100%);
     -ms-filter: grayscale(100%);
-    filter: grayscale(100%); 
+    filter: grayscale(100%);
 }
 .item-placeholder, .champ-placeholder {
     width: 100%;
@@ -174,4 +178,17 @@ body {
 
 .btn-gold{
   margin: 3px;
+}
+html {
+  background: url(../img/bg-5-full.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+body{
+  background-color: rgba(255, 255, 255, 0);
+}
+a{
+  color: #FFFFFF;
 }
