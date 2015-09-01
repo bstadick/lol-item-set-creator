@@ -26,6 +26,7 @@
     <Folder Include="img\" />
     <Folder Include="lib\" />
     <Folder Include="audio\" />
+    <Folder Include="sql\" />
     <Folder Include="src\" />
     <Folder Include="templates\" />
     <Folder Include="style\" />
@@ -69,6 +70,7 @@
     <Content Include="scripts\items.min.json" />
     <Content Include="scripts\module-services.js" />
     <Content Include="scripts\summoner-spells.js" />
+    <Content Include="sql\createDb.sql" />
     <Content Include="style\bootstrap.vertical-tabs.min.css" />
     <Content Include="style\main.css" />
     <Content Include="templates\store.html" />

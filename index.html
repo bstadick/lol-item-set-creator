@@ -51,16 +51,16 @@
                     <section ng-init="panel.tab = 1" ng-controller="PanelController as panel">
                         <ul class="nav nav-tabs" role="tablist">
                             <li role="presentation" ng-class="{ active:panel.isSelected(1)}"> <a href role="tab" ng-click="panel.selectTab(1, true)">Item Set</a> </li>
-                            <li role="presentation" ng-class="{ active:panel.isSelected(2)}"> <a href role="tab" ng-click="panel.selectTab(2, true)">Gold Game</a> </li>
+                            <!--<li role="presentation" ng-class="{ active:panel.isSelected(2)}"> <a href role="tab" ng-click="panel.selectTab(2, true)">Gold Game</a> </li>-->
                         </ul>
                         <div class="panel" ng-show="panel.isSelected(1)" ng-controller="ItemSetController as itemSet">
                             <div class="row">
-                                <div class="col-sm-8">
+                                <div class="col-sm-6">
                                     <form class="section-header-form" action="#">
                                         <input class="set-title form-control" type="text" placeholder="Set Title">
                                     </form>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                     <form id="importExportForm" role="form" method="post">
                                         <input class="form-control input-lg margin-sm-after" type="hidden" name="action" id="action" />
                                         <input class="form-control input-lg margin-sm-after" type="hidden" name="pageName" id="pageName" />
@@ -70,7 +70,8 @@
                                             <span>Import</span>
                                             <input id="importButton" type="file" name="file">
                                         </span>
-                                        <button class="section-impexp-button btn btn-primary btn-sm" ng-click="itemSet.exportSet()"><i class="fa fa-download"></i> Export</button>
+                                        <button class="section-impexp-button btn btn-primary btn-sm fileinput-button" ng-click="itemSet.exportSet()"><i class="fa fa-download"></i> Export</button>
+                                        <button class="section-impexp-button btn btn-primary btn-sm" ng-click="itemSet.shareSet()"><i class="fa fa-share"></i> Share</button>
                                     </form>
                                 </div>
                             </div>
@@ -96,8 +97,8 @@
                     <section ng-init="panel.tab = 1" ng-controller="PanelController as panel">
                         <ul class="nav nav-tabs" role="tablist">
                             <li role="presentation" ng-class="{ active:panel.isSelected(1)}"> <a href role="tab" ng-click="panel.selectTab(1, true)">Store</a> </li>
-                            <li role="presentation" ng-class="{ active:panel.isSelected(2)}"> <a href role="tab" ng-click="panel.selectTab(2, true)">Champions</a> </li>
-                            <li id="buildTab" role="presentation" ng-class="{ active:panel.isSelected(3)}"> <a href id="buildTabLink" role="tab" ng-click="panel.selectTab(3, true)">Builds - None</a> </li>
+                            <!--<li role="presentation" ng-class="{ active:panel.isSelected(2)}"> <a href role="tab" ng-click="panel.selectTab(2, true)">Champions</a> </li>
+                            <li id="buildTab" role="presentation" ng-class="{ active:panel.isSelected(3)}"> <a href id="buildTabLink" role="tab" ng-click="panel.selectTab(3, true)">Builds - None</a> </li>-->
                         </ul>
                         <div class="panel" ng-show="panel.isSelected(1)" ng-controller="ItemStoreController as store">
                             <form action="#">

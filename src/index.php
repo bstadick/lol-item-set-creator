@@ -115,6 +115,18 @@ try{
 
             echo json_encode($matches);
             break;
+        case "shareBuild":
+            if(empty($_POST['data'])) die("No data specified.");
+            $shareSet = new ItemSetShare();
+            $url = $shareSet->addItemSet($_POST['data']);
+            echo json_encode($url);
+            break;
+        case "getBuild":
+            if(empty($_POST['setId'])) die("No set specified.");
+            $shareSet = new ItemSetShare();
+            $set = $shareSet->getItemSet($_POST['setId']);
+            echo json_encode($set);
+            break;
     }
 } catch(Exception $e){
     ChromePhp::log($e);

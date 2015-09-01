@@ -37,9 +37,42 @@
         */
         controller.init = function () {
             // Add the initial item drop section
-            controller.addSection();
+            var setId = getUrlParameter("set");
+            if(setId === true)
+                controller.addSection();
+            else {
+                var request = $.ajax({
+                    url: "src/index.php",
+                    method: "POST",
+                    data: { "action": "getBuild", "setId": setId },
+                    dataType: "json",
+                    success: function (data) {
+                        ItemSetService.renderItemSet(data);
+                    },
+                    error: function(){
+
+                    }
+                });
+             }
+
 
             $("#importButton").change(controller.importSet);
+        };
+
+        function getUrlParameter(sParam) {
+            var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : sParameterName[1];
+                }
+            }
+            return true;
         };
 
         /**
@@ -122,6 +155,28 @@
             catch (ex) {
                 NotificationService.displayMsg(4, "Error: Failed to decode item set. Contents may be illformed.", true);
             }
+        };
+
+        controller.shareSet = function () {
+            var set = controller.parseItemSet();
+            if (set == undefined) {
+                NotificationService.displayMsg(4, "Error: Failed to export build set. Make sure that each section has a title and at least one item.", true);
+                return;
+            }
+            var setStr = JSON.stringify(set);
+
+            var request = $.ajax({
+                url: "src/index.php",
+                method: "POST",
+                data: { "action": "shareBuild", "data": setStr },
+                dataType: "json",
+                success: function (data) {
+                    NotificationService.displayMsg(0, "Use this url to share your build: droplet.bstadick.com/?set=" + data, false);
+                },
+                error: function () {
+
+                }
+            });
         };
 
         // Initialize the controller

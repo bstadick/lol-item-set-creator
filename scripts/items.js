@@ -297,30 +297,6 @@ var itemsGlobal = {
          ],
          "depth": 2
       },
-      "2009": {
-         "inStore": false,
-         "id": 2009,
-         "sanitizedDescription": "Click to Consume: Restores 80 Health and 50 Mana over 10 seconds.",
-         "consumed": true,
-         "stats": {},
-         "description": "<consumable>Click to Consume:<\/consumable> Restores 80 Health and 50 Mana over 10 seconds.",
-         "name": "Total Biscuit of Rejuvenation",
-         "image": {
-            "w": 48,
-            "full": "2009.png",
-            "sprite": "item0.png",
-            "group": "item",
-            "h": 48,
-            "y": 144,
-            "x": 96
-         },
-         "gold": {
-            "total": 0,
-            "purchasable": false,
-            "sell": 0,
-            "base": 0
-         }
-      },
       "3723": {
          "tags": [
             "ArmorPenetration",
@@ -713,42 +689,6 @@ var itemsGlobal = {
          },
          "from": ["3047"],
          "group": "BootsDistortion",
-         "depth": 3
-      },
-      "3084": {
-         "tags": [
-            "Health",
-            "HealthRegen"
-         ],
-         "id": 3084,
-         "sanitizedDescription": "+800 Health +100% Base Health Regen UNIQUE Passive: Upon champion kill or assist, restores 300 Health over 5 seconds.",
-         "effect": {
-            "Effect2Amount": "5",
-            "Effect1Amount": "300"
-         },
-         "plaintext": "Restores Health on kill or assist",
-         "stats": {"FlatHPPoolMod": 800},
-         "description": "<stats>+800 Health<br>+100% Base Health Regen <\/stats><br><br><unique>UNIQUE Passive:<\/unique> Upon champion kill or assist, restores 300 Health over 5 seconds.",
-         "name": "Overlord's Bloodmail",
-         "image": {
-            "w": 48,
-            "full": "3084.png",
-            "sprite": "item0.png",
-            "group": "item",
-            "h": 48,
-            "y": 432,
-            "x": 192
-         },
-         "gold": {
-            "total": 2500,
-            "purchasable": true,
-            "sell": 1750,
-            "base": 900
-         },
-         "from": [
-            "1011",
-            "3801"
-         ],
          "depth": 3
       },
       "1317": {
@@ -1178,53 +1118,6 @@ var itemsGlobal = {
          },
          "group": "JungleItems"
       },
-      "3924": {
-         "tags": [
-            "Active",
-            "Bilgewater",
-            "Damage",
-            "LifeSteal"
-         ],
-         "id": 3924,
-         "sanitizedDescription": "+20 Attack Damage +10% Life Steal UNIQUE Passive: Basic attacks build Flesh charges. After 5 basic attacks, the Flesheater active will be ready. UNIQUE Active - Flesheater: Rip the flesh from target enemy minion dealing 200 (+75% AD) true damage to the target, healing the user for 50 (+75% AD) health and adding 1 Flesh stack to the item. UNIQUE Passive: Each stack on Flesheater adds 1 AD to the wielder. ''No need to sharpen after use.''",
-         "effect": {
-            "Effect8Amount": "20",
-            "Effect3Amount": "0.75",
-            "Effect7Amount": "4",
-            "Effect6Amount": "1",
-            "Effect4Amount": "200",
-            "Effect5Amount": "0.75",
-            "Effect2Amount": "50",
-            "Effect1Amount": "50"
-         },
-         "plaintext": "Consume enemy minions to build damage on this sword.",
-         "stats": {
-            "FlatPhysicalDamageMod": 20,
-            "PercentLifeStealMod": 0.1
-         },
-         "description": "<stats>+20 Attack Damage<br>+10% Life Steal<\/stats><br><br><font color='#FF9900'><unique>UNIQUE Passive:<\/unique><\/font> Basic attacks build Flesh charges. After 5 basic attacks, the Flesheater active will be ready.<br><br><font color='#FF9900'><active>UNIQUE Active - Flesheater:<\/active><\/font> Rip the flesh from target enemy minion dealing 200 (+75% AD) true damage to the target, healing the user for 50 (+75% AD) health and adding 1 Flesh stack to the item. <br><br><font color='#FF9900'><unique>UNIQUE Passive:<\/unique><\/font> Each stack on Flesheater adds 1 AD to the wielder.<br><br><i><font color='#FDD017'>''No need to sharpen after use.''<\/font><\/i>",
-         "name": "Flesheater (Melee Only)",
-         "image": {
-            "w": 48,
-            "full": "3924.png",
-            "sprite": "item3.png",
-            "group": "item",
-            "h": 48,
-            "y": 240,
-            "x": 96
-         },
-         "gold": {
-            "total": 1460,
-            "purchasable": true,
-            "sell": 1022,
-            "base": 300
-         },
-         "from": [
-            "1053",
-            "1036"
-         ],
-         "depth": 3
-      },
       "2010": {
          "inStore": false,
          "id": 2010,
@@ -1477,55 +1370,6 @@ var itemsGlobal = {
          },
          "from": ["3117"],
          "group": "BootsHomeguard",
-         "depth": 3
-      },
-      "3290": {
-         "tags": [
-            "Active",
-            "CooldownReduction",
-            "NonbootsMovement",
-            "Slow",
-            "SpellDamage",
-            "Stealth",
-            "Vision"
-         ],
-         "id": 3290,
-         "sanitizedDescription": "+80 Ability Power +10% Cooldown Reduction +6% Movement Speed UNIQUE Passive - Trap Detection: Nearby stealthed enemy traps are revealed. UNIQUE Active - Hunt: Summons up to 2 invulnerable ghosts that seek out the 2 nearest enemy champions for 6 seconds. If a ghost reaches its target, it reveals the target and reduces their Movement Speed by 40% for 2.5 seconds. If a ghost cannot find a target, it tries to return to the caster. Ghosts that successfully return in this way reduce the item's cooldown by 20 seconds (60 second cooldown).",
-         "effect": {
-            "Effect3Amount": "-0.4",
-            "Effect6Amount": "60",
-            "Effect4Amount": "2.5",
-            "Effect5Amount": "20",
-            "Effect2Amount": "6",
-            "Effect1Amount": "2"
-         },
-         "plaintext": "Summon wraiths to slow and reveal enemy champions",
-         "stats": {
-            "FlatMagicDamageMod": 80,
-            "PercentMovementSpeedMod": 0.06
-         },
-         "description": "<stats>+80 Ability Power<br>+10% Cooldown Reduction<br>+6% Movement Speed<\/stats><br><br><unique>UNIQUE Passive - Trap Detection:<\/unique> Nearby stealthed enemy traps are revealed.<br><active>UNIQUE Active - Hunt:<\/active> Summons up to 2 invulnerable ghosts that seek out the 2 nearest enemy champions for 6 seconds. If a ghost reaches its target, it reveals the target and reduces their Movement Speed by 40% for 2.5 seconds.<br><br>If a ghost cannot find a target, it tries to return to the caster. Ghosts that successfully return in this way reduce the item's cooldown by 20 seconds (60 second cooldown).",
-         "name": "Twin Shadows",
-         "image": {
-            "w": 48,
-            "full": "3290.png",
-            "sprite": "item2.png",
-            "group": "item",
-            "h": 48,
-            "y": 0,
-            "x": 96
-         },
-         "colloq": "spooky ghosts",
-         "gold": {
-            "total": 2400,
-            "purchasable": true,
-            "sell": 1680,
-            "base": 730
-         },
-         "from": [
-            "3108",
-            "3113"
-         ],
          "depth": 3
       },
       "1328": {
@@ -1810,48 +1654,6 @@ var itemsGlobal = {
             "3134"
          ],
          "group": "JungleItems",
-         "depth": 3
-      },
-      "3090": {
-         "tags": [
-            "Active",
-            "Armor",
-            "SpellDamage"
-         ],
-         "id": 3090,
-         "sanitizedDescription": "+100 Ability Power +45 Armor UNIQUE Passive: Increases Ability Power by 25% UNIQUE Active: Champion becomes invulnerable and untargetable for 2.5 seconds, but is unable to move, attack, cast spells, or use items during this time (90 second cooldown).",
-         "effect": {
-            "Effect3Amount": "90",
-            "Effect2Amount": "2.5",
-            "Effect1Amount": "25"
-         },
-         "plaintext": "Massively increases Ability Power and can be activated to enter stasis",
-         "stats": {
-            "FlatMagicDamageMod": 100,
-            "FlatArmorMod": 45
-         },
-         "description": "<stats>+100 Ability Power<br>+45 Armor  <\/stats><br><br><unique>UNIQUE Passive:<\/unique> Increases Ability Power by 25%<br><active>UNIQUE Active:<\/active> Champion becomes invulnerable and untargetable for 2.5 seconds, but is unable to move, attack, cast spells, or use items during this time (90 second cooldown).",
-         "name": "Wooglet's Witchcap",
-         "image": {
-            "w": 48,
-            "full": "3090.png",
-            "sprite": "item0.png",
-            "group": "item",
-            "h": 48,
-            "y": 432,
-            "x": 432
-         },
-         "colloq": "hat",
-         "gold": {
-            "total": 3500,
-            "purchasable": true,
-            "sell": 2450,
-            "base": 1050
-         },
-         "from": [
-            "3191",
-            "1058"
-         ],
          "depth": 3
       },
       "1324": {
@@ -2366,46 +2168,6 @@ var itemsGlobal = {
          "group": "BootsFuror",
          "depth": 3
       },
-      "3911": {
-         "tags": [
-            "Bilgewater",
-            "CooldownReduction",
-            "Health",
-            "HealthRegen"
-         ],
-         "id": 3911,
-         "sanitizedDescription": "+400 Health +100% Base Health Regen +10% Cooldown Reduction UNIQUE Active: Binds yourself to target champion for the next 3 seconds, redirecting 60% of all damage dealt to them to yourself (30 second cooldown). ''Battle is not a test of strength. It is a test of will.'' - Buhru Proverb",
-         "effect": {
-            "Effect3Amount": "30",
-            "Effect4Amount": "-0.1",
-            "Effect2Amount": "3",
-            "Effect1Amount": "0.6"
-         },
-         "plaintext": "Share your Health with an ally to absorb their damage taken.",
-         "stats": {"FlatHPPoolMod": 400},
-         "description": "<stats>+400 Health<br>+100% Base Health Regen <br>+10% Cooldown Reduction<\/stats><br><br><active>UNIQUE Active:<\/active> Binds yourself to target champion for the next 3 seconds, redirecting 60% of all damage dealt to them to yourself (30 second cooldown).<br><br><font color='#FDD017'><i>''Battle is not a test of strength. It is a test of will.''<\/i> - Buhru Proverb<\/font>",
-         "name": "Martyr's Gambit",
-         "image": {
-            "w": 48,
-            "full": "3911.png",
-            "sprite": "item3.png",
-            "group": "item",
-            "h": 48,
-            "y": 240,
-            "x": 48
-         },
-         "gold": {
-            "total": 1850,
-            "purchasable": true,
-            "sell": 1295,
-            "base": 400
-         },
-         "from": [
-            "3801",
-            "3067"
-         ],
-         "depth": 3
-      },
       "3742": {
          "tags": [
             "Armor",
@@ -2451,234 +2213,6 @@ var itemsGlobal = {
             "1011"
          ],
          "depth": 3
-      },
-      "3599": {
-         "tags": ["Active"],
-         "requiredChampion": "Kalista",
-         "id": 3599,
-         "sanitizedDescription": "Active: Offer to bind with an ally for the remainder of the game, becoming Oathsworn Allies. Oathsworn empowers you both while near one another.",
-         "plaintext": "Kalista's spear that binds an Oathsworn Ally.",
-         "stats": {},
-         "description": "<stats><\/stats><br><passive>Active:<\/passive> Offer to bind with an ally for the remainder of the game, becoming Oathsworn Allies. Oathsworn empowers you both while near one another.",
-         "name": "The Black Spear",
-         "image": {
-            "w": 48,
-            "full": "3599.png",
-            "sprite": "item2.png",
-            "group": "item",
-            "h": 48,
-            "y": 192,
-            "x": 144
-         },
-         "colloq": "spear",
-         "gold": {
-            "total": 0,
-            "purchasable": true,
-            "sell": 0,
-            "base": 0
-         },
-         "group": "TheBlackSpear"
-      },
-      "3745": {
-         "tags": [
-            "Active",
-            "Bilgewater",
-            "CooldownReduction",
-            "Health",
-            "ManaRegen",
-            "OnHit",
-            "SpellBlock",
-            "SpellDamage"
-         ],
-         "id": 3745,
-         "sanitizedDescription": "+250 Health +25 Magic Resist +50% Base Mana Regen +20% Cooldown Reduction UNIQUE Passive - Mana Font: Restores 2% of missing Mana every 5 seconds. UNIQUE Passive: Basic attacks mark champions with a string for 6 seconds. Moving further than 1000 range away from marked champions will break the string. UNIQUE Active: Pull all champions Marked by Puppeteer within 1000 range towards you. Units move a maximum of 250 distance (45 second cooldown). ''Perhaps reading this wasn't your idea.''",
-         "effect": {
-            "Effect8Amount": "1000",
-            "Effect3Amount": "5",
-            "Effect7Amount": "250",
-            "Effect6Amount": "1.5",
-            "Effect4Amount": "-0.2",
-            "Effect5Amount": "6",
-            "Effect2Amount": "2",
-            "Effect1Amount": "-0.2"
-         },
-         "plaintext": "Attach strings to enemies then tug them towards you.",
-         "stats": {
-            "FlatHPPoolMod": 250,
-            "FlatSpellBlockMod": 25
-         },
-         "description": "<stats>+250 Health<br>+25 Magic Resist<br><mana>+50% Base Mana Regen <\/mana><br>+20% Cooldown Reduction<\/stats><br><br><mana><unique>UNIQUE Passive - Mana Font:<\/unique> Restores 2% of missing Mana every 5 seconds.<\/mana><br><unique>UNIQUE Passive:<\/unique> Basic attacks mark champions with a string for 6 seconds. Moving further than 1000 range away from marked champions will break the string.<br><active>UNIQUE Active:<\/active> Pull all champions Marked by Puppeteer within 1000 range towards you. Units move a maximum of 250 distance (45 second cooldown).<br><br><i><font color='#FDD017'>''Perhaps reading this wasn't your idea.''<\/font><\/i>",
-         "name": "Puppeteer",
-         "image": {
-            "w": 48,
-            "full": "3745.png",
-            "sprite": "item3.png",
-            "group": "item",
-            "h": 48,
-            "y": 192,
-            "x": 144
-         },
-         "gold": {
-            "total": 2200,
-            "purchasable": true,
-            "sell": 1540,
-            "base": 450
-         },
-         "from": [
-            "3028",
-            "3067"
-         ],
-         "depth": 3
-      },
-      "3744": {
-         "tags": [
-            "Active",
-            "Bilgewater",
-            "CooldownReduction",
-            "SpellDamage"
-         ],
-         "id": 3744,
-         "sanitizedDescription": "+40 Ability Power +25 Magic Resist +50% Base Mana Regen UNIQUE Passive - Mana Font: Restores 2% of missing Mana every 5 seconds. UNIQUE Passive: Gain 30% Movement Speed and 10 Mana Regen per 5 seconds while in the river. (Unique Passives with the same name do not stack.) ''News travels fast along the Ionian riverside.''",
-         "effect": {
-            "Effect3Amount": "1",
-            "Effect4Amount": "10",
-            "Effect2Amount": "0.3",
-            "Effect1Amount": "-0.2"
-         },
-         "plaintext": "Get a power boost when moving through the river.",
-         "stats": {
-            "FlatSpellBlockMod": 25,
-            "FlatMagicDamageMod": 40
-         },
-         "description": "<stats>+40 Ability Power<br>+25 Magic Resist<br><mana>+50% Base Mana Regen <\/mana><\/stats><br><br><mana><unique>UNIQUE Passive - Mana Font:<\/unique> Restores 2% of missing Mana every 5 seconds.<\/mana><br><unique>UNIQUE Passive:<\/unique> Gain 30% Movement Speed and 10 Mana Regen per 5 seconds while in the river.<br><i>(Unique Passives with the same name do not stack.)<\/i><br><br><i><font color='#FDD017'>''News travels fast along the Ionian riverside.''<\/font><\/i>",
-         "name": "Staff of Flowing Water",
-         "image": {
-            "w": 48,
-            "full": "3744.png",
-            "sprite": "item3.png",
-            "group": "item",
-            "h": 48,
-            "y": 192,
-            "x": 96
-         },
-         "gold": {
-            "total": 1635,
-            "purchasable": true,
-            "sell": 1145,
-            "base": 300
-         },
-         "from": [
-            "3028",
-            "1052"
-         ],
-         "depth": 3
-      },
-      "1075": {
-         "tags": [
-            "Damage",
-            "Health",
-            "LifeSteal",
-            "OnHit"
-         ],
-         "id": 1075,
-         "sanitizedDescription": "+70 Health +7 Attack Damage +3% Life Steal Limited to 2 Doran's items on Showdown",
-         "plaintext": "Good starting item for attackers",
-         "stats": {
-            "FlatHPPoolMod": 70,
-            "FlatPhysicalDamageMod": 7,
-            "PercentLifeStealMod": 0.03
-         },
-         "description": "<stats>+70 Health<br>+7 Attack Damage<br>+3% Life Steal<\/stats><br><br><groupLimit>Limited to 2 Doran's items on Showdown<\/groupLimit><br><br>",
-         "name": "Doran's Blade (Showdown)",
-         "image": {
-            "w": 48,
-            "full": "1075.png",
-            "sprite": "item0.png",
-            "group": "item",
-            "h": 48,
-            "y": 96,
-            "x": 384
-         },
-         "colloq": "dblade",
-         "gold": {
-            "total": 440,
-            "purchasable": true,
-            "sell": 176,
-            "base": 440
-         },
-         "group": "DoransShowdown"
-      },
-      "1074": {
-         "tags": [
-            "Health",
-            "HealthRegen"
-         ],
-         "id": 1074,
-         "sanitizedDescription": "+100 Health +10 Health Regen per 5 seconds UNIQUE Passive: Blocks 8 damage from champion basic attacks. Limited to 2 Doran's items on Showdown",
-         "effect": {"Effect1Amount": "8"},
-         "plaintext": "Good defensive starting item",
-         "stats": {
-            "FlatHPPoolMod": 100,
-            "FlatHPRegenMod": 2
-         },
-         "description": "<stats>+100 Health<br>+10 Health Regen per 5 seconds<\/stats><br><br><unique>UNIQUE Passive:<\/unique> Blocks 8 damage from champion basic attacks.<br><br><groupLimit>Limited to 2 Doran's items on Showdown<\/groupLimit><br><br>",
-         "name": "Doran's Shield (Showdown)",
-         "image": {
-            "w": 48,
-            "full": "1074.png",
-            "sprite": "item0.png",
-            "group": "item",
-            "h": 48,
-            "y": 96,
-            "x": 336
-         },
-         "colloq": "dshield",
-         "gold": {
-            "total": 440,
-            "purchasable": true,
-            "sell": 176,
-            "base": 440
-         },
-         "group": "DoransShowdown"
-      },
-      "3844": {
-         "tags": [
-            "Bilgewater",
-            "CooldownReduction",
-            "GoldPer",
-            "ManaRegen"
-         ],
-         "id": 3844,
-         "sanitizedDescription": "+5% Cooldown Reduction +25% Base Mana Regen UNIQUE Active - Swindler's Shield: Shield ally for 60 Health and generate gold equal to 25% of the damage absorbed (15 second cooldown). Self cast shields will not generate gold from Monster damage. ''Profit makes fast friends.''",
-         "effect": {
-            "Effect3Amount": "0.25",
-            "Effect4Amount": "3",
-            "Effect5Amount": "-1",
-            "Effect2Amount": "60",
-            "Effect1Amount": "15"
-         },
-         "plaintext": "Shield allies to generate gold.",
-         "stats": {},
-         "description": "<stats>+5% Cooldown Reduction<mana><br>+25% Base Mana Regen <\/mana><\/stats><br><br><unique>UNIQUE Active - Swindler's Shield:<\/unique> Shield ally for 60 Health and generate gold equal to 25% of the damage absorbed (15 second cooldown). Self cast shields will not generate gold from Monster damage.<br><br><i><font color='#FDD017'>''Profit makes fast friends.''<\/font><\/i>",
-         "name": "Murksphere",
-         "into": ["3841"],
-         "image": {
-            "w": 48,
-            "full": "3844.png",
-            "sprite": "item3.png",
-            "group": "item",
-            "h": 48,
-            "y": 192,
-            "x": 336
-         },
-         "colloq": "Sphere",
-         "gold": {
-            "total": 365,
-            "purchasable": true,
-            "sell": 146,
-            "base": 365
-         },
-         "group": "GoldBase"
       },
       "1076": {
          "tags": [
@@ -2763,90 +2297,6 @@ var itemsGlobal = {
             "1011"
          ],
          "depth": 3
-      },
-      "3841": {
-         "tags": [
-            "Bilgewater",
-            "CooldownReduction",
-            "GoldPer",
-            "ManaRegen"
-         ],
-         "plaintext": "Shield allies to generate gold.",
-         "stats": {},
-         "into": ["3840"],
-         "image": {
-            "w": 48,
-            "full": "3841.png",
-            "sprite": "item3.png",
-            "group": "item",
-            "h": 48,
-            "y": 192,
-            "x": 288
-         },
-         "colloq": "Orb",
-         "from": ["3844"],
-         "depth": 2,
-         "id": 3841,
-         "sanitizedDescription": "+10% Cooldown Reduction +50% Base Mana Regen UNIQUE Active - Swindler's Shield: Shield ally for 100 Health and generate gold equal to 25% of the damage absorbed (15 second cooldown). Self cast shields will not generate gold from Monster damage. ''Partners in crime.''",
-         "effect": {
-            "Effect3Amount": "0.25",
-            "Effect4Amount": "3",
-            "Effect5Amount": "-1",
-            "Effect2Amount": "100",
-            "Effect1Amount": "15"
-         },
-         "description": "<stats>+10% Cooldown Reduction<mana><br>+50% Base Mana Regen <\/mana><\/stats><br><br><unique>UNIQUE Active - Swindler's Shield:<\/unique> Shield ally for 100 Health and generate gold equal to 25% of the damage absorbed (15 second cooldown). Self cast shields will not generate gold from Monster damage.<br><br><i><font color='#FDD017'>''Partners in crime.''<\/font><\/i>",
-         "name": "Swindler's Orb",
-         "gold": {
-            "total": 865,
-            "purchasable": true,
-            "sell": 346,
-            "base": 500
-         },
-         "group": "GoldBase"
-      },
-      "3840": {
-         "tags": [
-            "Bilgewater",
-            "CooldownReduction",
-            "GoldPer",
-            "ManaRegen"
-         ],
-         "plaintext": "Shield allies to generate gold.",
-         "stats": {},
-         "image": {
-            "w": 48,
-            "full": "3840.png",
-            "sprite": "item3.png",
-            "group": "item",
-            "h": 48,
-            "y": 192,
-            "x": 240
-         },
-         "colloq": "Globe",
-         "from": [
-            "3841",
-            "3114"
-         ],
-         "depth": 3,
-         "id": 3840,
-         "sanitizedDescription": "+20% Cooldown Reduction +150% Base Mana Regen UNIQUE Active - Safe Harbor: Lobs a bubble that shields nearby allies for 150 Health and generates gold equal to 25% of the damage absorbed (maximum of 100 gold per cast) (15 second cooldown). Self cast shields will not generate gold from Monster damage. ''Theft is better with accomplices.''",
-         "effect": {
-            "Effect3Amount": "0.25",
-            "Effect4Amount": "5",
-            "Effect5Amount": "100",
-            "Effect2Amount": "150",
-            "Effect1Amount": "15"
-         },
-         "description": "<stats>+20% Cooldown Reduction<br><mana>+150% Base Mana Regen <\/mana><\/stats><br><br><unique>UNIQUE Active - Safe Harbor:<\/unique> Lobs a bubble that shields nearby allies for 150 Health and generates gold equal to 25% of the damage absorbed (maximum of 100 gold per cast) (15 second cooldown). Self cast shields will not generate gold from Monster damage.<br><br><i><font color='#FDD017'>''Theft is better with accomplices.''<\/font><\/i>",
-         "name": "Globe of Trust",
-         "gold": {
-            "total": 2100,
-            "purchasable": true,
-            "sell": 840,
-            "base": 635
-         },
-         "group": "GoldBase"
       },
       "1307": {
          "id": 1307,
@@ -2985,38 +2435,6 @@ var itemsGlobal = {
          "group": "BootsAlacrity",
          "depth": 3
       },
-      "1063": {
-         "tags": [
-            "Health",
-            "ManaRegen",
-            "SpellDamage"
-         ],
-         "id": 1063,
-         "sanitizedDescription": "+35 Ability Power Passive : +6 Mana Regen per 5 seconds UNIQUE Passive - Prospector: +150 Health (Unique Passives with the same name don't stack.)",
-         "effect": {"Effect1Amount": "150"},
-         "plaintext": "Good starting item for casters",
-         "stats": {
-            "FlatMagicDamageMod": 35,
-            "FlatMPRegenMod": 1.2
-         },
-         "description": "<stats>+35 Ability Power<\/stats><br><br><unique>Passive :<\/unique> <mana>+6 Mana Regen per 5 seconds<\/mana><br><unique>UNIQUE Passive - Prospector:<\/unique> +150 Health<br><br><i>(Unique Passives with the same name don't stack.)<\/i>",
-         "name": "Prospector's Ring",
-         "image": {
-            "w": 48,
-            "full": "1063.png",
-            "sprite": "item0.png",
-            "group": "item",
-            "h": 48,
-            "y": 96,
-            "x": 288
-         },
-         "gold": {
-            "total": 950,
-            "purchasable": true,
-            "sell": 380,
-            "base": 950
-         }
-      },
       "1300": {
          "id": 1300,
          "sanitizedDescription": "Limited to 1 of each enchantment type. Enchants boots to have Furor bonus. UNIQUE Passive - Furor: Upon dealing damage with a single target spell or attack (on hit), grants +12% Movement Speed that decays over 2 seconds. (Unique Passives with the same name don't stack.)",
@@ -3045,38 +2463,6 @@ var itemsGlobal = {
          "from": ["3006"],
          "group": "BootsFuror",
          "depth": 3
-      },
-      "1062": {
-         "tags": [
-            "AttackSpeed",
-            "Damage",
-            "Health"
-         ],
-         "id": 1062,
-         "sanitizedDescription": "+16 Attack Damage +15% Attack Speed UNIQUE Passive - Prospector: +150 Health (Unique Passives with the same name don't stack.)",
-         "effect": {"Effect1Amount": "150"},
-         "plaintext": "Good starting item for attackers",
-         "stats": {
-            "PercentAttackSpeedMod": 0.15,
-            "FlatPhysicalDamageMod": 16
-         },
-         "description": "<stats>+16 Attack Damage<br>+15% Attack Speed <\/stats><br><br><unique>UNIQUE Passive - Prospector:<\/unique> +150 Health<br><br><i>(Unique Passives with the same name don't stack.)<\/i>",
-         "name": "Prospector's Blade",
-         "image": {
-            "w": 48,
-            "full": "1062.png",
-            "sprite": "item0.png",
-            "group": "item",
-            "h": 48,
-            "y": 96,
-            "x": 240
-         },
-         "gold": {
-            "total": 950,
-            "purchasable": true,
-            "sell": 380,
-            "base": 950
-         }
       },
       "1303": {
          "id": 1303,
@@ -3557,43 +2943,6 @@ var itemsGlobal = {
          ],
          "depth": 2
       },
-      "3112": {
-         "tags": [
-            "HealthRegen",
-            "SpellBlock"
-         ],
-         "id": 3112,
-         "sanitizedDescription": "+70 Magic Resist +100% Base Health Regeneration UNIQUE Passive: Grants a shield that absorbs up to 30 (+10 per level) damage. The shield will refresh after 9 seconds without receiving damage.",
-         "effect": {
-            "Effect2Amount": "10",
-            "Effect1Amount": "30"
-         },
-         "plaintext": "Grants a shield when out of combat",
-         "stats": {"FlatSpellBlockMod": 70},
-         "description": "<stats>+70 Magic Resist<br>+100% Base Health Regeneration <\/stats><br><br><unique>UNIQUE Passive:<\/unique> Grants a shield that absorbs up to 30 (+10 per level) damage. The shield will refresh after 9 seconds without receiving damage.",
-         "name": "Orb of Winter",
-         "image": {
-            "w": 48,
-            "full": "3112.png",
-            "sprite": "item1.png",
-            "group": "item",
-            "h": 48,
-            "y": 48,
-            "x": 240
-         },
-         "gold": {
-            "total": 2150,
-            "purchasable": true,
-            "sell": 1505,
-            "base": 990
-         },
-         "from": [
-            "1006",
-            "1006",
-            "1057"
-         ],
-         "depth": 3
-      },
       "3240": {
          "id": 3240,
          "sanitizedDescription": "Limited to 1 of each enchantment type. Enchants boots to have Furor bonus. UNIQUE Passive - Furor: Upon dealing damage with a single target spell or attack (on hit), grants +12% Movement Speed that decays over 2 seconds. (Unique Passives with the same name don't stack.)",
@@ -3838,52 +3187,6 @@ var itemsGlobal = {
          },
          "group": "BWMercDefense3"
       },
-      "3829": {
-         "tags": [
-            "Active",
-            "Bilgewater",
-            "Health",
-            "MagicPenetration",
-            "NonbootsMovement",
-            "SpellDamage"
-         ],
-         "plaintext": "Disguise yourself as an allied champion.",
-         "stats": {
-            "FlatHPPoolMod": 400,
-            "FlatMagicDamageMod": 60
-         },
-         "image": {
-            "w": 48,
-            "full": "3829.png",
-            "sprite": "item3.png",
-            "group": "item",
-            "h": 48,
-            "y": 192,
-            "x": 192
-         },
-         "colloq": "mirror",
-         "stacks": 0,
-         "from": [
-            "3136",
-            "1028"
-         ],
-         "depth": 3,
-         "id": 3829,
-         "sanitizedDescription": "+60 Ability Power +400 Health UNIQUE Passive - Eyes of Pain: +15 Magic Penetration UNIQUE Active - Disguise: Teleport to target ally and take on their appearance for 30 seconds. Casting a spell or attacking breaks the deception (90 second cooldown). ''Faces can not but lie.''",
-         "effect": {
-            "Effect3Amount": "15",
-            "Effect2Amount": "90",
-            "Effect1Amount": "30"
-         },
-         "description": "<stats>+60 Ability Power<br>+400 Health<\/stats><br><br><unique>UNIQUE Passive - Eyes of Pain:<\/unique> +15 Magic Penetration<br><unique>UNIQUE Active - Disguise:<\/unique> Teleport to target ally and take on their appearance for 30 seconds. Casting a spell or attacking breaks the deception (90 second cooldown).<br><br><i><font color='#FDD017'>''Faces can not but lie.''<\/font><\/i>",
-         "name": "Trickster's Glass",
-         "gold": {
-            "total": 2115,
-            "purchasable": true,
-            "sell": 1481,
-            "base": 215
-         }
-      },
       "3623": {
          "id": 3623,
          "sanitizedDescription": "Your mercenary permanently gains +30 Attack Damage (+60 total).",
@@ -4108,47 +3411,6 @@ var itemsGlobal = {
          "from": [
             "1033",
             "3801"
-         ],
-         "depth": 3
-      },
-      "3104": {
-         "tags": [
-            "CriticalStrike",
-            "Damage"
-         ],
-         "id": 3104,
-         "sanitizedDescription": "+80 Attack Damage +25% Critical Strike Chance UNIQUE Passive: Critical Strikes cause enemies to bleed for an additional 150% of bonus Attack Damage as magic damage over 3 seconds and reveal them for the duration.",
-         "effect": {
-            "Effect2Amount": "3",
-            "Effect1Amount": "1.5"
-         },
-         "plaintext": "Critical strikes cause your target to bleed and be revealed.",
-         "stats": {
-            "FlatPhysicalDamageMod": 80,
-            "FlatCritChanceMod": 0.25
-         },
-         "description": "<stats>+80 Attack Damage<br>+25% Critical Strike Chance<\/stats><br><br><unique>UNIQUE Passive:<\/unique> Critical Strikes cause enemies to bleed for an additional 150% of bonus Attack Damage as magic damage over 3 seconds and reveal them for the duration.",
-         "name": "Lord Van Damm's Pillager",
-         "image": {
-            "w": 48,
-            "full": "3104.png",
-            "sprite": "item1.png",
-            "group": "item",
-            "h": 48,
-            "y": 0,
-            "x": 432
-         },
-         "colloq": "ie",
-         "gold": {
-            "total": 3800,
-            "purchasable": true,
-            "sell": 2660,
-            "base": 995
-         },
-         "from": [
-            "3122",
-            "1037",
-            "1018"
          ],
          "depth": 3
       },
@@ -5445,96 +4707,6 @@ var itemsGlobal = {
          "from": ["1001"],
          "depth": 2
       },
-      "3007": {
-         "tags": [
-            "Mana",
-            "ManaRegen",
-            "SpellDamage"
-         ],
-         "plaintext": "Increases Ability Power based on maximum Mana",
-         "stats": {
-            "FlatMPPoolMod": 250,
-            "FlatMagicDamageMod": 80
-         },
-         "into": ["3048"],
-         "image": {
-            "w": 48,
-            "full": "3007.png",
-            "sprite": "item0.png",
-            "group": "item",
-            "h": 48,
-            "y": 240,
-            "x": 144
-         },
-         "colloq": "aa",
-         "from": [
-            "3073",
-            "1058"
-         ],
-         "depth": 3,
-         "id": 3007,
-         "sanitizedDescription": "+80 Ability Power +250 Mana +50% Base Mana Regen UNIQUE Passive - Insight: Grants Ability Power equal to 3% of maximum Mana. UNIQUE Passive - Mana Charge: Grants +10 maximum Mana (max +750 Mana) for each spell cast and Mana expenditure (occurs up to 2 times every 6 seconds). Transforms into Seraph's Embrace at +750 Mana. (Unique Passives with the same name don't stack.)",
-         "effect": {
-            "Effect3Amount": "750",
-            "Effect4Amount": "2",
-            "Effect5Amount": "6",
-            "Effect2Amount": "10",
-            "Effect1Amount": "0.03"
-         },
-         "description": "<stats>+80 Ability Power<br><mana>+250 Mana<br>+50% Base Mana Regen <\/mana><\/stats><br><br><mana><unique>UNIQUE Passive - Insight:<\/unique> Grants Ability Power equal to 3% of maximum Mana.<br><unique>UNIQUE Passive - Mana Charge:<\/unique> Grants +10 maximum Mana (max +750 Mana) for each spell cast and Mana expenditure (occurs up to 2 times every 6 seconds). Transforms into Seraph's Embrace at +750 Mana.<br><\/mana><br><i>(Unique Passives with the same name don't stack.)<\/i>",
-         "name": "Archangel's Staff (Crystal Scar)",
-         "gold": {
-            "total": 3000,
-            "purchasable": true,
-            "sell": 2100,
-            "base": 1030
-         }
-      },
-      "3008": {
-         "tags": [
-            "Damage",
-            "Mana",
-            "ManaRegen",
-            "OnHit"
-         ],
-         "id": 3008,
-         "sanitizedDescription": "+25 Attack Damage +250 Mana +25% Base Mana Regen UNIQUE Passive - Awe: Grants bonus Attack Damage equal to 2% of maximum Mana. UNIQUE Passive - Mana Charge: Grants +8 maximum Mana (max +750 Mana) for each basic attack, spell cast, and Mana expenditure (occurs up to 2 times every 6 seconds). Transforms into Muramana at +750 Mana. (Unique Passives with the same name don't stack.)",
-         "effect": {
-            "Effect3Amount": "750",
-            "Effect4Amount": "2",
-            "Effect5Amount": "6",
-            "Effect2Amount": "8",
-            "Effect1Amount": "0.02"
-         },
-         "plaintext": "Increases Attack Damage based on maximum Mana",
-         "stats": {
-            "FlatPhysicalDamageMod": 25,
-            "FlatMPPoolMod": 250
-         },
-         "description": "<stats>+25 Attack Damage<br><mana>+250 Mana<br>+25% Base Mana Regen <\/mana><\/stats><br><br><mana><unique>UNIQUE Passive - Awe:<\/unique> Grants bonus Attack Damage equal to 2% of maximum Mana.<br><unique>UNIQUE Passive - Mana Charge:<\/unique> Grants +8 maximum Mana (max +750 Mana) for each basic attack, spell cast, and Mana expenditure (occurs up to 2 times every 6 seconds).<br><br>Transforms into Muramana at +750 Mana.<br><\/mana><br><i>(Unique Passives with the same name don't stack.)<\/i>",
-         "name": "Manamune (Crystal Scar)",
-         "into": ["3043"],
-         "image": {
-            "w": 48,
-            "full": "3008.png",
-            "sprite": "item0.png",
-            "group": "item",
-            "h": 48,
-            "y": 240,
-            "x": 192
-         },
-         "gold": {
-            "total": 2200,
-            "purchasable": true,
-            "sell": 1540,
-            "base": 605
-         },
-         "from": [
-            "3073",
-            "1037"
-         ],
-         "depth": 3
-      },
       "3342": {
          "tags": [
             "Active",
@@ -5882,38 +5054,6 @@ var itemsGlobal = {
          ],
          "depth": 4
       },
-      "3200": {
-         "requiredChampion": "Viktor",
-         "inStore": false,
-         "id": 3200,
-         "specialRecipe": 1,
-         "sanitizedDescription": "+1 Ability Power per level +10 Mana per level UNIQUE Passive - Progress: This item can be upgraded three times to enhance Viktor's basic abilities.",
-         "effect": {
-            "Effect2Amount": "10",
-            "Effect1Amount": "1"
-         },
-         "plaintext": "Increases Ability Power and can be upgraded to improve Viktor's abilities",
-         "stats": {},
-         "description": "<stats>+1 Ability Power per level<br>+10 Mana per level<\/stats><br><br><passive>UNIQUE Passive - Progress:<\/passive> This item can be upgraded three times to enhance Viktor's basic abilities.",
-         "name": "Prototype Hex Core",
-         "into": ["3196"],
-         "image": {
-            "w": 48,
-            "full": "3200.png",
-            "sprite": "item1.png",
-            "group": "item",
-            "h": 48,
-            "y": 288,
-            "x": 192
-         },
-         "colloq": "viktor",
-         "gold": {
-            "total": 0,
-            "purchasable": false,
-            "sell": 0,
-            "base": 0
-         }
-      },
       "3152": {
          "tags": [
             "CooldownReduction",
@@ -6033,54 +5173,6 @@ var itemsGlobal = {
             "base": 650
          }
       },
-      "3150": {
-         "tags": [
-            "Active",
-            "Bilgewater",
-            "CriticalStrike",
-            "Damage",
-            "LifeSteal",
-            "NonbootsMovement"
-         ],
-         "id": 3150,
-         "sanitizedDescription": "+60 Attack Damage +15% Critical Strike +12% Life Steal UNIQUE Passive - Mark of the Sands: Basic Attacks apply a Sand Mark on the target revealing them for 3 seconds. Only one enemy can be Marked at any time. UNIQUE Active - Mirage Step: Teleport 350 units directly away from the Sand Marked target (60 second cooldown). ''Shurimans exploit every aspect of the desert.''",
-         "effect": {
-            "Effect3Amount": "60",
-            "Effect4Amount": "3",
-            "Effect2Amount": "1100",
-            "Effect1Amount": "-350"
-         },
-         "plaintext": "Kite by flashing away from marked targets.",
-         "stats": {
-            "FlatPhysicalDamageMod": 60,
-            "PercentLifeStealMod": 0.12,
-            "FlatCritChanceMod": 0.15
-         },
-         "description": "<stats>+60 Attack Damage<br>+15% Critical Strike<br>+12% Life Steal<\/stats><br><br><unique>UNIQUE Passive - Mark of the Sands:<\/unique> Basic Attacks apply a Sand Mark on the target revealing them for 3 seconds. Only one enemy can be Marked at any time.<br><unique>UNIQUE Active - Mirage Step:<\/unique> Teleport 350 units directly away from the Sand Marked target (60 second cooldown).<br><br><i><font color='#FDD017'>''Shurimans exploit every aspect of the desert.''<\/font><\/i>",
-         "name": "Mirage Blade",
-         "image": {
-            "w": 48,
-            "full": "3150.png",
-            "sprite": "item3.png",
-            "group": "item",
-            "h": 48,
-            "y": 96,
-            "x": 48
-         },
-         "colloq": "blink here and there and everywhere;",
-         "gold": {
-            "total": 3200,
-            "purchasable": true,
-            "sell": 2240,
-            "base": 795
-         },
-         "from": [
-            "1053",
-            "1037",
-            "1018"
-         ],
-         "depth": 3
-      },
       "3139": {
          "tags": [
             "Active",
@@ -6198,118 +5290,6 @@ var itemsGlobal = {
             "sell": 1050,
             "base": 665
          }
-      },
-      "3137": {
-         "tags": [
-            "Active",
-            "AttackSpeed",
-            "CooldownReduction",
-            "NonbootsMovement",
-            "SpellBlock"
-         ],
-         "id": 3137,
-         "sanitizedDescription": "+50% Attack Speed +45 Magic Resist +10% Cooldown Reduction UNIQUE Active - Quicksilver: Removes all debuffs, and if champion is melee, also grants +50% bonus Movement Speed for 1 second (90 second cooldown).",
-         "effect": {
-            "Effect3Amount": "90",
-            "Effect2Amount": "1",
-            "Effect1Amount": "0.5"
-         },
-         "plaintext": "Activate to remove all debuffs and grant massive Movement Speed",
-         "stats": {
-            "PercentAttackSpeedMod": 0.5,
-            "FlatSpellBlockMod": 45
-         },
-         "description": "<stats>+50% Attack Speed<br>+45 Magic Resist<br>+10% Cooldown Reduction<\/stats><br><br><active>UNIQUE Active - Quicksilver:<\/active> Removes all debuffs, and if champion is melee, also grants +50% bonus Movement Speed for 1 second (90 second cooldown).",
-         "name": "Dervish Blade",
-         "image": {
-            "w": 48,
-            "full": "3137.png",
-            "sprite": "item1.png",
-            "group": "item",
-            "h": 48,
-            "y": 96,
-            "x": 288
-         },
-         "gold": {
-            "total": 2700,
-            "purchasable": true,
-            "sell": 1890,
-            "base": 200
-         },
-         "from": [
-            "3140",
-            "3101"
-         ],
-         "depth": 3
-      },
-      "3348": {
-         "tags": [
-            "Active",
-            "Stealth",
-            "Trinket",
-            "Vision"
-         ],
-         "inStore": false,
-         "id": 3348,
-         "sanitizedDescription": "UNIQUE Active - Hunter's Sight: A stealth-detecting mist grants vision in the target area for 5 seconds, revealing traps and enemy champions that enter for 3 seconds (90 second cooldown).",
-         "effect": {
-            "Effect3Amount": "0",
-            "Effect6Amount": "90",
-            "Effect4Amount": "5",
-            "Effect5Amount": "3",
-            "Effect2Amount": "0",
-            "Effect1Amount": "0"
-         },
-         "plaintext": "Activate to reveal a nearby area of the map",
-         "stats": {},
-         "description": "<active>UNIQUE Active - Hunter's Sight:<\/active> A stealth-detecting mist grants vision in the target area for 5 seconds, revealing traps and enemy champions that enter for 3 seconds (90 second cooldown).",
-         "name": "Hextech Sweeper",
-         "image": {
-            "w": 48,
-            "full": "3348.png",
-            "sprite": "item2.png",
-            "group": "item",
-            "h": 48,
-            "y": 288,
-            "x": 432
-         },
-         "gold": {
-            "total": 0,
-            "purchasable": false,
-            "sell": 0,
-            "base": 0
-         },
-         "group": "RelicBase"
-      },
-      "3345": {
-         "tags": [
-            "Active",
-            "Trinket",
-            "Vision"
-         ],
-         "inStore": false,
-         "id": 3345,
-         "sanitizedDescription": "Limited to 1 Trinket. Active: Consumes a charge to instantly revive at your Summoner Platform and grants 125% Movement Speed that decays over 12 seconds. Additional charges are gained at levels 9 and 14. (Max: 2 charges)",
-         "plaintext": "Consumes charge to revive champion.",
-         "stats": {},
-         "description": "<groupLimit>Limited to 1 Trinket.<\/groupLimit><br><br><unique>Active:<\/unique> Consumes a charge to instantly revive at your Summoner Platform and grants 125% Movement Speed that decays over 12 seconds.<br><br><i>Additional charges are gained at levels 9 and 14.<\/i><br><br><font color='#BBFFFF'>(Max: 2 charges)<\/font><\/i><br><br>",
-         "name": "Soul Anchor (Trinket)",
-         "image": {
-            "w": 48,
-            "full": "3345.png",
-            "sprite": "item2.png",
-            "group": "item",
-            "h": 48,
-            "y": 0,
-            "x": 432
-         },
-         "gold": {
-            "total": 0,
-            "purchasable": false,
-            "sell": 0,
-            "base": 0
-         },
-         "group": "RelicBase"
       },
       "3001": {
          "tags": [
@@ -6719,54 +5699,6 @@ var itemsGlobal = {
             "1037"
          ],
          "depth": 2
-      },
-      "3029": {
-         "tags": [
-            "Health",
-            "HealthRegen",
-            "Mana",
-            "ManaRegen",
-            "SpellDamage"
-         ],
-         "id": 3029,
-         "sanitizedDescription": "+450 Health +450 Mana +60 Ability Power Passive: Grants +20 Health, +20 Mana, and +2 Ability Power per stack (max +200 Health, +200 Mana, and +20 Ability Power). Grants 1 stack per 40 seconds (max 10 stacks). UNIQUE Passive - Valor's Reward: Upon leveling up, restores 150 Health and 200 Mana over 8 seconds. (Unique Passives with the same name don't stack.)",
-         "effect": {
-            "Effect3Amount": "2",
-            "Effect6Amount": "10",
-            "Effect4Amount": "1",
-            "Effect5Amount": "40",
-            "Effect2Amount": "20",
-            "Effect1Amount": "20"
-         },
-         "plaintext": "Greatly increases Health, Mana, and Ability Power",
-         "stats": {
-            "FlatHPPoolMod": 450,
-            "FlatMPPoolMod": 450,
-            "FlatMagicDamageMod": 60
-         },
-         "description": "<stats>+450 Health<br><mana>+450 Mana<\/mana><br>+60 Ability Power<\/stats><br><br><passive>Passive:<\/passive> Grants +20 Health, +20 Mana, and +2 Ability Power per stack (max +200 Health, +200 Mana, and +20 Ability Power). Grants 1 stack per 40 seconds (max 10 stacks).<br><unique>UNIQUE Passive - Valor's Reward:<\/unique> Upon leveling up, restores 150 Health and 200 Mana over 8 seconds.<br><br><i>(Unique Passives with the same name don't stack.)<\/i>",
-         "name": "Rod of Ages (Crystal Scar)",
-         "image": {
-            "w": 48,
-            "full": "3029.png",
-            "sprite": "item0.png",
-            "group": "item",
-            "h": 48,
-            "y": 288,
-            "x": 240
-         },
-         "colloq": "roa",
-         "gold": {
-            "total": 2790,
-            "purchasable": true,
-            "sell": 1953,
-            "base": 740
-         },
-         "from": [
-            "3010",
-            "1026"
-         ],
-         "depth": 3
       },
       "3027": {
          "tags": [
@@ -7233,48 +6165,6 @@ var itemsGlobal = {
          ],
          "depth": 2
       },
-      "3430": {
-         "tags": [
-            "Bilgewater",
-            "CooldownReduction",
-            "OnHit",
-            "SpellDamage"
-         ],
-         "id": 3430,
-         "sanitizedDescription": "+100 Ability Power +100% Base Mana Regen +20% Cooldown Reduction UNIQUE Passive - Razing: Gain charges upon moving or killing enemies (200 charges max). Attacking a structure expends 50 charges to deal 100 (+15% AP) bonus true damage. ''When all their works have crumbled, their hearts will be laid bare.''",
-         "effect": {
-            "Effect3Amount": "15",
-            "Effect6Amount": "50",
-            "Effect4Amount": "0.15",
-            "Effect5Amount": "35",
-            "Effect2Amount": "100",
-            "Effect1Amount": "200"
-         },
-         "plaintext": "Destroy structures quickly with Ability Power.",
-         "stats": {"FlatMagicDamageMod": 100},
-         "description": "<stats>+100 Ability Power<br><mana>+100% Base Mana Regen <\/mana><br>+20% Cooldown Reduction<\/stats><br><br><unique>UNIQUE Passive - Razing:<\/unique> Gain charges upon moving or killing enemies (200 charges max). Attacking a structure expends 50 charges to deal 100 (+15% AP) bonus true damage.<br><br><i><font color='#FDD017'>''When all their works have crumbled, their hearts will be laid bare.''<\/font><\/i>",
-         "name": "Rite of Ruin",
-         "image": {
-            "w": 48,
-            "full": "3430.png",
-            "sprite": "item3.png",
-            "group": "item",
-            "h": 48,
-            "y": 96,
-            "x": 144
-         },
-         "gold": {
-            "total": 3000,
-            "purchasable": true,
-            "sell": 2100,
-            "base": 765
-         },
-         "from": [
-            "3433",
-            "1052"
-         ],
-         "depth": 4
-      },
       "3115": {
          "tags": [
             "AttackSpeed",
@@ -7311,44 +6201,6 @@ var itemsGlobal = {
             "3108"
          ],
          "depth": 3
-      },
-      "3431": {
-         "tags": [
-            "Bilgewater",
-            "CooldownReduction",
-            "OnHit",
-            "SpellDamage"
-         ],
-         "id": 3431,
-         "sanitizedDescription": "+100 Ability Power +100% Base Mana Regen +20% Cooldown Reduction UNIQUE Passive - Malice: Gain 20% movement speed for 2 seconds when hitting an enemy with a damaging spell. ''Walking our path, you make fast progress.''",
-         "effect": {
-            "Effect2Amount": "2",
-            "Effect1Amount": "20"
-         },
-         "plaintext": "Move quickly when you hit enemies with spells.",
-         "stats": {"FlatMagicDamageMod": 100},
-         "description": "<stats>+100 Ability Power<br><mana>+100% Base Mana Regen <\/mana><br>+20% Cooldown Reduction<\/stats><br><br><unique>UNIQUE Passive - Malice:<\/unique> Gain 20% movement speed for 2 seconds when hitting an enemy with a damaging spell.<br><br><i><font color='#FDD017'>''Walking our path, you make fast progress.''<\/font><\/i>",
-         "name": "Netherstride Grimoire",
-         "image": {
-            "w": 48,
-            "full": "3431.png",
-            "sprite": "item3.png",
-            "group": "item",
-            "h": 48,
-            "y": 96,
-            "x": 192
-         },
-         "gold": {
-            "total": 3000,
-            "purchasable": true,
-            "sell": 2100,
-            "base": 765
-         },
-         "from": [
-            "3433",
-            "1052"
-         ],
-         "depth": 4
       },
       "3116": {
          "tags": [
@@ -7612,51 +6464,6 @@ var itemsGlobal = {
          "from": ["1001"],
          "depth": 2
       },
-      "3122": {
-         "tags": [
-            "CriticalStrike",
-            "Damage",
-            "OnHit"
-         ],
-         "plaintext": "Critical Strikes cause your target to bleed",
-         "stats": {
-            "FlatPhysicalDamageMod": 20,
-            "FlatCritChanceMod": 0.1
-         },
-         "into": [
-            "3104",
-            "3185"
-         ],
-         "image": {
-            "w": 48,
-            "full": "3122.png",
-            "sprite": "item1.png",
-            "group": "item",
-            "h": 48,
-            "y": 96,
-            "x": 48
-         },
-         "colloq": "ie",
-         "from": [
-            "1051",
-            "1036"
-         ],
-         "depth": 2,
-         "id": 3122,
-         "sanitizedDescription": "+20 Attack Damage +10% Critical Strike Chance UNIQUE Passive: Critical Strikes cause your target to bleed for an additional 60% of your bonus Attack Damage as magic damage over 3 seconds.",
-         "effect": {
-            "Effect2Amount": "3",
-            "Effect1Amount": "0.6"
-         },
-         "description": "<stats>+20 Attack Damage<br>+10% Critical Strike Chance<\/stats><br><br><unique>UNIQUE Passive:<\/unique> Critical Strikes cause your target to bleed for an additional 60% of your bonus Attack Damage as magic damage over 3 seconds.<\/i>",
-         "name": "Wicked Hatchet",
-         "gold": {
-            "total": 1200,
-            "purchasable": true,
-            "sell": 840,
-            "base": 440
-         }
-      },
       "2053": {
          "tags": [
             "Armor",
@@ -7723,36 +6530,6 @@ var itemsGlobal = {
          },
          "group": "RelicBase"
       },
-      "3048": {
-         "tags": ["Active"],
-         "inStore": false,
-         "id": 3048,
-         "specialRecipe": 3007,
-         "sanitizedDescription": "+80 Ability Power +1000 Mana +50% Base Mana Regen UNIQUE Passive - Insight: Grants Ability Power equal to 3% of maximum Mana. UNIQUE Active - Mana Shield: Consumes 20% of current Mana to grant a shield for 3 seconds that absorbs damage equal to 150 plus the amount of Mana consumed (120 second cooldown). (Unique Passives with the same name don't stack.)",
-         "stats": {
-            "FlatMPPoolMod": 1000,
-            "FlatMagicDamageMod": 80
-         },
-         "description": "<stats>+80 Ability Power<br><mana>+1000 Mana<br>+50% Base Mana Regen <\/mana><\/stats><br><br><mana><unique>UNIQUE Passive - Insight:<\/unique> Grants Ability Power equal to 3% of maximum Mana.<\/mana><br><active>UNIQUE Active - Mana Shield:<\/active> Consumes 20% of current Mana to grant a shield for 3 seconds that absorbs damage equal to 150 plus the amount of Mana consumed (120 second cooldown).<br><br><i>(Unique Passives with the same name don't stack.)<\/i>",
-         "name": "Seraph's Embrace",
-         "image": {
-            "w": 48,
-            "full": "3048.png",
-            "sprite": "item0.png",
-            "group": "item",
-            "h": 48,
-            "y": 336,
-            "x": 240
-         },
-         "gold": {
-            "total": 2700,
-            "purchasable": false,
-            "sell": 3990,
-            "base": 2700
-         },
-         "from": ["3007"],
-         "depth": 4
-      },
       "3047": {
          "tags": [
             "Armor",
@@ -7796,30 +6573,6 @@ var itemsGlobal = {
          ],
          "depth": 2
       },
-      "2050": {
-         "tags": ["Consumable"],
-         "inStore": false,
-         "id": 2050,
-         "sanitizedDescription": "Click to Consume: Places an invisible ward that reveals the surrounding area for 60 seconds.",
-         "stats": {},
-         "description": "<consumable>Click to Consume:<\/consumable> Places an invisible ward that reveals the surrounding area for 60 seconds.",
-         "name": "Explorer's Ward",
-         "image": {
-            "w": 48,
-            "full": "2050.png",
-            "sprite": "item0.png",
-            "group": "item",
-            "h": 48,
-            "y": 192,
-            "x": 0
-         },
-         "gold": {
-            "total": 0,
-            "purchasable": false,
-            "sell": 0,
-            "base": 0
-         }
-      },
       "2051": {
          "tags": [
             "Active",
@@ -7857,75 +6610,6 @@ var itemsGlobal = {
          ],
          "depth": 2
       },
-      "2052": {
-         "inStore": false,
-         "id": 2052,
-         "sanitizedDescription": "This savory blend of free-range, grass-fed Avarosan game hens and organic, non-ZMO Freljordian herbs contains the essential nutrients necessary to keep your Poro purring with pleasure. All proceeds will be donated towards fighting Noxian animal cruelty.",
-         "consumed": true,
-         "stats": {},
-         "description": "This savory blend of free-range, grass-fed Avarosan game hens and organic, non-ZMO Freljordian herbs contains the essential nutrients necessary to keep your Poro purring with pleasure.<br><br><i>All proceeds will be donated towards fighting Noxian animal cruelty.<\/i>",
-         "name": "Poro-Snax",
-         "image": {
-            "w": 48,
-            "full": "2052.png",
-            "sprite": "item0.png",
-            "group": "item",
-            "h": 48,
-            "y": 192,
-            "x": 96
-         },
-         "gold": {
-            "total": 0,
-            "purchasable": false,
-            "sell": 0,
-            "base": 0
-         },
-         "group": "RelicBase"
-      },
-      "3434": {
-         "tags": [
-            "Bilgewater",
-            "CooldownReduction",
-            "OnHit",
-            "SpellDamage"
-         ],
-         "id": 3434,
-         "sanitizedDescription": "+100 Ability Power +100% Base Mana Regen +20% Cooldown Reduction UNIQUE Passive - Pox: Damaging spells apply a stack of Pox (max of 5) to enemy champions hit for 10 seconds. UNIQUE Active - Disease Harvest: Deals 100 magic damage plus 20 (+5% of Ability Power) per stack of Pox to all nearby enemies affected by Pox, and restores 5% of maximum mana to the caster per stack of Pox on enemies hit (60 second cooldown). ''Wealth, land, secrets, love; how little they cherish when their bodies betray them.''",
-         "effect": {
-            "Effect8Amount": "0.03",
-            "Effect3Amount": "0.1",
-            "Effect7Amount": "0.05",
-            "Effect6Amount": "0.05",
-            "Effect4Amount": "60",
-            "Effect5Amount": "100",
-            "Effect2Amount": "5",
-            "Effect1Amount": "10"
-         },
-         "plaintext": "Add Pox stacks to with spells then harvest them for damage.",
-         "stats": {"FlatMagicDamageMod": 100},
-         "description": "<stats>+100 Ability Power<br><mana>+100% Base Mana Regen <\/mana><br>+20% Cooldown Reduction<\/stats><br><br><unique>UNIQUE Passive - Pox:<\/unique> Damaging spells apply a stack of Pox (max of 5) to enemy champions hit for 10 seconds. <br><br><unique>UNIQUE Active - Disease Harvest:<\/unique> Deals 100 magic damage plus 20 (+5% of Ability Power) per stack of Pox to all nearby enemies affected by Pox, and restores 5% of maximum mana to the caster per stack of Pox on enemies hit (60 second cooldown).<br><br><i><font color='#FDD017'>''Wealth, land, secrets, love; how little they cherish when their bodies betray them.''<\/font><\/i>",
-         "name": "Pox Arcana",
-         "image": {
-            "w": 48,
-            "full": "3434.png",
-            "sprite": "item3.png",
-            "group": "item",
-            "h": 48,
-            "y": 96,
-            "x": 288
-         },
-         "gold": {
-            "total": 3000,
-            "purchasable": true,
-            "sell": 2100,
-            "base": 765
-         },
-         "from": [
-            "3433",
-            "1052"
-         ],
-         "depth": 4
-      },
       "1051": {
          "tags": ["CriticalStrike"],
          "id": 1051,
@@ -7953,118 +6637,6 @@ var itemsGlobal = {
             "purchasable": true,
             "sell": 280,
             "base": 400
-         }
-      },
-      "3197": {
-         "tags": [
-            "Mana",
-            "SpellDamage"
-         ],
-         "plaintext": "Allows Viktor to improve an ability of his choice",
-         "stats": {},
-         "into": ["3198"],
-         "image": {
-            "w": 48,
-            "full": "3197.png",
-            "sprite": "item1.png",
-            "group": "item",
-            "h": 48,
-            "y": 288,
-            "x": 96
-         },
-         "colloq": "viktor",
-         "from": ["3196"],
-         "depth": 3,
-         "id": 3197,
-         "requiredChampion": "Viktor",
-         "sanitizedDescription": "+6 Ability Power per level +20 Mana per level UNIQUE Passive - Progress: Viktor can upgrade one of his basic spells.",
-         "effect": {
-            "Effect2Amount": "20",
-            "Effect1Amount": "6"
-         },
-         "description": "<stats>+6 Ability Power per level<br>+20 Mana per level<\/stats><br><br><passive>UNIQUE Passive - Progress:<\/passive> Viktor can upgrade one of his basic spells.",
-         "name": "The Hex Core mk-2",
-         "gold": {
-            "total": 2000,
-            "purchasable": true,
-            "sell": 1400,
-            "base": 1000
-         }
-      },
-      "3198": {
-         "tags": [
-            "Mana",
-            "SpellDamage"
-         ],
-         "plaintext": "Allows Viktor to improve an ability of his choice",
-         "stats": {},
-         "image": {
-            "w": 48,
-            "full": "3198.png",
-            "sprite": "item1.png",
-            "group": "item",
-            "h": 48,
-            "y": 288,
-            "x": 144
-         },
-         "colloq": "viktor",
-         "from": ["3197"],
-         "depth": 4,
-         "id": 3198,
-         "requiredChampion": "Viktor",
-         "sanitizedDescription": "+10 Ability Power per level +25 Mana per level UNIQUE Passive - Glorious Evolution: Viktor has reached the pinnacle of his power, upgrading Chaos Storm in addition to his basic spells.",
-         "effect": {
-            "Effect2Amount": "25",
-            "Effect1Amount": "10"
-         },
-         "description": "<stats>+10 Ability Power per level<br>+25 Mana per level<\/stats><br><br><passive>UNIQUE Passive - Glorious Evolution:<\/passive> Viktor has reached the pinnacle of his power, upgrading Chaos Storm in addition to his basic spells.",
-         "name": "Perfect Hex Core",
-         "gold": {
-            "total": 3000,
-            "purchasable": true,
-            "sell": 2100,
-            "base": 1000
-         }
-      },
-      "3433": {
-         "tags": [
-            "Bilgewater",
-            "CooldownReduction",
-            "ManaRegen",
-            "SpellDamage"
-         ],
-         "plaintext": "Increases Ability Power, Mana Regen and Cooldown Reduction.",
-         "stats": {"FlatMagicDamageMod": 50},
-         "into": [
-            "3430",
-            "3431",
-            "3434"
-         ],
-         "image": {
-            "w": 48,
-            "full": "3433.png",
-            "sprite": "item3.png",
-            "group": "item",
-            "h": 48,
-            "y": 96,
-            "x": 240
-         },
-         "colloq": "nmst",
-         "from": [
-            "3108",
-            "3114"
-         ],
-         "depth": 3,
-         "id": 3433,
-         "sanitizedDescription": "+50 Ability Power +100% Base Mana Regen UNIQUE Passive: +20% Cooldown Reduction",
-         "effect": {"Effect1Amount": "-0.2"},
-         "description": "<stats>+50 Ability Power<br><mana>+100% Base Mana Regen <\/mana><\/stats><br><br><unique>UNIQUE Passive:<\/unique> +20% Cooldown Reduction<br>",
-         "name": "Lost Chapter",
-         "gold": {
-            "total": 1800,
-            "purchasable": true,
-            "sell": 1260,
-            "base": 380
          }
       },
       "1054": {
@@ -8132,42 +6704,6 @@ var itemsGlobal = {
             "purchasable": true,
             "sell": 176,
             "base": 440
-         }
-      },
-      "3196": {
-         "tags": [
-            "Mana",
-            "SpellDamage"
-         ],
-         "plaintext": "Allows Viktor to improve an ability of his choice",
-         "stats": {},
-         "into": ["3197"],
-         "image": {
-            "w": 48,
-            "full": "3196.png",
-            "sprite": "item1.png",
-            "group": "item",
-            "h": 48,
-            "y": 288,
-            "x": 48
-         },
-         "colloq": "viktor",
-         "from": ["3200"],
-         "depth": 2,
-         "id": 3196,
-         "requiredChampion": "Viktor",
-         "sanitizedDescription": "+3 Ability Power per level +15 Mana per level UNIQUE Passive - Progress: Viktor can upgrade one of his basic spells.",
-         "effect": {
-            "Effect2Amount": "15",
-            "Effect1Amount": "3"
-         },
-         "description": "<stats>+3 Ability Power per level<br>+15 Mana per level<\/stats><br><br><passive>UNIQUE Passive - Progress:<\/passive> Viktor can upgrade one of his basic spells.",
-         "name": "The Hex Core mk-1",
-         "gold": {
-            "total": 1000,
-            "purchasable": true,
-            "sell": 700,
-            "base": 1000
          }
       },
       "1052": {
@@ -8442,36 +6978,6 @@ var itemsGlobal = {
             "3067"
          ],
          "depth": 4
-      },
-      "2047": {
-         "tags": [
-            "Consumable",
-            "Stealth",
-            "Vision"
-         ],
-         "id": 2047,
-         "sanitizedDescription": "Click to Consume: Grants detection of nearby invisible units for up to 5 minutes or until death.",
-         "consumed": true,
-         "plaintext": "Allows champion to see invisible units",
-         "stats": {},
-         "description": "<consumable>Click to Consume:<\/consumable> Grants detection of nearby invisible units for up to 5 minutes or until death.",
-         "name": "Oracle's Extract",
-         "consumeOnFull": true,
-         "image": {
-            "w": 48,
-            "full": "2047.png",
-            "sprite": "item0.png",
-            "group": "item",
-            "h": 48,
-            "y": 144,
-            "x": 384
-         },
-         "gold": {
-            "total": 250,
-            "purchasable": true,
-            "sell": 100,
-            "base": 250
-         }
       },
       "3056": {
          "tags": [
@@ -8928,55 +7434,6 @@ var itemsGlobal = {
             "base": 1550
          }
       },
-      "3187": {
-         "tags": [
-            "Active",
-            "Armor",
-            "CooldownReduction",
-            "Health",
-            "Mana",
-            "Stealth",
-            "Vision"
-         ],
-         "id": 3187,
-         "sanitizedDescription": "+225 Health +250 Mana +25 Armor +20% Cooldown Reduction UNIQUE Passive - Trap Detection: Nearby stealthed enemy traps are revealed. UNIQUE Active - Hunter's Sight: A stealth-detecting mist grants vision in the target area for 5 seconds, revealing enemy champions that enter for 3 seconds (60 second cooldown).",
-         "effect": {
-            "Effect3Amount": "0",
-            "Effect6Amount": "60",
-            "Effect4Amount": "5",
-            "Effect5Amount": "3",
-            "Effect2Amount": "0",
-            "Effect1Amount": "-0.2"
-         },
-         "plaintext": "Activate to reveal a nearby area of the map",
-         "stats": {
-            "FlatHPPoolMod": 225,
-            "FlatMPPoolMod": 250,
-            "FlatArmorMod": 25
-         },
-         "description": "<stats>+225 Health<br>+250 Mana<br>+25 Armor<br>+20% Cooldown Reduction<\/stats><br><br><unique>UNIQUE Passive - Trap Detection:<\/unique> Nearby stealthed enemy traps are revealed.<br><active>UNIQUE Active - Hunter's Sight:<\/active> A stealth-detecting mist grants vision in the target area for 5 seconds, revealing enemy champions that enter for 3 seconds (60 second cooldown).",
-         "name": "Hextech Sweeper",
-         "image": {
-            "w": 48,
-            "full": "3187.png",
-            "sprite": "item1.png",
-            "group": "item",
-            "h": 48,
-            "y": 240,
-            "x": 384
-         },
-         "gold": {
-            "total": 2080,
-            "purchasable": true,
-            "sell": 1456,
-            "base": 330
-         },
-         "from": [
-            "3024",
-            "3067"
-         ],
-         "depth": 3
-      },
       "1339": {
          "id": 1339,
          "sanitizedDescription": "Limited to 1 of each enchantment type. Enchants boots to have Teleport Active. UNIQUE Active - Teleport: Teleport to target allied object (240s CD) (60s CD on purchase)",
@@ -9081,102 +7538,6 @@ var itemsGlobal = {
             "1042"
          ],
          "depth": 2
-      },
-      "3184": {
-         "tags": [
-            "Active",
-            "Damage",
-            "Health",
-            "NonbootsMovement",
-            "Slow"
-         ],
-         "id": 3184,
-         "sanitizedDescription": "+275 Health +55 Attack Damage UNIQUE Passive - Rage: Basic attacks grant 20 Movement Speed for 2 seconds on hit. Kills grant 60 Movement Speed for 2 seconds. This Movement Speed bonus is halved for ranged champions. UNIQUE Active: For the next 5 seconds, basic attacks reduce the target's Movement Speed by 30% and deal 80 true damage over 2.5 seconds on hit (60 second cooldown). (Unique Passives with the same name don't stack.)",
-         "effect": {
-            "Effect8Amount": "60",
-            "Effect3Amount": "60",
-            "Effect7Amount": "80",
-            "Effect6Amount": "-0.3",
-            "Effect4Amount": "2.5",
-            "Effect5Amount": "5",
-            "Effect2Amount": "2",
-            "Effect1Amount": "20"
-         },
-         "plaintext": "Attacks and kills give a small burst of speed, activate to slow enemies",
-         "stats": {
-            "FlatHPPoolMod": 275,
-            "FlatPhysicalDamageMod": 55
-         },
-         "description": "<stats>+275 Health<br>+55 Attack Damage<\/stats><br><br><unique>UNIQUE Passive - Rage:<\/unique> Basic attacks grant 20 Movement Speed for 2 seconds on hit. Kills grant 60 Movement Speed for 2 seconds. This Movement Speed bonus is halved for ranged champions.<br><active>UNIQUE Active:<\/active> For the next 5 seconds, basic attacks reduce the target's Movement Speed by 30% and deal 80 true damage over 2.5 seconds on hit (60 second cooldown).<br><br><i>(Unique Passives with the same name don't stack.)<\/i>",
-         "name": "Entropy",
-         "image": {
-            "w": 48,
-            "full": "3184.png",
-            "sprite": "item1.png",
-            "group": "item",
-            "h": 48,
-            "y": 240,
-            "x": 288
-         },
-         "gold": {
-            "total": 2700,
-            "purchasable": true,
-            "sell": 1890,
-            "base": 500
-         },
-         "from": [
-            "3044",
-            "1037"
-         ],
-         "depth": 3
-      },
-      "3185": {
-         "tags": [
-            "Active",
-            "CriticalStrike",
-            "Damage",
-            "OnHit",
-            "Stealth",
-            "Vision"
-         ],
-         "id": 3185,
-         "sanitizedDescription": "+30 Attack Damage +30% Critical Strike Chance UNIQUE Passive: Critical Strikes cause enemies to bleed for an additional 90% of bonus Attack Damage as magic damage over 3 seconds and reveal them for the duration. UNIQUE Passive - Trap Detection: Nearby stealthed enemy traps are revealed. UNIQUE Active - Hunter's Sight: A stealth-detecting mist grants vision in the target area for 5 seconds, revealing enemy champions that enter for 3 seconds (60 second cooldown). (Unique Passives with the same name don't stack.)",
-         "effect": {
-            "Effect3Amount": "0",
-            "Effect6Amount": "60",
-            "Effect4Amount": "5",
-            "Effect5Amount": "3",
-            "Effect2Amount": "3",
-            "Effect1Amount": "0.9"
-         },
-         "plaintext": "Critical Strikes cause your target to bleed and be revealed",
-         "stats": {
-            "FlatPhysicalDamageMod": 30,
-            "FlatCritChanceMod": 0.3
-         },
-         "description": "<stats>+30 Attack Damage<br>+30% Critical Strike Chance<\/stats><br><br><unique>UNIQUE Passive:<\/unique> Critical Strikes cause enemies to bleed for an additional 90% of bonus Attack Damage as magic damage over 3 seconds and reveal them for the duration.<br><unique>UNIQUE Passive - Trap Detection:<\/unique> Nearby stealthed enemy traps are revealed.<br><active>UNIQUE Active - Hunter's Sight:<\/active> A stealth-detecting mist grants vision in the target area for 5 seconds, revealing enemy champions that enter for 3 seconds (60 second cooldown).<br><br><i>(Unique Passives with the same name don't stack.)<\/i>",
-         "name": "The Lightbringer",
-         "image": {
-            "w": 48,
-            "full": "3185.png",
-            "sprite": "item1.png",
-            "group": "item",
-            "h": 48,
-            "y": 240,
-            "x": 336
-         },
-         "colloq": "lb",
-         "gold": {
-            "total": 2280,
-            "purchasable": true,
-            "sell": 1596,
-            "base": 350
-         },
-         "from": [
-            "3122",
-            "1018"
-         ],
-         "depth": 3
       },
       "1335": {
          "id": 1335,
@@ -9324,50 +7685,6 @@ var itemsGlobal = {
          "from": ["1052"],
          "depth": 2
       },
-      "3180": {
-         "tags": [
-            "Active",
-            "Health",
-            "Mana",
-            "SpellBlock"
-         ],
-         "id": 3180,
-         "sanitizedDescription": "+350 Health +350 Mana +50 Magic Resist UNIQUE Passive: Reduces and stores 10% of magic damage received. UNIQUE Active: Deals 200 + (stored magic) (max 400) magic damage to nearby enemy units (90 second cooldown).",
-         "effect": {
-            "Effect3Amount": "400",
-            "Effect4Amount": "90",
-            "Effect2Amount": "200",
-            "Effect1Amount": "0.1"
-         },
-         "plaintext": "Improves defense, activate for area magic damage",
-         "stats": {
-            "FlatHPPoolMod": 350,
-            "FlatSpellBlockMod": 50,
-            "FlatMPPoolMod": 350
-         },
-         "description": "<stats>+350 Health<br>+350 Mana<br>+50 Magic Resist<\/stats><br><br><unique>UNIQUE Passive:<\/unique> Reduces and stores 10% of magic damage received. <br><active>UNIQUE Active:<\/active> Deals 200 + (stored magic) (max 400) magic damage to nearby enemy units (90 second cooldown).",
-         "name": "Odyn's Veil",
-         "image": {
-            "w": 48,
-            "full": "3180.png",
-            "sprite": "item1.png",
-            "group": "item",
-            "h": 48,
-            "y": 240,
-            "x": 192
-         },
-         "gold": {
-            "total": 2450,
-            "purchasable": true,
-            "sell": 1715,
-            "base": 450
-         },
-         "from": [
-            "1057",
-            "3010"
-         ],
-         "depth": 3
-      },
       "1338": {
          "id": 1338,
          "sanitizedDescription": "Limited to 1 of each enchantment type. Enchants boots to have Teleport Active. UNIQUE Active - Teleport: Teleport to target allied object (240s CD) (60s CD on purchase)",
@@ -9427,47 +7744,6 @@ var itemsGlobal = {
          "from": ["3004"],
          "depth": 4
       },
-      "3181": {
-         "tags": [
-            "Damage",
-            "LifeSteal"
-         ],
-         "id": 3181,
-         "sanitizedDescription": "+45 Attack Damage +10% Life Steal UNIQUE Passive: Basic attacks grant +6 Attack Damage and +1% Life Steal for 8 seconds on hit (effect stacks up to 5 times).",
-         "effect": {
-            "Effect3Amount": "8",
-            "Effect4Amount": "5",
-            "Effect2Amount": "0.01",
-            "Effect1Amount": "6"
-         },
-         "plaintext": "Greatly increases Attack Damage and Life Steal",
-         "stats": {
-            "FlatPhysicalDamageMod": 45,
-            "PercentLifeStealMod": 0.1
-         },
-         "description": "<stats>+45 Attack Damage<br>+10% Life Steal<\/stats><br><br><unique>UNIQUE Passive:<\/unique> Basic attacks grant +6 Attack Damage and +1% Life Steal for 8 seconds on hit (effect stacks up to 5 times).",
-         "name": "Sanguine Blade",
-         "image": {
-            "w": 48,
-            "full": "3181.png",
-            "sprite": "item1.png",
-            "group": "item",
-            "h": 48,
-            "y": 240,
-            "x": 240
-         },
-         "gold": {
-            "total": 2275,
-            "purchasable": true,
-            "sell": 1593,
-            "base": 600
-         },
-         "from": [
-            "1037",
-            "1053"
-         ],
-         "depth": 3
-      },
       "1331": {
          "id": 1331,
          "sanitizedDescription": "Limited to 1 of each enchantment type. Enchants boots to have Alacrity bonus. UNIQUE Passive - Alacrity: +20 Movement Speed (Unique Passives with the same name don't stack.)",
@@ -9494,36 +7770,6 @@ var itemsGlobal = {
          "from": ["3158"],
          "group": "BootsAlacrity",
          "depth": 3
-      },
-      "3043": {
-         "tags": ["OnHit"],
-         "inStore": false,
-         "id": 3043,
-         "specialRecipe": 3008,
-         "sanitizedDescription": "+25 Attack Damage +1000 Mana +25% Base Mana Regen UNIQUE Passive - Awe: Grants bonus Attack Damage equal to 2% of maximum Mana. UNIQUE Toggle: Single target spells and attacks (on hit) consume 3% of current Mana to deal bonus physical damage equal to twice the amount of Mana consumed. (Unique Passives with the same name don't stack.)",
-         "stats": {
-            "FlatPhysicalDamageMod": 25,
-            "FlatMPPoolMod": 1000
-         },
-         "description": "<stats>+25 Attack Damage<br><mana>+1000 Mana<br>+25% Base Mana Regen <\/mana><\/stats><br><br><mana><unique>UNIQUE Passive - Awe:<\/unique> Grants bonus Attack Damage equal to 2% of maximum Mana.<br><unique>UNIQUE Toggle:<\/unique> Single target spells and attacks (on hit) consume 3% of current Mana to deal bonus physical damage equal to twice the amount of Mana consumed.<\/mana><br><br><i>(Unique Passives with the same name don't stack.)<\/i>",
-         "name": "Muramana",
-         "image": {
-            "w": 48,
-            "full": "3043.png",
-            "sprite": "item0.png",
-            "group": "item",
-            "h": 48,
-            "y": 336,
-            "x": 48
-         },
-         "gold": {
-            "total": 2200,
-            "purchasable": false,
-            "sell": 3080,
-            "base": 2200
-         },
-         "from": ["3008"],
-         "depth": 4
       },
       "1332": {
          "id": 1332,
@@ -9692,33 +7938,6 @@ var itemsGlobal = {
          ],
          "depth": 3
       },
-      "3901": {
-         "requiredChampion": "Gangplank",
-         "id": 3901,
-         "sanitizedDescription": "Requires 500 Silver Serpents. UNIQUE Passive: Cannon Barrage fires at an increasing rate over time (additional 6 waves over the duration).",
-         "consumed": true,
-         "plaintext": "Cannon Barrage gains extra waves",
-         "stats": {},
-         "description": "Requires 500 Silver Serpents.<br><br><unique>UNIQUE Passive:<\/unique> Cannon Barrage fires at an increasing rate over time (additional 6 waves over the duration).",
-         "name": "Fire at Will",
-         "consumeOnFull": true,
-         "image": {
-            "w": 48,
-            "full": "3901.png",
-            "sprite": "item3.png",
-            "group": "item",
-            "h": 48,
-            "y": 192,
-            "x": 384
-         },
-         "gold": {
-            "total": 0,
-            "purchasable": true,
-            "sell": 0,
-            "base": 0
-         },
-         "group": "GangplankRUpgrade01"
-      },
       "3069": {
          "tags": [
             "Active",
@@ -9767,33 +7986,6 @@ var itemsGlobal = {
          },
          "group": "GoldBase"
       },
-      "3903": {
-         "requiredChampion": "Gangplank",
-         "id": 3903,
-         "sanitizedDescription": "Requires 500 Silver Serpents. UNIQUE Passive: Allies in the Cannon Barrage gain 30% Movement Speed for 2 seconds.",
-         "consumed": true,
-         "plaintext": "Cannon Barrage hastes allies",
-         "stats": {},
-         "description": "Requires 500 Silver Serpents.<br><br><unique>UNIQUE Passive:<\/unique> Allies in the Cannon Barrage gain 30% Movement Speed for 2 seconds.",
-         "name": "Raise Morale",
-         "consumeOnFull": true,
-         "image": {
-            "w": 48,
-            "full": "3903.png",
-            "sprite": "item3.png",
-            "group": "item",
-            "h": 48,
-            "y": 240,
-            "x": 0
-         },
-         "gold": {
-            "total": 0,
-            "purchasable": true,
-            "sell": 0,
-            "base": 0
-         },
-         "group": "GangplankRUpgrade03"
-      },
       "1029": {
          "tags": ["Armor"],
          "id": 1029,
@@ -9826,33 +8018,6 @@ var itemsGlobal = {
             "sell": 210,
             "base": 300
          }
-      },
-      "3902": {
-         "requiredChampion": "Gangplank",
-         "id": 3902,
-         "sanitizedDescription": "Requires 500 Silver Serpents. UNIQUE Passive: Cannon Barrage additionally fires a mega-cannonball at center of the Barrage, dealing 300% true damage and slowing them by 60% for 1.5 seconds.",
-         "consumed": true,
-         "plaintext": "Cannon Barrage fires a mega-cannonball",
-         "stats": {},
-         "description": "Requires 500 Silver Serpents.<br><br><unique>UNIQUE Passive:<\/unique>  Cannon Barrage additionally fires a mega-cannonball at center of the Barrage, dealing 300% true damage and slowing them by 60% for 1.5 seconds. ",
-         "name": "Death's Daughter",
-         "consumeOnFull": true,
-         "image": {
-            "w": 48,
-            "full": "3902.png",
-            "sprite": "item3.png",
-            "group": "item",
-            "h": 48,
-            "y": 192,
-            "x": 432
-         },
-         "gold": {
-            "total": 0,
-            "purchasable": true,
-            "sell": 0,
-            "base": 0
-         },
-         "group": "GangplankRUpgrade02"
       },
       "1028": {
          "tags": ["Health"],
@@ -9958,34 +8123,6 @@ var itemsGlobal = {
             "sell": 595,
             "base": 850
          }
-      },
-      "3460": {
-         "tags": [
-            "Active",
-            "Trinket"
-         ],
-         "inStore": false,
-         "id": 3460,
-         "sanitizedDescription": "Active: Use this trinket to teleport to one of the battle platforms. Can only be used from the summoning platform. ''It is at this magical precipice where a champion is dismantled, reforged, and empowered.''",
-         "stats": {},
-         "description": "<unique>Active:<\/unique> Use this trinket to teleport to one of the battle platforms. Can only be used from the summoning platform.<br><br><i><font color='#FDD017'>''It is at this magical precipice where a champion is dismantled, reforged, and empowered.''<\/font><\/i>",
-         "name": "Golden Transcendence",
-         "image": {
-            "w": 48,
-            "full": "3460.png",
-            "sprite": "item2.png",
-            "group": "item",
-            "h": 48,
-            "y": 144,
-            "x": 432
-         },
-         "gold": {
-            "total": 0,
-            "purchasable": false,
-            "sell": 0,
-            "base": 0
-         },
-         "group": "RelicBase"
       },
       "3070": {
          "tags": [
@@ -10450,44 +8587,6 @@ var itemsGlobal = {
          ],
          "depth": 3
       },
-      "3170": {
-         "tags": [
-            "Armor",
-            "SpellBlock",
-            "SpellDamage",
-            "Tenacity"
-         ],
-         "id": 3170,
-         "sanitizedDescription": "+50 Ability Power +50 Armor +50 Magic Resist UNIQUE Passive - Tenacity: Reduces the duration of stuns, slows, taunts, fears, silences, blinds, polymorphs, and immobilizes by 35%. (Unique Passives with the same name do not stack.)",
-         "plaintext": "Improves defense and reduces duration of disabling effects",
-         "stats": {
-            "FlatSpellBlockMod": 50,
-            "FlatMagicDamageMod": 50,
-            "FlatArmorMod": 50
-         },
-         "description": "<stats>+50 Ability Power<br>+50 Armor<br>+50 Magic Resist<\/stats><br><br><unique>UNIQUE Passive - Tenacity:<\/unique> Reduces the duration of stuns, slows, taunts, fears, silences, blinds, polymorphs, and immobilizes by 35%.<br><br><i>(Unique Passives with the same name do not stack.)<\/i>",
-         "name": "Moonflair Spellblade",
-         "image": {
-            "w": 48,
-            "full": "3170.png",
-            "sprite": "item1.png",
-            "group": "item",
-            "h": 48,
-            "y": 192,
-            "x": 432
-         },
-         "gold": {
-            "total": 2570,
-            "purchasable": true,
-            "sell": 1799,
-            "base": 570
-         },
-         "from": [
-            "3191",
-            "1057"
-         ],
-         "depth": 3
-      },
       "3072": {
          "tags": [
             "Damage",
@@ -10527,94 +8626,6 @@ var itemsGlobal = {
             "1038"
          ],
          "depth": 3
-      },
-      "3652": {
-         "tags": [
-            "AttackSpeed",
-            "Bilgewater",
-            "Damage",
-            "NonbootsMovement"
-         ],
-         "id": 3652,
-         "sanitizedDescription": "+30 Attack Damage +20% Attack Speed +4% Movement Speed UNIQUE Passive - Phantom Hit: Basic Attacks grant Malice Charges upon hitting an enemy. After 3 stacks, your next 3 attacks will be at maximum attack speed, but deal -50% damage. Charges expire after 3 seconds. ''That is not the pounding of the rain.''",
-         "effect": {
-            "Effect3Amount": "3",
-            "Effect4Amount": "0.5",
-            "Effect5Amount": "3",
-            "Effect2Amount": "6",
-            "Effect1Amount": "3"
-         },
-         "plaintext": "Hit with a flurry of attacks.",
-         "stats": {
-            "PercentAttackSpeedMod": 0.2,
-            "FlatPhysicalDamageMod": 30,
-            "PercentMovementSpeedMod": 0.04
-         },
-         "description": "<stats>+30 Attack Damage<br>+20% Attack Speed<br>+4% Movement Speed<\/stats><br><br><unique>UNIQUE Passive - Phantom Hit:<\/unique> Basic Attacks grant Malice Charges upon hitting an enemy. After 3 stacks, your next 3 attacks will be at maximum attack speed, but deal -50% damage. Charges expire after 3 seconds.<br><br><i><font color='#FDD017'>''That is not the pounding of the rain.''<\/font><\/i>",
-         "name": "Typhoon Claws",
-         "image": {
-            "w": 48,
-            "full": "3652.png",
-            "sprite": "item3.png",
-            "group": "item",
-            "h": 48,
-            "y": 192,
-            "x": 0
-         },
-         "gold": {
-            "total": 2000,
-            "purchasable": true,
-            "sell": 1400,
-            "base": 675
-         },
-         "from": [
-            "1037",
-            "1042"
-         ],
-         "depth": 2
-      },
-      "3073": {
-         "tags": [
-            "Mana",
-            "ManaRegen"
-         ],
-         "id": 3073,
-         "sanitizedDescription": "+250 Mana +25% Base Mana Regen UNIQUE Passive - Mana Charge: Grants 5 maximum Mana on spell cast or Mana expenditure (up to 2 times per 6 seconds). Grants 1 maximum Mana every 6 seconds. Caps at +750 Mana. (Unique Passives with the same name don't stack.)",
-         "effect": {
-            "Effect3Amount": "6",
-            "Effect4Amount": "1",
-            "Effect5Amount": "750",
-            "Effect2Amount": "2",
-            "Effect1Amount": "5"
-         },
-         "plaintext": "Increases maximum Mana as Mana is spent",
-         "stats": {"FlatMPPoolMod": 250},
-         "description": "<stats><mana>+250 Mana<br>+25% Base Mana Regen <\/stats><br><br><mana><unique>UNIQUE Passive - Mana Charge:<\/unique> Grants 5 maximum Mana on spell cast or Mana expenditure (up to 2 times per 6 seconds). Grants 1 maximum Mana every 6 seconds.<br><br>Caps at +750 Mana.<\/mana><br><br><i>(Unique Passives with the same name don't stack.)<\/i><\/mana>",
-         "name": "Tear of the Goddess (Crystal Scar)",
-         "into": [
-            "3007",
-            "3008"
-         ],
-         "image": {
-            "w": 48,
-            "full": "3073.png",
-            "sprite": "item0.png",
-            "group": "item",
-            "h": 48,
-            "y": 384,
-            "x": 336
-         },
-         "gold": {
-            "total": 720,
-            "purchasable": true,
-            "sell": 504,
-            "base": 140
-         },
-         "from": [
-            "1027",
-            "1004"
-         ],
-         "depth": 2
       },
       "2041": {
          "tags": [
@@ -10869,56 +8880,6 @@ var itemsGlobal = {
             "sell": 511,
             "base": 730
          }
-      },
-      "3159": {
-         "tags": [
-            "Active",
-            "AttackSpeed",
-            "Damage",
-            "GoldPer",
-            "OnHit",
-            "Stealth",
-            "Vision"
-         ],
-         "id": 3159,
-         "sanitizedDescription": "+15 Attack Damage +30% Attack Speed UNIQUE Passive - Maim: Basic attacks against monsters deal 75 bonus magic damage and heal 10 Health on hit. UNIQUE Passive: Gain 30% increased Gold from monsters. UNIQUE Passive - Trap Detection: Nearby stealthed enemy traps are revealed. UNIQUE Active - Hunter's Sight: A stealth-detecting mist grants vision in the target area for 5 seconds, revealing enemy champions that enter for 3 seconds (60 second cooldown).",
-         "effect": {
-            "Effect3Amount": "0.3",
-            "Effect6Amount": "60",
-            "Effect4Amount": "5",
-            "Effect5Amount": "3",
-            "Effect2Amount": "10",
-            "Effect1Amount": "75"
-         },
-         "plaintext": "Kills monsters quickly and gain more gold, activate to reveal a nearby area of the map",
-         "stats": {
-            "PercentAttackSpeedMod": 0.3,
-            "FlatPhysicalDamageMod": 15
-         },
-         "description": "<stats>+15 Attack Damage<br>+30% Attack Speed<\/stats><br><br><unique>UNIQUE Passive - Maim:<\/unique> Basic attacks against monsters deal 75 bonus magic damage and heal 10 Health on hit.<br><unique>UNIQUE Passive:<\/unique> Gain 30% increased Gold from monsters.<br><unique>UNIQUE Passive - Trap Detection:<\/unique> Nearby stealthed enemy traps are revealed.<br><active>UNIQUE Active - Hunter's Sight:<\/active> A stealth-detecting mist grants vision in the target area for 5 seconds, revealing enemy champions that enter for 3 seconds (60 second cooldown).",
-         "name": "Grez's Spectral Lantern",
-         "image": {
-            "w": 48,
-            "full": "3159.png",
-            "sprite": "item1.png",
-            "group": "item",
-            "h": 48,
-            "y": 192,
-            "x": 144
-         },
-         "gold": {
-            "total": 1740,
-            "purchasable": true,
-            "sell": 696,
-            "base": 180
-         },
-         "from": [
-            "3106",
-            "1036",
-            "1042"
-         ],
-         "group": "GoldBase",
-         "depth": 3
       },
       "3060": {
          "tags": [

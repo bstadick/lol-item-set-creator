@@ -1,5 +1,75 @@
 <?php
 
+class ItemSetShare{
+    private $conn;
+    private $error;
+
+    public function __construct(){
+        global $db_servername;
+        global $db_username;
+        global $db_password;
+        global $db_name;
+        global $db_port;
+        // Create connection
+        $this->conn = new mysqli($db_servername, $db_username, $db_password, $db_name, $db_port);
+        if($this->conn->connect_error){
+            // connection error
+            return;
+        }
+    }
+
+    public function getErrorMsg(){
+        return $this->error;
+    }
+
+    public function addItemSet($set){
+        $this->error = null;
+        $query = $this->conn->stmt_init();
+        
+        $query->prepare("INSERT INTO set_share VALUES (?, ?);");
+        
+        $data = NULL;
+        $uuid = uniqid("", true);
+
+        $query->bind_param("sb", $uuid, $data);
+
+        $query->send_long_data(1, $set);
+
+        if ($query->execute() === FALSE){
+            // insert error
+            $this->error = 'Error: ' . $query->error;
+            $query->close();
+            return NULL;
+        }
+        else{
+            $query->close();
+            return $uuid;
+        }
+    }
+
+    public function getItemSet($uuid){
+        $this->error = null;
+        $query = "SELECT buildSet FROM set_share WHERE shareId = '" . $uuid . "';";
+
+        $result = $this->conn->query($query);
+        
+        if (empty($result)){
+            // insert error
+            $this->error = "Error: " . $query . "<br>" . $this->conn->error;
+            return null;
+        }
+        else if($result->num_rows > 0){
+            $row = $result->fetch_assoc();
+            return json_decode($row['buildSet']);
+        }
+        else{
+            // no results
+            return null;
+        }
+    }
+
+}
+
 class MatchHistoryModel{
     private $conn;
     private $error;
@@ -164,10 +234,6 @@ class MatchHistoryModel{
 
     public function addMatch($value){
         $this->error = null;
-        /*if(empty($value) || ($value->missingValue() && $value->getMissingValue() != 'id')){
-        $this->error = 'Error: Added restaurant value missing ' . $value->getMissingValue();
-        return false;
-        }*/
         $query = $this->conn->stmt_init();
         
         $query->prepare("INSERT INTO match_history VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
