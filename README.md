@@ -7,4 +7,4 @@ Entry for the Riot API Challenge 2.0 - Item set category.
 
 Emulates the layout of the store and lets you create, import, export, and share item sets. Includes item descriptions, item build paths, item details, item search functionality, and touch screen support for tablets.
 
-Live preview at [http://itembuilds.bstadick.com/](http://itembuilds.bstadick.com/)
+Live preview at [https://www.itembuilds.bstadick.com](https://www.itembuilds.bstadick.com)
